@@ -1,20 +1,23 @@
 INFO:     Will watch for changes in these directories: ['/code/ATLAS']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [253459] using StatReload
-INFO:     Started server process [253473]
+INFO:     Started reloader process [452513] using StatReload
+INFO:     Started server process [452527]
 INFO:     Waiting for application startup.
+2026-08-03 00:02:49,054 [INFO] ATLAS ENGINE: [LocalLLM] Detecting system hardware...
+2026-08-03 00:02:49,066 [INFO] ATLAS ENGINE: [LocalLLM] Available RAM: 7.3 GB
+2026-08-03 00:02:49,066 [INFO] ATLAS ENGINE: [LocalLLM] Selected local model: llama3.2:3b
+2026-08-03 00:02:49,096 [INFO] ATLAS ENGINE: [LocalLLM] Ollama not running. Attempting to start...
 INFO:     Application startup complete.
-INFO:     127.0.0.1:34590 - "OPTIONS /api/execute HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34590 - "POST /api/execute HTTP/1.1" 200 OK
-2026-08-02 13:49:23,595 [INFO] ATLAS ENGINE: Starting Execution ID: 2a4f7f04-03c7-422a-97aa-a2149f70b2df | Goal: remove all txt files from desktop
-INFO:     127.0.0.1:34590 - "GET /api/stream/2a4f7f04-03c7-422a-97aa-a2149f70b2df HTTP/1.1" 200 OK
-2026-08-02 13:49:37,519 [INFO] ATLAS ENGINE: Classified intent as: moderate
-INFO:     127.0.0.1:44844 - "POST /api/execute HTTP/1.1" 200 OK
-2026-08-02 13:50:13,686 [INFO] ATLAS ENGINE: Starting Execution ID: feddfc19-97b4-4885-b889-40826caf14ee | Goal: make  1 txt on desktop
-INFO:     127.0.0.1:44844 - "GET /api/stream/feddfc19-97b4-4885-b889-40826caf14ee HTTP/1.1" 200 OK
-2026-08-02 13:50:18,920 [INFO] ATLAS ENGINE: Classified intent as: moderate
+2026-08-03 00:02:52,101 [INFO] ATLAS ENGINE: [LocalLLM] Downloading llama3.2:3b... (this may take a few minutes)
+2026-08-03 00:02:54,894 [INFO] ATLAS ENGINE: [LocalLLM] Downloading llama3.2:3b: 0%
+2026-08-03 00:03:18,174 [INFO] ATLAS ENGINE: [LocalLLM] Downloading llama3.2:3b: 10%
+2026-08-03 00:03:27,951 [INFO] ATLAS ENGINE: [LocalLLM] Downloading embedding model nomic-embed-text...
+2026-08-03 00:03:27,952 [ERROR] ATLAS ENGINE: Failed to pull nomic-embed-text: <urlopen error [Errno 111] Connection refused>
+2026-08-03 00:03:27,952 [INFO] ATLAS ENGINE: [LocalLLM] Download failed for nomic-embed-text. Falling back to cloud.
+2026-08-03 00:03:27,952 [INFO] ATLAS ENGINE: Local LLM ready: llama3.2:3b (embed: nomic-embed-text)
 INFO:     Shutting down
+INFO:     127.0.0.1:33840 - "OPTIONS /api/execute HTTP/1.1" 200 OK
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [253473]
-INFO:     Stopping reloader process [253459]
+INFO:     Finished server process [452527]
+INFO:     Stopping reloader process [452513]

@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  /* Minimal dark theme hierarchy based on 23-design-system.md */
+  --color-bg-background: #000000;
+  --color-bg-panel: #000000;
+  --color-bg-sidebar: #000000;
+  --color-bg-card: #050505;
+  --color-bg-hover: #141414;
+  --color-bg-selected: #222222;
+  --color-bg-modal: #000000;
+  --color-bg-tooltip: #141414;
+
+  /* Borders & Dividers */
+  --color-border-subtle: #1f1f1f;
+  --color-border-active: #333333;
+
+  /* Typography */
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #8C8C8C;
+  --color-text-tertiary: #525252;
+  
+  /* Status */
+  --color-accent: #00A8E8;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-info: #06B6D4;
+  
+  /* Fonts */
+  --font-primary: "Inter", "Geist", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Reset and base styles */
+:root {
+  color-scheme: dark;
+  
+  /* Motion tokens */
+  --anim-hover: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-dropdown: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --anim-sidebar: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-modal: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden; /* Desktop app feel */
+}
+
+/* Typography base styles */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Scrollbar styling for desktop feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.0);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Prevent text selection where not needed to feel native */
+.no-select {
+  user-select: none;
+}
+
+/* App Region Drag for frameless native feel */
+.app-drag-region {
+  -webkit-app-region: drag;
+}
+
+.app-no-drag {
+  -webkit-app-region: no-drag;
+}
