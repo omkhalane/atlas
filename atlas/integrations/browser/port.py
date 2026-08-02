@@ -42,9 +42,11 @@ class BrowserPort(AdapterPort):
         if not chrome_bin:
             raise RuntimeError("Could not find a valid Chrome/Chromium installation to auto-launch.")
             
-        # Launch browser in background
+        # Launch browser in background with persistent profile
+        profile_dir = "/code/ATLAS/.browser_profile"
+        os.makedirs(profile_dir, exist_ok=True)
         subprocess.Popen(
-            [chrome_bin, f"--remote-debugging-port={self.port}", "--remote-allow-origins=*", "about:blank"],
+            [chrome_bin, f"--remote-debugging-port={self.port}", "--remote-allow-origins=*", f"--user-data-dir={profile_dir}", "about:blank"],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL
         )

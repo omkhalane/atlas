@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ModelPicker } from './ModelPicker';
 
 export const PromptBox: React.FC = () => {
-  const { taskInput, setTaskInput, isExecuting, setIsExecuting, setExecId } = useStore();
+  const { taskInput, setTaskInput, isExecuting, setIsExecuting, setExecId, activeConversationId } = useStore();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -111,7 +111,8 @@ export const PromptBox: React.FC = () => {
       // If we had a real backend supporting file uploads, we'd use FormData here.
       // For now, just send the text goal.
       const payload = { 
-         goal: taskInput + (attachments.length > 0 ? ` [Attached ${attachments.length} files]` : '')
+         goal: taskInput + (attachments.length > 0 ? ` [Attached ${attachments.length} files]` : ''),
+         conversation_id: activeConversationId
       };
       
       const res = await fetch('http://localhost:8000/api/execute', {

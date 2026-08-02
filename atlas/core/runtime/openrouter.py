@@ -12,23 +12,28 @@ class OpenRouterClient:
 
     def _load_config(self):
         config_path = "/code/ATLAS/config.json"
-        self.models_to_try = [
-            "google/gemini-2.5-flash",
-            "google/gemini-2.5-pro",
-            "anthropic/claude-3.5-sonnet",
+        self.local_models = [
             "meta-llama/llama-3.1-8b-instruct",
             "openrouter/free"
+        ]
+        self.cloud_models = [
+            "anthropic/claude-3.5-sonnet",
+            "google/gemini-2.5-pro",
+            "google/gemini-2.5-flash"
         ]
         if os.path.exists(config_path):
             try:
                 with open(config_path, "r") as f:
                     cfg = json.load(f)
-                    if "openrouter" in cfg and "models" in cfg["openrouter"]:
-                        self.models_to_try = cfg["openrouter"]["models"]
+                    if "openrouter" in cfg:
+                        if "local_models" in cfg["openrouter"]:
+                            self.local_models = cfg["openrouter"]["local_models"]
+                        if "cloud_models" in cfg["openrouter"]:
+                            self.cloud_models = cfg["openrouter"]["cloud_models"]
             except Exception as e:
                 print(f"Failed to load config: {e}")
 
-    def _execute_with_fallback(self, messages, system_prompt="", response_format=None):
+    def _execute_with_fallback(self, messages, system_prompt="", response_format=None, model_tier="cloud"):
         if not self.api_key:
             raise ValueError("OPENROUTER_API_KEY is missing.")
             
@@ -37,11 +42,12 @@ class OpenRouterClient:
             final_messages.append({"role": "system", "content": system_prompt})
         final_messages.extend(messages)
         
+        models_to_try = self.cloud_models if model_tier == "cloud" else self.local_models
         retry_count = 0
         while retry_count < 3:
             try:
                 payload = {
-                    "models": self.models_to_try,
+                    "models": models_to_try,
                     "route": "fallback",
                     "messages": final_messages
                 }
@@ -116,7 +122,8 @@ Output JSON:
             content = self._execute_with_fallback(
                 messages=[{"role": "user", "content": goal}], 
                 system_prompt=system_prompt,
-                response_format={"type": "json_object"}
+                response_format={"type": "json_object"},
+                model_tier="local"
             )
             return json.loads(content)
         except Exception as e:
@@ -125,28 +132,32 @@ Output JSON:
 
     def plan_task(self, goal: str) -> list:
         if not self.api_key:
-            return [{"capability": "command", "input": "echo 'Mock plan'", "expected_output": "None", "verification": "None", "recovery": "None"}]
+            return [{"id": "t1", "capability": "command", "input": "echo 'Mock plan'", "depends_on": []}]
             
         system_prompt = """
 You are the ATLAS Autonomous Planner. 
-Your objective is to break down the user's goal into a logical sequence of deterministic tasks.
-Do NOT output vague reasoning. Produce structured plans.
+Your objective is to break down the user's goal into a logical sequence of deterministic tasks forming a Dependency Graph (DAG).
+Independent tasks must not depend on each other so they can run in parallel.
 Produce a JSON response with a single field "tasks" containing a list of objects.
 Each object MUST have:
+- "id": A unique string ID for this task (e.g. "t1", "t2").
 - "capability": The ID of the capability to use (e.g., 'command', 'filesystem', 'browser')
 - "input": A description of the input for this step.
-- "expected_output": What is the expected result.
-- "verification": How to verify it succeeded.
-- "recovery": What to do if it fails.
+- "depends_on": A list of task IDs that must complete before this task can start. (Empty list [] if it has no dependencies).
 
 Example:
 {"tasks": [
   {
+    "id": "fetch_data",
+    "capability": "browser",
+    "input": "Navigate to site and extract data",
+    "depends_on": []
+  },
+  {
+    "id": "process_data",
     "capability": "command",
-    "input": "curl https://dog.ceo/api/breeds/list/all",
-    "expected_output": "JSON list of breeds",
-    "verification": "Check if output contains 'message'",
-    "recovery": "Retry network request"
+    "input": "Run processing script on the extracted data",
+    "depends_on": ["fetch_data"]
   }
 ]}
 """
@@ -154,12 +165,13 @@ Example:
             content = self._execute_with_fallback(
                 messages=[{"role": "user", "content": f"Goal: {goal}"}], 
                 system_prompt=system_prompt,
-                response_format={"type": "json_object"}
+                response_format={"type": "json_object"},
+                model_tier="local"
             )
             return json.loads(content).get("tasks", [])
         except Exception as e:
             print(f"Planning Error: {e}")
-            return [{"capability": "command", "input": f"echo 'Error planning {e}'", "expected_output": "Error", "verification": "None", "recovery": "None"}]
+            return [{"id": "err", "capability": "command", "input": f"echo 'Error planning {e}'", "depends_on": []}]
 
     def get_moderate_steps(self, goal: str, available_capabilities: list) -> list:
         if not self.api_key:
@@ -178,7 +190,8 @@ Example:
             content = self._execute_with_fallback(
                 messages=[{"role": "user", "content": f"Goal: {goal}"}], 
                 system_prompt=system_prompt,
-                response_format={"type": "json_object"}
+                response_format={"type": "json_object"},
+                model_tier="local"
             )
             return json.loads(content).get("steps", [])
         except Exception as e:
@@ -201,7 +214,8 @@ Example:
             content = self._execute_with_fallback(
                 messages=[{"role": "user", "content": f"Goal: {goal}"}], 
                 system_prompt=system_prompt,
-                response_format={"type": "json_object"}
+                response_format={"type": "json_object"},
+                model_tier="local"
             )
             return json.loads(content)
         except Exception as e:
@@ -241,7 +255,8 @@ At each step, produce a JSON response with exactly four fields:
             content = self._execute_with_fallback(
                 messages=history, 
                 system_prompt=system_prompt,
-                response_format={"type": "json_object"}
+                response_format={"type": "json_object"},
+                model_tier="cloud"
             )
             return json.loads(content)
         except Exception as e:

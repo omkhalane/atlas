@@ -12,8 +12,22 @@ class CommandPort(AdapterPort):
         command = request.parameters.get("command")
         if not command:
             return CapabilityResult(success=False, error="command is required")
+        background = request.parameters.get("background", False)
             
         try:
+            if background:
+                proc = subprocess.Popen(
+                    command,
+                    shell=True,
+                    cwd=self.workspace_dir,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL
+                )
+                return CapabilityResult(
+                    success=True,
+                    data={"output": f"Job started in background with PID {proc.pid}", "pid": proc.pid}
+                )
+                
             # We enforce that the command is executed within the workspace
             proc = subprocess.run(
                 command,

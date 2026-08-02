@@ -12,6 +12,7 @@ class Fact:
         self.id = id
         self.content = content
         self.provenance = provenance
+        self.namespace = metadata.get('namespace', 'global') if metadata else 'global'
         self.created_at = _now_utc()
         self.expires_at = expires_at
         self.metadata = metadata or {}
@@ -32,9 +33,16 @@ class MemoryStore:
                     provenance TEXT NOT NULL,
                     created_at TEXT NOT NULL,
                     expires_at TEXT,
+                    namespace TEXT NOT NULL DEFAULT 'global',
                     metadata TEXT
                 )
             """)
+            
+            # Migration for existing schema
+            try:
+                self.conn.execute("ALTER TABLE facts ADD COLUMN namespace TEXT NOT NULL DEFAULT 'global'")
+            except sqlite3.OperationalError:
+                pass
 
     def _load_static_knowledge(self):
         import os
@@ -60,16 +68,22 @@ class MemoryStore:
         expires_at_str = fact.expires_at.isoformat() if fact.expires_at else None
         with self.conn:
             self.conn.execute(
-                "INSERT OR REPLACE INTO facts (id, content, provenance, created_at, expires_at, metadata) VALUES (?, ?, ?, ?, ?, ?)",
-                (fact.id, fact.content, fact.provenance, fact.created_at.isoformat(), expires_at_str, json.dumps(fact.metadata))
+                "INSERT OR REPLACE INTO facts (id, content, provenance, created_at, expires_at, namespace, metadata) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (fact.id, fact.content, fact.provenance, fact.created_at.isoformat(), expires_at_str, fact.namespace, json.dumps(fact.metadata))
             )
 
-    def search(self, query: str = "") -> List[Fact]:
+    def search(self, query: str = "", namespace: str = None) -> List[Fact]:
         cursor = self.conn.cursor()
         now = _now_utc().isoformat()
         
-        sql = "SELECT id, content, provenance, created_at, expires_at, metadata FROM facts WHERE (expires_at IS NULL OR expires_at > ?) AND content LIKE ?"
-        cursor.execute(sql, (now, f"%{query}%"))
+        sql = "SELECT id, content, provenance, created_at, expires_at, metadata, namespace FROM facts WHERE (expires_at IS NULL OR expires_at > ?) AND content LIKE ?"
+        params = [now, f"%{query}%"]
+        
+        if namespace:
+            sql += " AND namespace = ?"
+            params.append(namespace)
+            
+        cursor.execute(sql, tuple(params))
         
         facts = []
         for row in cursor.fetchall():
@@ -81,6 +95,7 @@ class MemoryStore:
                 expires_at=expires_at, 
                 metadata=json.loads(row[5])
             )
+            fact.namespace = row[6]
             fact.created_at = datetime.fromisoformat(row[3])
             facts.append(fact)
         return facts

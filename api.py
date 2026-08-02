@@ -10,6 +10,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from sse_starlette.sse import EventSourceResponse
 from pydantic import BaseModel
 from atlas.core.runtime.openrouter import OpenRouterClient
+from atlas.core.security.policy import PolicyEngine
+from atlas.core.contracts.security import PermissionRequest
+from atlas.core.plugins.mcp_client import MCPClient, MCPAdapter
+from contextlib import asynccontextmanager
 from atlas.integrations.media.port import MediaPort
 from atlas.integrations.filesystem.port import FilesystemPort
 from atlas.integrations.command.port import CommandPort
@@ -22,7 +26,29 @@ logging.basicConfig(
 )
 logger = logging.getLogger("atlas")
 
-app = FastAPI()
+mcp_adapters = {}
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    try:
+        if os.path.exists("/code/ATLAS/mcp_servers.json"):
+            with open("/code/ATLAS/mcp_servers.json", "r") as f:
+                mcp_cfg = json.load(f)
+                for srv_name, srv_config in mcp_cfg.get("mcpServers", {}).items():
+                    client = MCPClient(
+                        command=srv_config["command"],
+                        args=srv_config["args"],
+                        env=srv_config.get("env")
+                    )
+                    await client.start()
+                    mcp_adapters[f"mcp_{srv_name}"] = MCPAdapter(client)
+                    logger.info(f"Loaded MCP Server: {srv_name}")
+    except Exception as e:
+        logger.error(f"Failed to load MCP servers: {e}")
+    yield
+
+app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -36,6 +62,7 @@ media_port = MediaPort()
 fs_port = FilesystemPort()
 cmd_port = CommandPort()
 browser_port = BrowserPort()
+policy_engine = PolicyEngine()
 
 executions = {}
 event_queues = {}
@@ -43,14 +70,16 @@ approval_events = {}
 
 class ExecuteRequest(BaseModel):
     goal: str
+    conversation_id: str = None
+    folder_id: str = None
 
 @app.post("/api/execute")
 async def start_execution(req: ExecuteRequest, background_tasks: BackgroundTasks):
-    exec_id = str(uuid.uuid4())
+    exec_id = req.conversation_id if req.conversation_id else str(uuid.uuid4())
     event_queues[exec_id] = asyncio.Queue()
     approval_events[exec_id] = asyncio.Event()
     
-    background_tasks.add_task(run_atlas_engine, exec_id, req.goal)
+    background_tasks.add_task(run_atlas_engine, exec_id, req.goal, req.conversation_id)
     return {"exec_id": exec_id}
 
 @app.get("/api/stream/{exec_id}")
@@ -108,6 +137,30 @@ async def get_file(path: str):
         return JSONResponse(status_code=500, content={"error": str(e)})
 
 async def execute_capability(q, exec_id, cid, params, artifacts):
+    perm_req = PermissionRequest(capability_id=cid, action=params.get("action", "run"), parameters=params)
+    decision = policy_engine.evaluate(perm_req)
+    
+    if decision.requires_human:
+        await q.put(json.dumps({
+            "type": "security_halt",
+            "requires_human": True, 
+            "detail": decision.explanation,
+            "data": params
+        }))
+        await approval_events[exec_id].wait()
+        if executions[exec_id]["approved"]:
+            await q.put(json.dumps({"type": "thought", "content": "Action Approved by User"}))
+            params["approved"] = True
+            # Clear approval state for future actions in the same exec
+            executions[exec_id]["approved"] = False
+            approval_events[exec_id].clear()
+        else:
+            class DummyRes:
+                success = False
+                error = "Action Denied by User"
+                data = {}
+            return DummyRes()
+
     req = CapabilityRequest(id=cid, parameters=params)
     
     if cid == "media":
@@ -120,20 +173,6 @@ async def execute_capability(q, exec_id, cid, params, artifacts):
         res = browser_port.execute(req)
     elif cid == "filesystem":
         res = fs_port.execute(req)
-        if getattr(res, 'requires_human', False):
-            await q.put(json.dumps({
-                "type": "security_halt",
-                "requires_human": True, 
-                "detail": res.error,
-                "data": res.data
-            }))
-            await approval_events[exec_id].wait()
-            if executions[exec_id]["approved"]:
-                await q.put(json.dumps({"type": "thought", "content": "Action Approved by User"}))
-                req.parameters["approved"] = True
-                res = fs_port.execute(req)
-            else:
-                raise Exception("Action Denied by User")
         if getattr(res, 'success', False):
             action_type = params.get("action")
             if action_type in ["write_file", "append_file"] and "path" in res.data:
@@ -142,22 +181,29 @@ async def execute_capability(q, exec_id, cid, params, artifacts):
                     "path": res.data["path"],
                     "name": os.path.basename(res.data["path"])
                 }))
+    elif cid in mcp_adapters:
+        res = mcp_adapters[cid].execute(req)
     else:
         raise ValueError(f"Unknown action: {cid}")
         
     return res
 
-async def run_atlas_engine(exec_id: str, goal: str):
-    logger.info(f"Starting Execution ID: {exec_id} | Goal: {goal}")
+async def run_atlas_engine(exec_id: str, goal: str, conversation_id: str = None):
+    logger.info(f"Starting Execution ID: {exec_id} | Conv: {conversation_id} | Goal: {goal}")
     q = event_queues[exec_id]
     executions[exec_id] = {"approved": False}
     
     available = [
         {"id": "media", "actions": ["start_recording", "stop_recording", "take_screenshot"]},
-        {"id": "filesystem", "actions": ["write_file", "append_file", "delete_file", "list_files"], "params": ["path", "content"]},
-        {"id": "command", "actions": ["run"], "params": ["command"], "description": "Execute a bash command in the workspace."},
+        {"id": "filesystem", "actions": ["write_file", "append_file", "delete_file", "list_files", "undo"], "params": ["path", "content", "tx_id"]},
+        {"id": "command", "actions": ["run"], "params": ["command", "background"], "description": "Execute a bash command in the workspace."},
         {"id": "browser", "actions": ["run"], "params": ["script"], "description": "Control the browser. Pass Python script controlling browser-harness."}
     ]
+    
+    for mcp_id, adapter in mcp_adapters.items():
+        tools = adapter.mcp_client.get_tools()
+        actions = [t["name"] for t in tools] if tools else ["*"]
+        available.append({"id": mcp_id, "actions": actions, "description": f"MCP Plugin: {mcp_id}"})
     
     try:
         start_time = time.time()
@@ -256,7 +302,8 @@ async def run_atlas_engine(exec_id: str, goal: str):
         plan = {
             "status": "completed",
             "duration_ms": int((time.time() - start_time) * 1000),
-            "artifacts": artifacts
+            "artifacts": artifacts,
+            "conversation_id": conversation_id
         }
         await q.put(json.dumps({"type": "finish", "result": plan}))
         
