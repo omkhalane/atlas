@@ -4,6 +4,7 @@ from .security import PermissionRequest, PolicyDecision
 from .event import Event
 from .context import UserIntent, ContextSnapshot
 from .plugin import PluginManifest
+from .task import Task, TaskResult
 
 __all__ = [
     "Plan",

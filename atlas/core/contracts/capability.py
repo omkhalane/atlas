@@ -9,3 +9,4 @@ class CapabilityResult(BaseModel):
     success: bool
     data: Optional[Dict[str, Any]] = None
     error: Optional[str] = None
+    requires_human: Optional[bool] = False

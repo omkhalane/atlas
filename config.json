@@ -1,0 +1,11 @@
+{
+  "openrouter": {
+    "models": [
+      "google/gemma-4-31b-it:free",
+      "google/gemma-4-26b-a4b-it:free",
+      "openrouter/free"
+    ],
+    "max_retries_per_model": 2,
+    "retry_delay_seconds": 2
+  }
+}
