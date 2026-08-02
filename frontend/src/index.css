@@ -1,17 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #0B0B0D;
-  --color-bg-panel: #111214;
-  --color-bg-card: #17181B;
-  --color-border-subtle: rgba(255, 255, 255, 0.05);
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #A6A6A6;
-  --color-accent: #F97316;
+  /* Minimal dark theme hierarchy */
+  --color-bg-background: #000000;
+  --color-bg-panel: #050505;
+  --color-bg-sidebar: #050505;
+  --color-bg-card: #0A0A0A;
+  --color-bg-hover: #121212;
+  --color-bg-selected: #1A1A1A;
+  --color-bg-modal: #0D0D0D;
+  --color-bg-tooltip: #262626;
+
+  /* Borders & Dividers */
+  --color-border-subtle: rgba(255, 255, 255, 0.04);
+  --color-border-active: rgba(255, 255, 255, 0.08);
+
+  /* Typography */
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #8C8C8C;
+  --color-text-tertiary: #525252;
+  
+  /* Status */
+  --color-accent: #FFFFFF;
   --color-success: #22C55E;
   --color-warning: #FACC15;
   --color-danger: #EF4444;
   
+  /* Fonts */
   --font-primary: "Inter", "Geist", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
@@ -19,12 +34,18 @@
 /* Reset and base styles */
 :root {
   color-scheme: dark;
+  
+  /* Motion tokens */
+  --anim-hover: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-dropdown: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --anim-sidebar: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-modal: 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-background);
   color: var(--color-text-primary);
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
@@ -32,10 +53,22 @@ body {
   overflow: hidden; /* Desktop app feel */
 }
 
+/* Typography base styles */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
 /* Scrollbar styling for desktop feel */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -43,8 +76,13 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.0);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+*:hover::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -54,4 +92,13 @@ body {
 /* Prevent text selection where not needed to feel native */
 .no-select {
   user-select: none;
+}
+
+/* App Region Drag for frameless native feel */
+.app-drag-region {
+  -webkit-app-region: drag;
+}
+
+.app-no-drag {
+  -webkit-app-region: no-drag;
 }
