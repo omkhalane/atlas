@@ -1,70 +1,20 @@
 INFO:     Will watch for changes in these directories: ['/code/ATLAS']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [94871] using StatReload
-INFO:     Started server process [94885]
+INFO:     Started reloader process [253459] using StatReload
+INFO:     Started server process [253473]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     127.0.0.1:48304 - "GET /api/browser_screenshot?t=1785654763320 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48304 - "GET /api/browser_screenshot?t=1785654765665 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48304 - "GET /api/browser_screenshot?t=1785654770509 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48304 - "GET /api/browser_screenshot?t=1785654771005 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48304 - "GET /api/browser_screenshot?t=1785654771171 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33472 - "POST /api/execute HTTP/1.1" 200 OK
-2026-08-02 12:42:51,466 [INFO] ATLAS ENGINE: Starting Execution ID: c2e50d96-0942-41b6-b08f-d24d4aa65551 | Goal: hey
-INFO:     127.0.0.1:48304 - "GET /api/browser_screenshot?t=1785654771465 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33472 - "GET /api/stream/c2e50d96-0942-41b6-b08f-d24d4aa65551 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33480 - "GET /api/browser_screenshot?t=1785654771474 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33480 - "GET /api/browser_screenshot?t=1785654771538 HTTP/1.1" 200 OK
-2026-08-02 12:43:08,207 [INFO] ATLAS ENGINE: Classified intent as: simple
-INFO:     127.0.0.1:40948 - "GET /api/browser_screenshot?t=1785654788209 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33870 - "GET /api/browser_screenshot?t=1785654809444 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654830701 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654830956 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654831069 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654831107 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654831303 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654831489 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654832232 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654832483 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654832667 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654832826 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654833363 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654833509 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654833711 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654833874 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654834056 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654834492 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654834628 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654834745 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654834933 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654835117 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654835258 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654835447 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654835640 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654835866 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654836127 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654836519 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654836702 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654836883 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654837066 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654837210 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654837313 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654837511 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654837711 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654837877 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654838077 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654838279 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654838447 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654838535 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654838736 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58758 - "POST /api/execute HTTP/1.1" 200 OK
-2026-08-02 12:43:58,982 [INFO] ATLAS ENGINE: Starting Execution ID: 5d26d1b2-c6aa-4170-b53c-2b0b9af6adc3 | Goal: wahat was last mail send by me on gmail
-INFO:     127.0.0.1:45534 - "GET /api/browser_screenshot?t=1785654838980 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58758 - "GET /api/stream/5d26d1b2-c6aa-4170-b53c-2b0b9af6adc3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58760 - "GET /api/browser_screenshot?t=1785654838985 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58760 - "GET /api/browser_screenshot?t=1785654839046 HTTP/1.1" 200 OK
-2026-08-02 12:44:03,274 [INFO] ATLAS ENGINE: Classified intent as: moderate
-INFO:     127.0.0.1:58760 - "GET /api/browser_screenshot?t=1785654843276 HTTP/1.1" 200 OK
-[*] Auto-launching Chrome with --remote-debugging-port=9222...
-INFO:     127.0.0.1:60674 - "GET /api/browser_screenshot?t=1785654875769 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60690 - "GET /api/browser_screenshot?t=1785654875772 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34590 - "OPTIONS /api/execute HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34590 - "POST /api/execute HTTP/1.1" 200 OK
+2026-08-02 13:49:23,595 [INFO] ATLAS ENGINE: Starting Execution ID: 2a4f7f04-03c7-422a-97aa-a2149f70b2df | Goal: remove all txt files from desktop
+INFO:     127.0.0.1:34590 - "GET /api/stream/2a4f7f04-03c7-422a-97aa-a2149f70b2df HTTP/1.1" 200 OK
+2026-08-02 13:49:37,519 [INFO] ATLAS ENGINE: Classified intent as: moderate
+INFO:     127.0.0.1:44844 - "POST /api/execute HTTP/1.1" 200 OK
+2026-08-02 13:50:13,686 [INFO] ATLAS ENGINE: Starting Execution ID: feddfc19-97b4-4885-b889-40826caf14ee | Goal: make  1 txt on desktop
+INFO:     127.0.0.1:44844 - "GET /api/stream/feddfc19-97b4-4885-b889-40826caf14ee HTTP/1.1" 200 OK
+2026-08-02 13:50:18,920 [INFO] ATLAS ENGINE: Classified intent as: moderate
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [253473]
+INFO:     Stopping reloader process [253459]
