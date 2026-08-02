@@ -411,20 +411,36 @@ class LocalLLMManager:
             return result.get("message", {}).get("content", "")
 
     def get_embedding(self, text: str) -> List[float]:
-        """Returns embedding vector for the given text using Ollama."""
+        """Returns embedding vector for the given text using Ollama.
+        Tries both /api/embed (new) and /api/embeddings (legacy) endpoints."""
         if not self.ollama_available or not self.embed_model:
             return []
 
         import urllib.request
-        payload = {"model": self.embed_model, "input": text}
-        data = json.dumps(payload).encode()
-        req = urllib.request.Request(f"{self._base_url}/api/embed", data=data, method="POST")
-        req.add_header("Content-Type", "application/json")
 
-        with urllib.request.urlopen(req, timeout=30) as r:
-            result = json.loads(r.read())
-            embeddings = result.get("embeddings", [[]])
-            return embeddings[0] if embeddings else []
+        # Try new endpoint first (/api/embed, Ollama >= 0.3)
+        for endpoint, payload_key, result_key in [
+            ("/api/embed", "input", "embeddings"),
+            ("/api/embeddings", "prompt", "embedding"),
+        ]:
+            try:
+                payload = {"model": self.embed_model, payload_key: text}
+                data = json.dumps(payload).encode()
+                req = urllib.request.Request(
+                    f"{self._base_url}{endpoint}", data=data, method="POST"
+                )
+                req.add_header("Content-Type", "application/json")
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    result = json.loads(r.read())
+                    if result_key == "embeddings":
+                        embs = result.get("embeddings", [[]])
+                        return embs[0] if embs else []
+                    else:
+                        return result.get("embedding", [])
+            except Exception:
+                continue
+
+        return []
 
     def reset_config(self):
         """Deletes the cached config — forces a full re-scan on next boot."""

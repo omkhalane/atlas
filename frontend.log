@@ -10,14 +10,77 @@
 [1] > frontend@0.0.0 electron
 [1] > wait-on tcp:5173 && NODE_ENV=development electron . --no-sandbox
 [1] 
+[0] 12:19:41 AM [vite] (client) Re-optimizing dependencies because vite config has changed
 [0] 
-[0]   VITE v8.2.0  ready in 417 ms
+[0]   VITE v8.2.0  ready in 341 ms
 [0] 
 [0]   ➜  Local:   http://localhost:5173/
 [0]   ➜  Network: use --host to expose
-[1] (node:452725) electron: Failed to load URL: https://www.google.com/ with error: ERR_BLOCKED_BY_RESPONSE
-[1] (Use `electron --trace-warnings ...` to show where the warning was created)
-[1] /code/ATLAS/apps/desktop/node_modules/electron/dist/electron exited with signal SIGINT
-[0] npm run dev exited with code SIGINT
---> Sending SIGTERM to other processes..
-[1] npm run electron exited with code SIGINT
+[1] [200:0803/001942.236755:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.506: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.507: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.507: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.507: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.507: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.507: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.507: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.507: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.507: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.507: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.508: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.508: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.508: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] [200:0803/001942.508722:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/user/1000/bus: No such file or directory
+[1] [200:0803/001942.508786:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[1] [200:0803/001942.508821:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[1] 
+[1] (electron:200): dbind-WARNING **: 00:19:42.519: Couldn't connect to accessibility bus: Failed to connect to socket /run/user/1000/at-spi/bus_0: No such file or directory
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.527: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] [200:0803/001942.541475:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/user/1000/bus: No such file or directory
+[1] [200:0803/001942.572899:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[1] [200:0803/001942.573019:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/user/1000/bus: No such file or directory
+[1] [200:0803/001942.577739:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[1] [200:0803/001942.578157:ERROR:net/disk_cache/disk_cache.cc:284] Unable to create cache
+[1] [200:0803/001942.578171:ERROR:gpu/ipc/host/gpu_disk_cache.cc:725] Gpu Cache Creation failed: -2
+[1] [200:0803/001942.578193:ERROR:net/disk_cache/disk_cache.cc:284] Unable to create cache
+[1] [200:0803/001942.578199:ERROR:gpu/ipc/host/gpu_disk_cache.cc:725] Gpu Cache Creation failed: -2
+[1] [200:0803/001942.578948:ERROR:net/disk_cache/disk_cache.cc:284] Unable to create cache
+[1] [200:0803/001942.578964:ERROR:gpu/ipc/host/gpu_disk_cache.cc:725] Gpu Cache Creation failed: -2
+[1] MESA-LOADER: failed to retrieve device information
+[1] MESA-LOADER: failed to retrieve device information
+[1] MESA-LOADER: failed to retrieve device information
+[1] glx: failed to create dri3 screen
+[1] failed to load driver: i915
+[1] [227:0803/001942.703694:ERROR:media/gpu/vaapi/vaapi_wrapper.cc:1631] Could not get a valid VA display
+[1] MESA-LOADER: failed to retrieve device information
+[1] MESA-LOADER: failed to retrieve device information
+[1] MESA-LOADER: failed to retrieve device information
+[1] MESA-LOADER: failed to retrieve device information
+[1] MESA-LOADER: failed to retrieve device information
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.778: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:42.806: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:46.390: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:46.391: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:46.391: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] 
+[1] (electron:200): dconf-CRITICAL **: 00:19:46.391: unable to create directory '/run/user/1000/dconf': Read-only file system.  dconf will not work properly.
+[1] [233:0803/002003.602499:ERROR:net/disk_cache/simple/simple_index_file.cc:331] Failed to write the temporary index file

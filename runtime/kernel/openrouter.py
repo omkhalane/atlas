@@ -12,12 +12,16 @@ class OpenRouterClient:
 
     def _load_config(self):
         config_path = "/code/ATLAS/config.json"
-        self.local_models = [
-            "meta-llama/llama-3.1-8b-instruct",
-            "openrouter/free"
+        # Free OpenRouter models — no credits needed
+        self.free_models = [
+            "meta-llama/llama-3.1-8b-instruct:free",
+            "google/gemma-2-9b-it:free",
+            "mistralai/mistral-7b-instruct:free",
+            "microsoft/phi-3-mini-128k-instruct:free",
         ]
+        self.local_models = self.free_models  # alias
         self.cloud_models = [
-            "anthropic/claude-3.5-sonnet",
+            "anthropic/claude-sonnet-4-5",
             "google/gemini-2.5-pro",
             "google/gemini-2.5-flash"
         ]
@@ -26,8 +30,9 @@ class OpenRouterClient:
                 with open(config_path, "r") as f:
                     cfg = json.load(f)
                     if "openrouter" in cfg:
-                        if "local_models" in cfg["openrouter"]:
-                            self.local_models = cfg["openrouter"]["local_models"]
+                        if "free_models" in cfg["openrouter"]:
+                            self.free_models = cfg["openrouter"]["free_models"]
+                            self.local_models = self.free_models
                         if "cloud_models" in cfg["openrouter"]:
                             self.cloud_models = cfg["openrouter"]["cloud_models"]
             except Exception as e:
@@ -42,66 +47,82 @@ class OpenRouterClient:
             final_messages.append({"role": "system", "content": system_prompt})
         final_messages.extend(messages)
         
-        models_to_try = self.cloud_models if model_tier == "cloud" else self.local_models
-        retry_count = 0
-        while retry_count < 3:
-            try:
-                payload = {
-                    "models": models_to_try,
-                    "route": "fallback",
-                    "messages": final_messages
-                }
-                if response_format:
-                    payload["response_format"] = response_format
+        # Always try free models first, then cloud if requested
+        if model_tier == "cloud":
+            model_lists = [self.cloud_models, self.free_models]
+        else:
+            model_lists = [self.free_models]
+
+        for models_to_try in model_lists:
+            retry_count = 0
+            while retry_count < 2:
+                try:
+                    payload = {
+                        "models": models_to_try,
+                        "route": "fallback",
+                        "messages": final_messages
+                    }
+                    if response_format:
+                        payload["response_format"] = response_format
+                        
+                    response = requests.post(
+                        f"{self.base_url}/chat/completions",
+                        headers={
+                            "Authorization": f"Bearer {self.api_key}",
+                            "Content-Type": "application/json"
+                        },
+                        json=payload,
+                        timeout=60
+                    )
                     
-                response = requests.post(
-                    f"{self.base_url}/chat/completions",
-                    headers={
-                        "Authorization": f"Bearer {self.api_key}",
-                        "Content-Type": "application/json"
-                    },
-                    json=payload
-                )
-                
-                if response.status_code == 400:
-                    print(f"Invalid Request (400). Payload error.")
-                    break
+                    if response.status_code == 402:
+                        # Payment required on paid models — immediately try free tier
+                        print(f"402 Payment Required — switching to free models")
+                        break  # break inner while, move to next model_list
+
+                    if response.status_code == 400:
+                        print(f"Invalid Request (400).")
+                        break
+                        
+                    if response.status_code == 401:
+                        print(f"Authentication Error (401). Check API key.")
+                        raise Exception("401 Unauthorized")
+                        
+                    if response.status_code == 429:
+                        print(f"Rate limited (429). Retrying in 5 seconds...")
+                        retry_count += 1
+                        time.sleep(5)
+                        continue
+                        
+                    if response.status_code >= 500:
+                        print(f"Server Error ({response.status_code}). Retrying...")
+                        retry_count += 1
+                        time.sleep(2)
+                        continue
+                        
+                    response.raise_for_status()
                     
-                if response.status_code == 401:
-                    print(f"Authentication Error (401). Check API key.")
-                    raise Exception("401 Unauthorized")
-                    
-                if response.status_code == 429:
-                    print(f"Rate limited (429) across all models. Retrying in 5 seconds...")
+                    response_json = response.json()
+                    if "error" in response_json:
+                        print(f"Provider Error: {response_json['error']}")
+                        break
+                        
+                    content = response_json["choices"][0]["message"].get("content", "")
+                    if not content:
+                        print(f"Empty content from OpenRouter.")
+                        break
+                        
+                    return content
+                except Exception as e:
+                    print(f"Exception calling OpenRouter: {e}")
                     retry_count += 1
-                    time.sleep(5)
-                    continue
-                    
-                if response.status_code >= 500:
-                    print(f"Server Error ({response.status_code}). Retrying...")
-                    retry_count += 1
-                    time.sleep(2)
-                    continue
-                    
-                response.raise_for_status()
-                
-                response_json = response.json()
-                if "error" in response_json:
-                    print(f"Provider Error: {response_json['error']}")
-                    break
-                    
-                content = response_json["choices"][0]["message"].get("content", "")
-                if not content:
-                    print(f"Empty content from OpenRouter.")
-                    break
-                    
-                return content
-            except Exception as e:
-                print(f"Exception calling OpenRouter: {e}")
-                retry_count += 1
-                time.sleep(2)
+                    time.sleep(1)
         
         raise Exception("OpenRouter request failed.")
+
+    # Backward-compatibility alias used by LocalPlanner
+    def _call_openrouter(self, messages, system_prompt="", model_tier="local") -> str:
+        return self._execute_with_fallback(messages, system_prompt=system_prompt, model_tier=model_tier)
 
     def classify_intent(self, goal: str) -> Dict[str, Any]:
         if not self.api_key:
