@@ -1,0 +1,2847 @@
+[
+  {
+    "command": "&amp;",
+    "description": "Start a new process in the background",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "alias",
+    "description": "Create an alias \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "apropos",
+    "description": "Search Help manual pages (man -k)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "apt",
+    "description": "Search for and install software packages (Debian/Ubuntu)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "apt-get",
+    "description": "Search for and install software packages (Debian/Ubuntu)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "aptitude",
+    "description": "Search for and install software packages (Debian/Ubuntu)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "aspell",
+    "description": "Spell Checker",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "at",
+    "description": "Schedule a command to run once at a particular time",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "awk",
+    "description": "Find and Replace text, database sort/validate/index",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "basename",
+    "description": "Strip directory and suffix from filenames",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "base32",
+    "description": "Base32 encode/decode data and print to standard output",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "base64",
+    "description": "Base64 encode/decode data and print to standard output",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "bash",
+    "description": "GNU Bourne-Again SHell",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "bc",
+    "description": "Arbitrary precision calculator language",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "bg",
+    "description": "Send to background",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "bind",
+    "description": "Set or display readline key and function bindings &bull;",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "break",
+    "description": "Exit from a loop \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "builtin",
+    "description": "Run a shell builtin",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "bzip2",
+    "description": "Compress or decompress named file(s)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cal",
+    "description": "Display a calendar",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "caller",
+    "description": "Return the context of any active subroutine call \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "case",
+    "description": "Conditionally perform a command",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cat",
+    "description": "Concatenate and print (display) the content of files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cd",
+    "description": "Change Directory",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cfdisk",
+    "description": "Partition table manipulator for Linux",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "chattr",
+    "description": "Change file attributes on a Linux file system",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "chgrp",
+    "description": "Change group ownership",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "chmod",
+    "description": "Change access permissions",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "chown",
+    "description": "Change file owner and group",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "chpasswd",
+    "description": "Update passwords in batch mode",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "chroot",
+    "description": "Run a command with a different root directory",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "chkconfig",
+    "description": "System services (runlevel)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cksum",
+    "description": "Print CRC checksum and byte counts",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cmp",
+    "description": "Compare two files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "comm",
+    "description": "Compare two sorted files line by line",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "command",
+    "description": "Run a command - ignoring shell functions \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "continue",
+    "description": "Resume the next iteration of a loop \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cp",
+    "description": "Copy one or more files to another location",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cpio",
+    "description": "Copy files to and from archives",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cron",
+    "description": "Daemon to execute scheduled commands",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "crontab",
+    "description": "Schedule a command to run at a later time",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "csplit",
+    "description": "Split a file into context-determined pieces",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "curl",
+    "description": "Transfer data  from or to a server",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "cut",
+    "description": "Divide a file into several parts",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "date",
+    "description": "Display or change the date &amp; time",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dc",
+    "description": "Desk Calculator",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dd",
+    "description": "Data Duplicator - convert and copy a file, write disk headers, boot records",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ddrescue",
+    "description": "Data recovery tool",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ddrescuelog",
+    "description": "Tool for ddrescue logfiles",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "declare",
+    "description": "Declare variables and give them attributes \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "df",
+    "description": "Display free disk space",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "diff",
+    "description": "Display the differences between two files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "diff3",
+    "description": "Show differences among three files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dig",
+    "description": "DNS lookup",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dir",
+    "description": "Briefly list directory contents",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dircolors",
+    "description": "Colour setup for 'ls'",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dirname",
+    "description": "Convert a full pathname to just a path",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dirs",
+    "description": "Display list of remembered directories",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dos2unix",
+    "description": "Windows/MAC to UNIX text file format converter",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dmesg",
+    "description": "Print kernel &amp; driver messages",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "dpkg",
+    "description": "Package manager  (Debian/Ubuntu).",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "du",
+    "description": "Estimate file space usage",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "echo",
+    "description": "Display message on screen \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "egrep",
+    "description": "Search file(s) for lines that match an extended expression",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "eject",
+    "description": "Eject removable media",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "enable",
+    "description": "Enable and disable builtin shell commands \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "env",
+    "description": "Environment variables",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "eval",
+    "description": "Evaluate several commands/arguments",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "exec",
+    "description": "Execute a command",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "exit",
+    "description": "Exit the shell",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "expand",
+    "description": "Convert tabs to spaces",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "export",
+    "description": "Set an environment variable",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "expr",
+    "description": "Evaluate expressions",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "false",
+    "description": "Do nothing, unsuccessfully",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "fdformat",
+    "description": "Low-level format a floppy disk",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "fdisk",
+    "description": "Partition table manipulator for Linux",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "fg",
+    "description": "Send job to foreground",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "fgrep",
+    "description": "Search file(s) for lines that match a fixed string",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "file",
+    "description": "Determine file type",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "find",
+    "description": "Search for files that meet a desired criteria",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "fmt",
+    "description": "Reformat paragraph text",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "fold",
+    "description": "Wrap text to fit a specified width",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "fsck",
+    "description": "File system consistency check and repair",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ftp",
+    "description": "File Transfer Protocol",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "function",
+    "description": "Define Function Macros",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "fuser",
+    "description": "Identify/kill the process that is accessing a file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "gawk",
+    "description": "Find and Replace text within file(s)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "getopts",
+    "description": "Parse positional parameters",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "getfacl",
+    "description": "Get file access control lists",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "grep",
+    "description": "Search file(s) for lines that match a given pattern",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "groupadd",
+    "description": "Add a user security group",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "groupdel",
+    "description": "Delete a group",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "groupmod",
+    "description": "Modify a group",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "groups",
+    "description": "Print group names a user is in",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "gzip",
+    "description": "Compress or decompress named file(s)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "hash",
+    "description": "Remember the full pathname of a name argument",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "head",
+    "description": "Output the first part of file(s)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "history",
+    "description": "Command History",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "hostname",
+    "description": "Print or set system name",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "htop",
+    "description": "Interactive process viewer",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "iconv",
+    "description": "Convert the character set of a file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "id",
+    "description": "Print user and group id\u2019s",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "if",
+    "description": "Conditionally perform a command",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ifconfig",
+    "description": "Configure a network interface",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ifdown",
+    "description": "Stop a network interface",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ifup",
+    "description": "Start a network interface up",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "import",
+    "description": "Capture an X server screen and save the image to file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "install",
+    "description": "Copy files and set attributes",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "iostat",
+    "description": "Report CPU and i/o statistics",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ip",
+    "description": "Routing, devices and tunnels",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "jobs",
+    "description": "List active jobs &bull;",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "join",
+    "description": "Join lines on a common field",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "kill",
+    "description": "Kill a process by specifying its PID",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "killall",
+    "description": "Kill processes by name",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "klist",
+    "description": "List cached Kerberos tickets",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "less",
+    "description": "Display output one screen at a time",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "let",
+    "description": "Perform arithmetic on shell variables \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "link",
+    "description": "Create a link to a file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ln",
+    "description": "Create a symbolic link to a file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "local",
+    "description": "Create a function variable \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "locate",
+    "description": "Find files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "login",
+    "description": "Login to the computer",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "logname",
+    "description": "Print current login name",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "logout",
+    "description": "Exit a login shell \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "look",
+    "description": "Display lines beginning with a given string",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "lpc",
+    "description": "Line printer control program",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "lpr",
+    "description": "Print files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "lprm",
+    "description": "Remove jobs from the print queue",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "lsattr",
+    "description": "List file attributes on a Linux second extended file system",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "lsblk",
+    "description": "List block devices",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ls",
+    "description": "List information about file(s)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "lsof",
+    "description": "List open files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "lspci",
+    "description": "List all PCI devices",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "man",
+    "description": "Help manual",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mapfile",
+    "description": "Read lines from standard input into an indexed array variable \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "md5sum",
+    "description": "Compute and check MD5 message digest",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mkdir",
+    "description": "Create new folder(s)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mkfifo",
+    "description": "Make FIFOs (named pipes)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mkfile",
+    "description": "Make a file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mknod",
+    "description": "Make block or character special files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mktemp",
+    "description": "Make a temporary file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "modprobe",
+    "description": "Add or remove modules from the Linux Kernel",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "more",
+    "description": "Display output one screen at a time",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "most",
+    "description": "Browse or page through a text file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mount",
+    "description": "Mount a file system",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mtools",
+    "description": "Manipulate MS-DOS files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mtr",
+    "description": "Network diagnostics (traceroute/ping)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mv",
+    "description": "Move or rename files or directories",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "mmv",
+    "description": "Mass Move and rename (files)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "nc",
+    "description": "Netcat, read and write data across networks",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "netstat",
+    "description": "Networking connections/stats",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "nft",
+    "description": "nftables for packet filtering and classification",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "nice",
+    "description": "Set the priority of a command or job",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "nl",
+    "description": "Number lines and write files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "nohup",
+    "description": "Run a command immune to hangups",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "notify-send",
+    "description": "Send desktop notifications",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "nslookup",
+    "description": "Query Internet name servers interactively",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "op",
+    "description": "Operator access",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "open",
+    "description": "Open a file in its default application",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "openssl",
+    "description": "OpenSSL command line",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "passwd",
+    "description": "Modify a user password",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "paste",
+    "description": "Merge lines of files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "Perf",
+    "description": "Performance analysis tools for Linux",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ping",
+    "description": "Test a network connection",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "pgrep",
+    "description": "List processes by name",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "pkill",
+    "description": "Kill processes by name",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "popd",
+    "description": "Restore the previous value of the current directory",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "pr",
+    "description": "Prepare files for printing",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "printenv",
+    "description": "Print environment variables",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "printf",
+    "description": "Format and print data \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ps",
+    "description": "Process status",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "pushd",
+    "description": "Save and then change the current directory",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "pv",
+    "description": "Monitor the progress of data through a pipe",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "pwd",
+    "description": "Print Working Directory",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "quota",
+    "description": "Display disk usage and limits",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "quotacheck",
+    "description": "Scan a file system for disk usage",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ram",
+    "description": "ram disk device",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "rar",
+    "description": "Archive files with compression",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "rcp",
+    "description": "Copy files between two machines",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "read",
+    "description": "Read a line from standard input \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "readonly",
+    "description": "Mark variables/functions as readonly",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "rename",
+    "description": "Rename files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "return",
+    "description": "Exit a shell function",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "rev",
+    "description": "Reverse lines of a file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "rm",
+    "description": "Remove files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "rmdir",
+    "description": "Remove folder(s)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "rmmod",
+    "description": "Simple program to remove a module from the Linux Kernel",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "rsync",
+    "description": "Remote file copy (Synchronize file trees)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "screen",
+    "description": "Multiplex terminal, run remote shells via ssh",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "scp",
+    "description": "Secure copy (remote file copy)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "sdiff",
+    "description": "Merge two files interactively",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "sed",
+    "description": "Stream Editor",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "select",
+    "description": "Accept user choices via keyboard input",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "seq",
+    "description": "Print numeric sequences",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "set",
+    "description": "Manipulate shell variables and functions",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "setfacl",
+    "description": "Set file access control lists.",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "sha256sum",
+    "description": "Compute and check SHA256 (256-bit) checksums",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "shift",
+    "description": "Shift positional parameters",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "shopt",
+    "description": "Shell Options",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "shuf",
+    "description": "Generate random permutations",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "shutdown",
+    "description": "Shutdown or restart Linux",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "sleep",
+    "description": "Delay for a specified time",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "slocate",
+    "description": "Find files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "sntp",
+    "description": "Simple Network Time Protocol client program",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "sort",
+    "description": "Sort text files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "source",
+    "description": "Run commands from a file '.'&nbsp; \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "split",
+    "description": "Split a file into fixed-size pieces",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ss",
+    "description": "Socket Statistics",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ssh",
+    "description": "Secure Shell client (remote login program)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "stat",
+    "description": "Display file or file system status",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "strace",
+    "description": "Trace system calls and signals",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "su",
+    "description": "Substitute user identity",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "sudo",
+    "description": "Execute a command as another user",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "sum",
+    "description": "Print a checksum for a file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "suspend",
+    "description": "Suspend execution of this shell &bull;",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "sync",
+    "description": "Synchronize data on disk with memory",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tabs",
+    "description": "Set tabs on a terminal",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tac",
+    "description": "Concatenate and write files in reverse",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tail",
+    "description": "Output the last part of a file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tar",
+    "description": "Store, list or extract files in an archive",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tee",
+    "description": "Redirect output to multiple files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "test",
+    "description": "Evaluate a conditional expression",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "time",
+    "description": "Measure Program running time",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "timeout",
+    "description": "Run a command with a time limit",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "times",
+    "description": "User and system times",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tmux",
+    "description": "Terminal multiplexer",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "touch",
+    "description": "Change file timestamps",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "top",
+    "description": "List processes running on the system",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tput",
+    "description": "Set terminal-dependent capabilities, colour, position",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "traceroute",
+    "description": "Trace Route to Host",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "trap",
+    "description": "Execute a command when the shell receives a signal &bull;",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tr",
+    "description": "Translate, squeeze, and/or delete characters",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "true",
+    "description": "Do nothing, successfully",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tsort",
+    "description": "Topological sort",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tty",
+    "description": "Print filename of terminal on stdin",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "type",
+    "description": "Describe a command \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "ulimit",
+    "description": "Limit user resources \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "umask",
+    "description": "Users file creation mask",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "unalias",
+    "description": "Remove an alias \u2022",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "uname",
+    "description": "Print system information",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "unexpand",
+    "description": "Convert spaces to tabs",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "uniq",
+    "description": "Uniquify files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "units",
+    "description": "Convert units from one scale to another",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "unix2dos",
+    "description": "UNIX to Windows or MAC text file format converter",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "unrar",
+    "description": "Extract files from a rar archive",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "unset",
+    "description": "Remove variable or function names",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "unshar",
+    "description": "Unpack shell archive scripts",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "until",
+    "description": "Execute commands (until error)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "useradd",
+    "description": "Create new user account",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "userdel",
+    "description": "Delete a user account",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "usermod",
+    "description": "Modify user account",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "users",
+    "description": "List users currently logged in",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "uuencode",
+    "description": "Encode a binary file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "uudecode",
+    "description": "Decode a file created by uuencode",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "uuidgen",
+    "description": "Create a new UUID value",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "vi",
+    "description": "Text Editor",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "vmstat",
+    "description": "Report virtual memory statistics",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "w",
+    "description": "Show who is logged on and what they are doing",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "wait",
+    "description": "Wait for a process to complete &bull;",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "watch",
+    "description": "Execute/display a program periodically",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "wc",
+    "description": "Print byte, word, and line counts",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "whereis",
+    "description": "Search the user\u2019s $path, man pages and source files for a program",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "which",
+    "description": "Search the user\u2019s $path for a program file",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "while",
+    "description": "Execute commands",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "who",
+    "description": "Print all usernames currently logged in",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "whoami",
+    "description": "Print the current user id and name ('id -un')",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "wl-copy",
+    "description": "Copy to clipboard (Wayland)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "wl-paste",
+    "description": "Paste from clipboard (Wayland)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "write",
+    "description": "Send a message to another user",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "xargs",
+    "description": "Execute utility, passing constructed argument list(s)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "xclip",
+    "description": "Copy to clipboard (X11)",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "xdg-open",
+    "description": "Open a file or URL in the user\u2019s preferred application.",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "xxd",
+    "description": "Make a hexdump or do the reverse",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "xz",
+    "description": "Compress or decompress .xz and .lzma files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "yes",
+    "description": "Print a string until interrupted",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "zip",
+    "description": "Package and compress (archive) files",
+    "source": "https://ss64.com/bash/"
+  },
+  {
+    "command": "tree",
+    "description": "Explore the Linux tree command, a powerful tool for visualizing directory structures. Learn its basic options, and apply it to specific directories and files for practical use cases.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "updatedb",
+    "description": "Explore the updatedb command in Linux, which updates the locate database for efficient file searches. Learn how to use updatedb and the locate command with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "od",
+    "description": "Explore the od command in Linux, learn its options, and perform hexadecimal dumps of files with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mc",
+    "description": "Explore the Midnight Commander (mc) file manager, learn how to install it on Ubuntu 22.04, and perform essential file and directory operations using this powerful command-line tool.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "readlink",
+    "description": "Explore the readlink command in Linux, learn its syntax and options, and practice resolving symbolic links with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "shred",
+    "description": "Explore the Linux shred command, which securely deletes files by overwriting their contents multiple times, ensuring complete data erasure. Learn practical examples of using shred to delete files and wipe disk partitions.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mcopy",
+    "description": "Explore the Linux mcopy command, learn how to copy files and directories, and discover advanced options for efficient file management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mdel",
+    "description": "Explore the mdel command in Linux, learn its syntax, and practice creating and managing multiple directories using practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mdir",
+    "description": "Explore the Linux mdir command with practical examples. Learn how to create and manage directories, and discover advanced options for efficient directory operations.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mmove",
+    "description": "Explore the Linux mmove command and learn how to effectively move files and directories with practical examples. Discover advanced options to enhance your file management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mread",
+    "description": "Explore the Linux mread command and learn how to use it for efficient file reading with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mren",
+    "description": "Explore the mren command in Linux, a powerful tool for renaming multiple files efficiently. Learn practical examples and advanced usage with regular expressions.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mshowfat",
+    "description": "Explore the mshowfat command in Linux, which provides detailed information about the FAT file system structure. Learn how to use mshowfat to analyze and troubleshoot FAT-based storage devices.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mtype",
+    "description": "Explore the Linux mtype command, its options, and practical examples to enhance your understanding of basic file and directory operations.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mattrib",
+    "description": "Explore the Linux mattrib command and its practical applications for modifying file attributes, managing multiple files and directories, and understanding its syntax and purpose.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mmd",
+    "description": "Explore the mmd command in Linux, learn how to create Markdown files, and convert them to HTML and PDF formats for various use cases.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mrd",
+    "description": "Explore the mrd command in Linux, a tool for managing directories. Learn its syntax, options, and practical applications through hands-on exercises.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mzip",
+    "description": "Explore the mzip command in Linux, learn how to compress and extract files and directories using this versatile tool, and gain practical experience with real-world examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mtoolstest",
+    "description": "Explore the mtoolstest command in Linux, learn how to verify its installation, and discover practical examples of its usage for file and directory operations.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "patch",
+    "description": "Learn how to use the Linux patch command to apply and revert changes to files. Explore practical examples and understand the syntax and purpose of this powerful text editing tool.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "col",
+    "description": "Explore the versatile col command in Linux, learn how to manipulate tabular data, and combine it with other commands for advanced text formatting.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "colrm",
+    "description": "Learn how to use the Linux colrm command to remove specific columns from a file. Explore practical examples and combine colrm with other commands for efficient text processing.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ispell",
+    "description": "Learn how to use the ispell command in Linux to check the spelling of single words and text files. Explore practical examples and gain proficiency in text processing and editing.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "spell",
+    "description": "Explore the Linux spell command, learn how to install and use it for basic spell checking on text files. Enhance your text processing and editing skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "diffstat",
+    "description": "Explore the diffstat command, a powerful tool for analyzing changes in text files. Learn how to use diffstat to process patch files, Git diffs, and more, with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "emacs",
+    "description": "Explore the powerful emacs text editor with this hands-on lab. Learn basic commands, shortcuts, and how to customize emacs for efficient text processing and editing.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "indent",
+    "description": "Explore the Linux indent command, learn its syntax, and discover practical examples to format C/C++ source code with customizable options for different coding styles.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ed",
+    "description": "Explore the powerful Linux ed command for text processing and editing. Learn how to edit text files, perform advanced operations, and enhance your command-line skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ex",
+    "description": "Explore the ex command, a powerful text editor in Linux. Learn the basics, perform editing operations, and automate ex commands using scripts for efficient text processing.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "jed",
+    "description": "Explore the jed text editor, a powerful and versatile tool for text processing and editing on Linux systems. Learn basic commands, navigation, and customization to enhance your productivity.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "joe",
+    "description": "Explore the powerful joe text editor on Ubuntu 22.04. Learn how to install, create, edit, and customize files using the joe command-line tool.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "pico",
+    "description": "Explore the pico text editor, a user-friendly command-line tool for text processing and editing on Linux systems. Learn basic commands, customization options, and practical examples to enhance your productivity.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "column",
+    "description": "Explore the Linux column command and learn how to format tabular data, customize output, and apply practical examples to enhance your text processing skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "free",
+    "description": "Explore the Linux free command, learn its syntax, and analyze memory usage with practical examples. Customize the free command output to suit your system monitoring needs.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "uptime",
+    "description": "Explore the Linux uptime command and its practical applications for monitoring system uptime and load average. Learn how to effectively utilize this tool for system management and troubleshooting.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "lshw",
+    "description": "Explore the lshw command, a powerful tool for gathering detailed hardware information on your Linux system. Learn how to use lshw to customize output and save data to a file for analysis.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "lsusb",
+    "description": "Explore the Linux lsusb command and learn how to use it to identify USB device information on your system. Understand the purpose and basic usage of this powerful system monitoring tool.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mpstat",
+    "description": "Explore the Linux mpstat command, a powerful tool for monitoring and analyzing CPU utilization metrics across multiple CPUs. Learn how to use mpstat to gain insights into system performance and optimize resource allocation.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "pidof",
+    "description": "Explore the Linux pidof command and its practical applications for finding the process ID (PID) of running processes. Learn how to locate multiple processes with the same name and gain insights into system monitoring and management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "sar",
+    "description": "Explore the powerful sar command in Linux and learn how to analyze system performance metrics through practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "procinfo",
+    "description": "Explore the Linux procinfo command and learn how to monitor system information, customize output, and gain practical insights into system performance and resource utilization.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "pstree",
+    "description": "Explore the process hierarchy on your Linux system using the pstree command. Learn how to filter and customize the output to gain a deeper understanding of your system&#x27;s processes.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "tload",
+    "description": "Explore the Linux tload command, a powerful tool for monitoring system load average. Learn how to interpret tload output and identify performance issues on your system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "logrotate",
+    "description": "Explore the logrotate command in Linux, learn how to configure it for Apache web server logs, and customize the configuration for specific log files.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "arch",
+    "description": "Explore the arch command in Linux, learn how to identify your system&#x27;s hardware architecture, and discover practical scenarios for using this powerful tool.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "dmidecode",
+    "description": "Explore the dmidecode command, a powerful tool for retrieving detailed hardware information on Linux systems. Learn how to display system hardware details and extract specific hardware data.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "dstat",
+    "description": "Explore the dstat command, a versatile system monitoring tool, and learn how to use it to monitor CPU utilization, memory usage, and other system metrics on your Linux machine.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "iotop",
+    "description": "Explore the Linux iotop command, a powerful tool for monitoring disk I/O usage. Learn how to install, configure, and utilize iotop to analyze system performance and identify resource-intensive processes.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "journalctl",
+    "description": "Explore the powerful journalctl command in Linux, learn how to filter and analyze system logs, and gain practical experience with real-world examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "pmap",
+    "description": "Explore the pmap command in Linux, a powerful tool for analyzing memory usage and identifying memory leaks in processes. Learn practical examples to optimize system performance.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "adduser",
+    "description": "Explore the Linux adduser command with practical examples. Learn how to create new user accounts, set passwords and expiration, and add users to existing groups for effective system management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "chage",
+    "description": "Explore the chage command in Linux, learn how to modify user password expiration dates, and enforce password expiration policies for enhanced system security.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "grpck",
+    "description": "Explore the Linux grpck command, which verifies the integrity of the group file. Learn how to use grpck to identify and repair group file issues, ensuring the proper management of user groups on your system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "vlock",
+    "description": "Explore the Linux vlock command, which allows you to lock the current terminal session, providing a secure way to protect your system when stepping away from your computer.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "rlogin",
+    "description": "Explore the rlogin command in Linux, learn how to establish remote login sessions, execute remote commands, and transfer files securely between systems.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "rsh",
+    "description": "Explore the rsh command in Linux, learn how to establish remote shell connections, and execute remote commands effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "sliplogin",
+    "description": "Explore the sliplogin command in Linux, learn how to configure it, and troubleshoot any issues that may arise, with practical examples to enhance your system monitoring and management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "swatch",
+    "description": "Explore the swatch command in Linux, a powerful tool for monitoring log files and setting up custom alerts. Learn how to configure swatch to monitor specific events and receive notifications.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "rwho",
+    "description": "Explore the rwho command in Linux, which allows you to monitor users logged into remote systems. Learn how to utilize this tool for user monitoring and system management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "halt",
+    "description": "Explore the Linux halt command, learn how to shut down the system, and discover additional options for managing system shutdown processes.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "reboot",
+    "description": "Explore the Linux reboot command and learn how to reboot your system immediately or schedule a reboot at a specific time. Gain practical knowledge for system monitoring and management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "chfn",
+    "description": "Explore the Linux chfn command, which allows you to modify user information such as the full name, office location, and phone number. Learn practical examples and advanced options to effectively manage user profiles.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "chsh",
+    "description": "Explore the Linux chsh command, learn how to change the default shell, and verify the changes with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "newgrp",
+    "description": "Explore the Linux newgrp command and learn how to create, switch, and manage group permissions. Gain practical knowledge for effective user and permission management in your Linux environment.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "last",
+    "description": "Explore the Linux last command, which displays information about the last users who have logged into the system. Learn how to use it effectively with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "lastb",
+    "description": "Explore the Linux lastb command, which displays information about failed login attempts. Learn how to analyze login failures and enhance system security.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "finger",
+    "description": "Explore the Linux finger command, which provides user information, and learn how to customize its output for practical use in user and permission management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "gpasswd",
+    "description": "Learn how to use the Linux gpasswd command to manage user group memberships. Add and remove users from groups, and explore practical examples to enhance your user and permission management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "pwconv",
+    "description": "Explore the Linux pwconv command and learn how to create and manage user passwords effectively. Understand the purpose of pwconv and troubleshoot any password conversion issues.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "pwunconv",
+    "description": "Explore the pwunconv command in Linux, which secures user passwords by moving them from the shadow file to the password file. Learn practical scenarios for using pwunconv to manage user permissions and enhance system security.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "grpconv",
+    "description": "Explore the grpconv command in Linux, learn how to create and manage user groups, and synchronize group passwords with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "grpunconv",
+    "description": "Explore the grpunconv command in Linux, learn its purpose and syntax, and discover practical examples for removing groups from the system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "newaliases",
+    "description": "Explore the newaliases command in Linux, learn how to create and manage email aliases, and troubleshoot alias configuration for effective email management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "wget",
+    "description": "Learn how to use the powerful wget command to download files from the internet. Explore practical examples and automate file downloads with wget scripting.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "telnet",
+    "description": "Explore the telnet command in Linux, learn its purpose, syntax, and practical examples for troubleshooting network connectivity and remote server access.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "route",
+    "description": "Explore the Linux route command and learn how to configure static and dynamic routing using practical examples. Gain a deeper understanding of network routing and management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "nmap",
+    "description": "Explore the powerful nmap command in Linux, learn its basic usage, and discover advanced techniques for network scanning and security analysis.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "hostnamectl",
+    "description": "Explore the Linux hostnamectl command and learn how to display system hostname information, change the hostname temporarily and permanently with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "arp",
+    "description": "Explore the arp command in Linux, learn its purpose, syntax, and how to manage the ARP cache through practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "netcat",
+    "description": "Explore the versatile Linux netcat (nc) command and learn how to use it for server-client communication, file transfers, and other practical networking tasks.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "nmcli",
+    "description": "Explore the power of the nmcli command in managing network interfaces, troubleshooting connectivity issues, and gaining a deeper understanding of Linux networking.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "tcpdump",
+    "description": "Learn how to use the powerful tcpdump command to capture and analyze network traffic on Linux systems. Discover practical examples and techniques for filtering and monitoring network data.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "iwconfig",
+    "description": "Explore the Linux iwconfig command, a powerful tool for configuring and troubleshooting wireless network interfaces. Learn how to set up wireless connections, manage network parameters, and diagnose connectivity issues.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ethtool",
+    "description": "Explore the ethtool command in Linux, a powerful tool for retrieving and modifying network interface settings. Learn how to use ethtool to diagnose and troubleshoot network issues.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "smbclient",
+    "description": "Explore the smbclient command in Linux, learn how to connect to Windows shares, list files and directories, and perform practical operations.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "smbstatus",
+    "description": "Explore the Linux smbstatus command, learn its purpose, options, and how to analyze active SMB connections and shared resources on your system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mailq",
+    "description": "Explore the Linux mailq command, learn how to interpret its output, and manage the mail queue effectively. Gain practical knowledge for efficient email server administration.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "host",
+    "description": "Explore the hostname command, manage hostnames with hostnamectl, and customize the hostname on Ubuntu 22.04 in this practical Linux networking lab.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "arpwatch",
+    "description": "Explore the arpwatch command in Linux, learn how to install and use it to monitor network activity, and gain practical experience with real-world examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "iftop",
+    "description": "Explore the iftop command in Linux, a powerful network monitoring tool that provides real-time analysis of network traffic. Learn how to use iftop for effective bandwidth monitoring and troubleshooting.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "iptables",
+    "description": "Explore the powerful iptables firewall tool in Linux. Learn to manage firewall rules, implement advanced configurations, and secure your network with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "iptables-save",
+    "description": "This lab explores the iptables-save command, which allows you to backup and restore iptables firewall rules. Learn how to use iptables-save for effective firewall management and automation.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "tracepath",
+    "description": "Explore the tracepath command in Linux, learn how to trace the path to a remote host, and troubleshoot network issues using practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "uuname",
+    "description": "Explore the Linux uuname command and learn how to retrieve system information, combine it with other commands, and apply practical examples to enhance your Linux administration skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "vnstat",
+    "description": "Explore the powerful Linux vnstat command for monitoring network traffic. Learn how to install, configure, and generate reports to visualize your network data.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "whois",
+    "description": "Explore the whois command in Linux, learn its syntax, and discover practical examples to retrieve domain information and customize the output.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "apachectl",
+    "description": "Learn how to use the apachectl command to manage the Apache web server, including starting, stopping, restarting, and checking the server status.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "httpd",
+    "description": "Explore the Linux httpd command with practical examples, including installing Apache HTTP Server, starting, stopping, and restarting the server, and configuring virtual hosts.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "nc(netcat)",
+    "description": "Explore the powerful nc (netcat) command in Linux, learn how to use it for TCP and UDP server-client communication, and discover practical examples to enhance your networking skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "lpq",
+    "description": "Explore the lpq command in Linux, learn how to check the print queue status, and manage print jobs effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "lpd",
+    "description": "Explore the lpd command, a powerful tool for managing print jobs in Linux. Learn how to configure the lpd daemon, control print queues, and troubleshoot printing issues with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "tftp",
+    "description": "Explore the tftp command in Linux, learn how to configure a tftp server, and practice transferring files using the tftp client. Gain practical networking skills through hands-on examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ncftp",
+    "description": "Learn how to use the ncftp command to connect to FTP servers, manage files and directories on the server, and perform various file transfer operations in a Linux environment.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ftpshut",
+    "description": "Explore the ftpshut command in Linux, learn how to shut down the FTP server, and discover techniques for scheduling automatic FTP server shutdown.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ftpwho",
+    "description": "Explore the ftpwho command in Linux, learn its options, and analyze its output to monitor FTP server connections and user activities.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ftpcount",
+    "description": "Explore the ftpcount command in Linux, which allows you to monitor and count active FTP sessions on your system. Learn how to install, use, and interpret the output of this useful network utility.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "uuto",
+    "description": "Explore the uuto command in Linux, learn how to send and receive files securely, and discover practical use cases for this powerful communication tool.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "uupick",
+    "description": "Learn how to use the uupick command to extract files from UUENCODE encoded emails and automate the process with shell scripts. Gain practical networking and communication skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "uucico",
+    "description": "Explore the uucico command in Linux, learn how to configure it for file transfer, and execute remote connections and file transfers using practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "uulog",
+    "description": "Explore the Linux uulog command, learn its syntax, and discover practical examples for viewing, filtering, and searching system log entries.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "dip",
+    "description": "Explore the dip command in Linux, learn how to establish dial-up connections, and troubleshoot connectivity issues with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "minicom",
+    "description": "Explore the Linux minicom command with practical examples. Learn how to install, configure, and use minicom to connect to serial devices, customize settings, and enhance your user experience.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mesg",
+    "description": "Explore the Linux mesg command and learn how to send messages to terminal users, as well as restrict message receiving permissions. Gain practical knowledge for effective communication in a Linux environment.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "wall",
+    "description": "Explore the Linux wall command and its practical applications, including sending messages to all logged-in users and scheduling broadcast messages using cron.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "talk",
+    "description": "Explore the Linux talk command, learn how to send messages, and manage incoming requests. Gain practical networking and communication skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ytalk",
+    "description": "Explore the Linux ytalk command, a tool for real-time text-based communication between users on the same system. Learn how to install, initiate, and utilize advanced features of ytalk for efficient collaboration and remote assistance.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "smbd",
+    "description": "Explore the smbd command, a key component of the Samba server, and learn how to configure, manage, and secure Samba shares on your Linux system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "testparm",
+    "description": "Explore the Linux testparm command, which verifies the syntax of Samba configuration files and analyzes Samba parameters. Learn practical examples to effectively manage and troubleshoot your Samba setup.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "pppstats",
+    "description": "Explore the pppstats command in Linux, learn how to monitor PPP interface statistics, and analyze PPP connection performance with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "cu",
+    "description": "Explore the Linux cu command, a powerful tool for establishing remote connections and transferring files between systems. Learn practical examples and techniques to enhance your networking and communication skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "getty",
+    "description": "Explore the getty command, a crucial tool for managing virtual terminals in Linux. Learn its purpose, various options, and how to configure and manage virtual terminals effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mingetty",
+    "description": "Explore the Linux mingetty command and its practical applications, including automatic login configuration and customizing the login prompt. Enhance your Linux system management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "umount",
+    "description": "Explore the Linux umount command, learn how to unmount mounted file systems, and discover practical examples to manage your file system effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mkfs",
+    "description": "Explore the mkfs command in Linux, learn how to create file systems on partitions and format USB drives, and gain practical experience with hands-on examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "e2fsck",
+    "description": "Explore the e2fsck command in Linux, learn how to check and repair corrupted Ext4 file systems, and perform dry runs to fix errors automatically.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "tune2fs",
+    "description": "Explore the tune2fs command, a powerful tool for managing ext2/ext3/ext4 file systems. Learn how to modify filesystem behavior, backup and restore metadata, and optimize disk performance.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "hdparm",
+    "description": "Explore the hdparm command in Linux, learn how to measure disk performance, and optimize disk configurations for improved system performance.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "parted",
+    "description": "Explore the powerful parted command in Linux, learn to create, manage, resize, and delete partitions, and gain practical skills for disk and file system management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "blkid",
+    "description": "Explore the blkid command in Linux, a powerful tool for identifying filesystem types and querying disk attributes. Learn practical examples to enhance your system management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mkswap",
+    "description": "Learn how to use the Linux mkswap command to create and manage swap files, which provide additional virtual memory for your system. Includes practical examples and step-by-step instructions.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "swapon",
+    "description": "Learn how to effectively manage swap space in Linux using the swapon command. Explore practical examples for checking swap usage, creating, and enabling swap files.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "swapoff",
+    "description": "Learn how to disable swap partitions and swap files using the swapoff command in Linux. Understand the purpose of swapoff and explore practical examples to manage swap space effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "losetup",
+    "description": "Explore the Linux losetup command with practical examples. Learn how to create, attach, and detach loopback devices, a useful tool for working with disk images and file systems.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mkisofs",
+    "description": "Explore the mkisofs command, a powerful tool for creating ISO images on Linux. Learn how to create basic ISO images, customize them with directories and files, and gain practical experience through hands-on examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "lndir",
+    "description": "Explore the lndir command in Linux, learn how to create symbolic links, and manage them effectively. Discover practical examples to enhance your file system management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mdadm",
+    "description": "Explore the power of the Linux mdadm command with this practical lab. Learn to create, manage, and monitor software RAID arrays, enhancing your system&#x27;s storage and reliability.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "dumpe2fs",
+    "description": "Explore the Linux dumpe2fs command, which provides detailed information about an Ext2/Ext3/Ext4 filesystem. Learn how to retrieve metadata, analyze statistics, and gain a deeper understanding of your file system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "badblocks",
+    "description": "Explore the badblocks command in Linux, learn how to scan disks for bad blocks, and discover techniques to repair damaged areas on your storage devices.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mlabel",
+    "description": "Explore the mlabel command in Linux, learn how to create and manage volume labels, and discover advanced options for disk and file system management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mformat",
+    "description": "Explore the mformat command in Linux, learn how to create and format floppy disks, and discover advanced options for various use cases.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mpartition",
+    "description": "Learn how to use the mpartition command to create, resize, and delete partitions on Linux systems. Explore practical examples and understand the syntax and purpose of this essential disk management tool.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mdeltree",
+    "description": "Explore the mdeltree command in Linux, a powerful tool for recursively removing directories and handling symbolic links and permissions. Gain practical experience through step-by-step examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mdu",
+    "description": "Explore the mdu command in Linux, learn to measure disk usage, and exclude specific files and directories from the analysis.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mcd",
+    "description": "Explore the mcd command in Linux, which allows you to create nested directories efficiently. Learn practical examples and how to combine mcd with other Linux commands for effective file management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mmount",
+    "description": "Explore the Linux mmount command, its syntax, and practical examples of mounting file systems. Learn how to effectively manage disk and file system utilities on your Linux system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mbadblocks",
+    "description": "Learn how to use the Linux mbadblocks command to identify, repair, and manage bad blocks on your file system. Gain practical experience with real-world examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "fsck.minix",
+    "description": "Explore the Linux fsck.minix command, learn how to check and repair Minix file systems, and discover practical examples of its usage.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mke2fs",
+    "description": "Explore the mke2fs command in Linux, learn how to create Ext4 filesystems, and customize filesystem parameters for your storage needs.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mkfs.ext2",
+    "description": "Explore the mkfs.ext2 command, which is used to create an ext2 file system on a partition. Learn how to format an ext2 file system with custom parameters for your specific needs.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mkfs.minix",
+    "description": "Explore the Linux mkfs.minix command and learn how to create, mount, and interact with Minix file systems. This lab provides practical examples to help you manage disk and file system utilities.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mkfs.msdos",
+    "description": "Explore the Linux mkfs.msdos command, learn how to create FAT32 file systems, and customize file system parameters for your storage needs.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mkdosfs",
+    "description": "Learn how to use the mkdosfs command to create a DOS filesystem on a partition or format a USB drive. This lab covers the basics of the mkdosfs command and provides practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mkbootdisk",
+    "description": "Learn how to use the mkbootdisk command to create a bootable USB drive for Linux systems. Explore practical examples and troubleshoot issues with the bootable USB drive.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "mkinitrd",
+    "description": "Explore the mkinitrd command in Linux, learn to create custom initramfs images, and troubleshoot kernel boot issues using practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "sfdisk",
+    "description": "Explore the sfdisk command in Linux, learn how to partition disks, and backup/restore partition tables with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "fsck.ext2",
+    "description": "Explore the fsck.ext2 command in Linux, learn how to check and repair ext2 file systems, and perform forced file system checks with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "symlinks",
+    "description": "Explore the power of symbolic links in Linux, learn how they differ from hard links, and discover practical use cases to enhance your file management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "gunzip",
+    "description": "Explore the gunzip command in Linux, learn how to decompress gzipped files, and recursively decompress directories with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "unzip",
+    "description": "Learn how to use the unzip command in Linux to extract files from compressed ZIP archives, including password-protected ones.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "bunzip2",
+    "description": "Learn how to use the Linux bunzip2 command to extract and decompress compressed files. Explore practical examples and understand the command&#x27;s syntax and purpose.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "compress",
+    "description": "Explore the Linux compress command, learn how to compress and decompress files, and discover advanced options for efficient data compression.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "uncompress",
+    "description": "Learn how to use the uncompress command in Linux to decompress Gzipped files. Understand the purpose of the command and troubleshoot compression and decompression issues.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ar",
+    "description": "Explore the Linux ar command for creating, managing, and manipulating static libraries. Learn how to build, extract, and list the contents of static libraries through practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "zcat",
+    "description": "Explore the versatile zcat command in Linux, which allows you to decompress and view gzipped files without extracting them. Learn practical examples and how to combine zcat with other commands.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "zless",
+    "description": "Explore the zless command in Linux, a powerful tool for viewing compressed files. Learn its syntax, options, and practical examples to enhance your compression and archiving skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "zdiff",
+    "description": "Explore the zdiff command in Linux, a powerful tool for comparing compressed files. Learn its syntax, practical examples, and troubleshooting techniques to effectively manage compressed data.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "zgrep",
+    "description": "Explore the zgrep command in Linux, learn how to decompress and search compressed files, and combine zgrep with other commands for efficient data processing.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "zipinfo",
+    "description": "Explore the powerful zipinfo command in Linux, learn its options, and analyze the contents of zip files with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "bzcat",
+    "description": "Explore the bzcat command in Linux, a powerful tool for decompressing gzipped files. Learn how to use bzcat with practical examples and combine it with other Linux commands.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "bzdiff",
+    "description": "Explore the bzdiff command in Linux, which allows you to compare compressed files. Learn how to use bzdiff for effective file comparison and discover advanced options to enhance your workflow.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "bzgrep",
+    "description": "Learn how to use the bzgrep command to search for patterns in compressed files, and combine it with other Linux commands for advanced searches.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "bzless",
+    "description": "Explore the bzless command, a powerful tool for navigating compressed text files. Learn how to utilize bzless options to efficiently view and navigate bzip2-compressed content.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "bzmore",
+    "description": "Explore the bzmore command in Linux, a tool for viewing compressed text files. Learn its functionality and practical examples to enhance your compression and archiving skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "renice",
+    "description": "Explore the Linux renice command to adjust process priority, with practical examples showcasing its usage and benefits in process management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "disown",
+    "description": "Explore the disown command in Linux, learn how to detach running processes from the shell, and manage their output effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ltrace",
+    "description": "Explore the ltrace command in Linux, which allows you to trace system calls and library calls, helping you identify potential issues and optimize application performance.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "skill",
+    "description": "Explore the Linux skill command and its practical applications in process management. Learn to manage files, use redirection and pipes, and automate tasks with shell scripting.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "psnice",
+    "description": "Explore the psnice command in Linux, learn how to adjust process priority, and discover practical use cases for managing system processes efficiently.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "batch",
+    "description": "Explore the power of the Linux batch command through practical examples. Automate repetitive tasks, utilize conditional statements, and leverage loops to streamline your workflow.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "atd",
+    "description": "Explore the Linux atd command for scheduling one-time tasks, learn how to monitor and control scheduled tasks, and gain practical experience with real-world examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "atq",
+    "description": "Explore the atq command in Linux, which allows you to list and manage scheduled jobs. Learn how to view, remove, and work with cron jobs effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "atrm",
+    "description": "Explore the atrm command in Linux, which allows you to remove scheduled tasks. Learn how to troubleshoot and manage your system&#x27;s scheduled tasks effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "chrt",
+    "description": "Explore the Linux chrt command, which allows you to adjust the real-time priority and scheduling policies of processes, with practical examples to enhance your process management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "setsid",
+    "description": "Explore the setsid command in Linux, learn how to detach processes from the current session, and run background processes effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "systemctl",
+    "description": "Explore the systemctl command, a powerful tool for managing system services in Linux. Learn how to start, stop, enable, and disable services, as well as configure automatic service startup.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "service",
+    "description": "Explore the Linux service command, learn how to manage system services, and troubleshoot service issues with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "update-rc.d",
+    "description": "Learn how to use the update-rc.d command to configure services to start automatically at boot, manage service startup priorities, and gain practical experience with real-world examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "timedatectl",
+    "description": "Explore the timedatectl command in Linux, learn how to manage system date and time, configure time zone and NTP settings, and gain practical experience through hands-on examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "locale",
+    "description": "Explore the Linux locale command and its practical applications. Learn how to understand locales, examine available locales, and change the system locale to observe its impact.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "localectl",
+    "description": "Explore the localectl command in Linux, which allows you to manage system locale settings, customize keyboard layouts, and configure keymaps effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "sysctl",
+    "description": "Explore the sysctl command in Linux, learn how to modify kernel parameters, and persist configuration changes across reboots. Gain practical knowledge for system administration and optimization.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "lsmod",
+    "description": "Explore the Linux lsmod command, which displays information about loaded kernel modules. Learn how to load and unload kernel modules, and understand the purpose and output of the lsmod command.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "insmod",
+    "description": "Explore the insmod command in Linux, learn how to compile and insert kernel modules, and gain practical experience with real-world examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "depmod",
+    "description": "Explore the purpose of the depmod command, understand the dependency tree of kernel modules, and troubleshoot module dependencies using practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "hwclock",
+    "description": "Explore the Linux hwclock command, learn how to synchronize system time with hardware clock, and adjust the hardware clock manually for effective system time management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "setserial",
+    "description": "Explore the Linux setserial command and learn how to configure serial port settings, identify port information, and troubleshoot serial communication issues.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "edquota",
+    "description": "Explore the Linux edquota command and learn how to manage user disk quotas, enable disk quota on a filesystem, and understand the concept of disk quota.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "quotaon",
+    "description": "Explore the Linux quotaon command for managing disk quotas. Learn how to enable, monitor, and manage user disk quotas on your file system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "quotaoff",
+    "description": "Learn how to disable disk quotas on a Linux file system using the quotaoff command. Understand the basics of disk quotas and their practical applications.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "repquota",
+    "description": "Explore the repquota command in Linux, learn how to retrieve disk quota information for users, and manage disk quota limits for multiple users.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "loadkeys",
+    "description": "Explore the Linux loadkeys command and learn how to change and customize your keyboard layout. Discover practical examples to enhance your system configuration and settings.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "modinfo",
+    "description": "Explore the Linux modinfo command, which provides detailed information about kernel modules. Learn how to use modinfo to troubleshoot module issues and optimize system configuration.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "setleds",
+    "description": "Learn how to use the setleds command to modify keyboard LED states, and automate LED state changes with shell scripts for efficient system configuration.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "showkey",
+    "description": "Explore the Linux showkey command, learn how to capture keyboard input, and analyze the output for system configuration and settings.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "stty",
+    "description": "Explore the stty command in Linux, learn how to modify terminal settings, and discover practical examples to enhance your system configuration skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "zdump",
+    "description": "Explore the Linux zdump command, which displays time zone information. Learn its syntax, understand timezone data, and see practical examples of its usage.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "aumix",
+    "description": "Learn how to use the aumix command to adjust audio settings on your Ubuntu 22.04 system, including controlling master volume, muting and unmuting audio channels.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "clock",
+    "description": "Explore the Linux clock command and learn how to display the current date and time, as well as set the system clock using practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "lilo",
+    "description": "Explore the lilo command, a powerful Linux boot loader, through practical examples. Learn how to configure lilo, troubleshoot issues, and enhance your system&#x27;s boot process.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ntsysv",
+    "description": "Explore the ntsysv command in Linux, a powerful tool for configuring and managing system services. Learn how to use ntsysv to control runlevels and enable/disable services for efficient system administration.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "rdate",
+    "description": "Explore the Linux rdate command and learn how to synchronize your system time with remote NTP servers. Automate time synchronization using cron for reliable and consistent timekeeping.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "resize",
+    "description": "Learn how to resize partitions and LVM volumes using the Linux resize command. Explore practical examples and step-by-step instructions to effectively manage storage space on your Linux system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "sndconfig",
+    "description": "Explore the sndconfig command in Linux, learn how to configure sound card settings, and troubleshoot sound issues effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "setconsole",
+    "description": "This lab explores the setconsole command in Linux, which allows you to modify the system console device and redirect console output to a file. Learn how to effectively manage your Linux system&#x27;s console settings.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "apmd",
+    "description": "Explore the Linux apmd command and learn how to monitor battery status, configure automated power management, and optimize your system&#x27;s power efficiency.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "fbset",
+    "description": "Explore the fbset command in Linux, learn how to adjust screen resolution and depth, and customize display settings for optimal performance.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "rpm",
+    "description": "Explore the powerful rpm command in Linux, learn how to install, manage, query, and verify RPM packages, and gain practical experience through hands-on examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "yum",
+    "description": "Explore the powerful yum package manager in Linux. Learn how to install, update, and remove packages using practical examples. Enhance your system management skills with this comprehensive lab.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "pacman",
+    "description": "Explore the pacman package manager in Linux, learn how to install, update, search, and remove packages using practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "zypper",
+    "description": "Explore the zypper command, a powerful package management tool for SUSE-based Linux distributions. Learn how to install, update, search, and remove packages using zypper with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "emerge",
+    "description": "Explore the powerful emerge command in Linux, learn how to install packages, update and upgrade your system with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "dnf",
+    "description": "Explore the powerful dnf command in Linux, learn how to install, update, manage packages and dependencies, and leverage package groups for efficient package management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "snap",
+    "description": "Explore the power of the Snap package manager in Linux. Learn how to install, update, and manage Snap packages through practical examples, enhancing your Linux package management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "flatpak",
+    "description": "Explore the Flatpak package management tool for Linux, learn how to install and manage Flatpak applications, and customize Flatpak environments for your specific needs.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "sh",
+    "description": "Explore the power of the Linux sh command through practical examples. Learn shell scripting basics, utilize variables and parameters, and implement conditional statements and loops to automate tasks efficiently.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "perl",
+    "description": "Learn how to use Perl programming language in Linux, including executing Perl scripts and practical examples for file manipulation.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "python",
+    "description": "Explore Python&#x27;s built-in functions, string manipulation, and file/directory management in Linux through practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "gcc",
+    "description": "Explore the GCC compiler, learn to compile C programs, and discover optimization flags for efficient code.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "g++",
+    "description": "Learn the basics of the g++ command, compile a simple C++ program, and explore compiler flags and optimization techniques in this practical Linux programming lab.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "make",
+    "description": "Explore the power of the make command in Linux, learn its syntax, and apply it to compile C programs with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "cmake",
+    "description": "Learn how to use the CMake tool to build and manage C++ projects on Linux. This lab covers installing CMake, creating a simple C++ project, and understanding different build configurations.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "automake",
+    "description": "Explore the automake command in Linux, a tool for generating Makefiles. Learn how to create a basic automake project, customize configuration, and apply practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "autoconf",
+    "description": "Learn how to use the autoconf command to configure and build C programs, from simple to complex projects, with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "gdb",
+    "description": "Explore the power of the gdb debugger in Linux. Learn how to debug simple and multithreaded C programs, uncover bugs, and enhance your programming skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ldd",
+    "description": "Explore the ldd command in Linux, learn how to identify dynamic dependencies of binaries, and troubleshoot missing dependencies for effective software management.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "objdump",
+    "description": "Explore the powerful objdump command in Linux, learn its syntax, options, and analyze the output on a simple C program.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "nm",
+    "description": "Explore the Linux nm command, which displays symbol information for object files. Learn how to use nm to view executable symbols, filter results, and gain practical insights.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "readelf",
+    "description": "Explore the readelf command in Linux, learn how to analyze ELF file headers and sections, and gain practical experience with real-world examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "strings",
+    "description": "Explore the Linux strings command and learn how to extract strings from binary, compressed, and encrypted files. Gain practical experience with real-world examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ctags",
+    "description": "Explore the power of the ctags command in Linux, learn how to generate tags for C/C++ projects, and navigate source code efficiently.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "cscope",
+    "description": "Explore the cscope command in Linux, a powerful tool for source code navigation and analysis. Learn how to install, understand the basics, and perform efficient code searches and navigation.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "svn",
+    "description": "Explore the power of the SVN command-line tool on Ubuntu 22.04. Learn how to install Subversion, initialize a local repository, and manage changes through commit, update, and revert operations.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "git",
+    "description": "Explore the essential git commands for version control, including initializing a repository, adding and committing files, and managing branches. Gain practical experience with hands-on examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "cvs",
+    "description": "Explore the Concurrent Versions System (CVS) command in Linux, learn how to create a repository, check out projects, and commit changes, with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "aclocal",
+    "description": "Explore the aclocal command in Linux, learn how to generate the aclocal.m4 file, and integrate it with Autoconf for effective build automation.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "autoheader",
+    "description": "Explore the autoheader command in Linux, learn its purpose, and discover practical examples to generate configuration header files.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "autoreconf",
+    "description": "Explore the autoreconf command in Linux, learn its purpose, and apply it to a sample project. Gain hands-on experience in automating the build process for your software projects.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "bison",
+    "description": "Explore the bison command, a powerful tool for generating parsers in Linux. Learn how to create custom parsers, handle syntax errors, and apply bison in practical scenarios.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "expect",
+    "description": "Explore the power of the expect command in Linux. Learn to automate SSH login, handle prompts, and write responsive scripts for various tasks.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "bzip2recover",
+    "description": "Explore the bzip2recover command, a powerful tool for recovering corrupted bzip2 files. Learn how to use it effectively with practical examples and advanced options.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "gzexe",
+    "description": "Explore the gzexe command in Linux, learn how to compress and decompress executable files, and discover practical examples of its usage.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "dump",
+    "description": "Explore the Linux dump command for full system backups. Learn how to perform a complete system backup and restore data from the dump file, with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "restore",
+    "description": "Learn how to use the Linux restore command to recover specific files or entire directory structures from backup archives. Explore practical examples and understand the purpose and usage of this essential backup and restoration tool.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "rmt",
+    "description": "Explore the rmt command in Linux, learn how to backup and restore files, and automate backups using cron jobs. Enhance your system administration skills with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "info",
+    "description": "Explore the Linux info command, its purpose, options, and practical examples to retrieve information about Linux commands and utilities.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "whatis",
+    "description": "Explore the Linux whatis command, its purpose, syntax, and practical use cases. Learn how to effectively utilize this utility to quickly retrieve information about commands and system components.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "clear",
+    "description": "Explore the clear command in Linux, learn how to clear the terminal screen, and automate the process with a Bash script. Enhance your command-line skills and improve your workflow.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "reset",
+    "description": "Explore the Linux reset command and learn how to restore the terminal to a known state, troubleshoot terminal issues, and more with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "factor",
+    "description": "Explore the Linux factor command, its purpose, syntax, and practical examples to gain a deeper understanding of this useful miscellaneous utility.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "script",
+    "description": "Explore the power of shell scripting with this hands-on lab. Learn to write and execute simple scripts, use variables and command substitution, and implement conditional statements and loops for more complex tasks.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "scriptreplay",
+    "description": "Explore the scriptreplay command in Linux, which allows you to record and replay terminal sessions, with practical examples to enhance your system administration skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "poweroff",
+    "description": "Learn how to safely shut down your Linux system using the poweroff command, including practical examples and automating system shutdown with cron.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "access",
+    "description": "Explore the Linux access command and learn how to manage file permissions and ownership. Discover practical examples to enhance your Linux skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "accton",
+    "description": "Explore the Linux accton command and learn how to manage network interface configuration, troubleshoot network issues, and more with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "acpi",
+    "description": "Explore the Linux acpi command and its practical applications, including monitoring battery status and customizing acpi behavior. Gain a comprehensive understanding of this versatile utility.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "acpid",
+    "description": "Explore the Linux acpid command, learn how to configure it to monitor power events, and create custom event handlers for practical applications.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "addr2line",
+    "description": "Explore the addr2line command in Linux, a powerful tool for resolving addresses to function names and source file locations. Learn its basic syntax, options, and practical use cases.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "agetty",
+    "description": "Explore the agetty command in Linux, learn how to configure it for serial console access, and manage user login processes effectively.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "amixer",
+    "description": "Explore the amixer command, a powerful Linux utility for adjusting sound card mixer settings. Learn how to control master volume, manage specific sound channels, and apply practical examples to enhance your audio experience.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "aplay",
+    "description": "Explore the aplay command in Linux, learn how to install required packages, play audio files, and discover various command options and flags for audio manipulation.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "aplaymidi",
+    "description": "Explore the aplaymidi command, a powerful Linux utility for playing MIDI files. Learn how to use it for basic playback, as well as advanced options for controlling MIDI devices.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "autoupdate",
+    "description": "Explore the power of automatic updates on Linux systems. Learn how to configure and manage automatic updates using the command line, ensuring your system stays secure and up-to-date.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "banner",
+    "description": "Explore the versatile banner command in Linux, learn how to display custom messages, and customize the appearance of your banners for various use cases.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "biff",
+    "description": "Explore the biff command in Linux, learn how to configure it to receive notifications, and customize the notification settings for enhanced productivity.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "bzcmp",
+    "description": "Explore the bzcmp command in Linux, which allows you to compare compressed files. Learn how to use this utility effectively with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "cc",
+    "description": "Explore the versatile Linux cc command, learn its syntax, and compile C programs with practical examples. Discover compiler flags and optimization options to enhance your programming workflow.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "chvt",
+    "description": "Explore the chvt command in Linux, which allows you to switch between virtual terminals. Learn practical examples and automate virtual terminal switching for enhanced productivity.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "cpp",
+    "description": "Explore the power of C++ programming in Linux, from compiling and running code to managing files and directories. Dive into practical examples and master essential Linux utilities for efficient C++ development.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "cupsd",
+    "description": "Explore the CUPS printing system and learn how to manage printers using the cupsd command. Configure printer settings and gain practical experience with this essential Linux utility.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "disable",
+    "description": "Explore the Linux disable command and learn how to disable services using practical examples. Understand the purpose and verify the disabled status of services.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "domainname",
+    "description": "Explore the Linux domainname command and learn how to set, display, and manage domain names across network interfaces with practical examples.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "dosfsck",
+    "description": "Explore the Linux dosfsck command with practical examples. Learn how to check and repair errors on a FAT32 file system, and perform a thorough filesystem check and repair on a USB drive.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "fc",
+    "description": "Explore the fc command in Linux, which allows you to edit and reexecute previous commands. Learn how to customize its behavior for improved productivity.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "fc-cache",
+    "description": "Explore the Linux fc-cache command and learn how to manage font caches effectively. Discover practical examples to update and troubleshoot font cache issues on your system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "fc-list",
+    "description": "Explore the fc-list command in Linux, which allows you to list all available fonts on your system, filter by family, style, and other attributes. Gain practical knowledge for font management and customization.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "getent",
+    "description": "Explore the versatile getent command in Linux, learn how to retrieve user and group information, and discover practical examples to enhance your system administration skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "gs",
+    "description": "Explore the versatile gs command in Linux, learn to convert PDF files to various image formats, and optimize PDF files by reducing file size.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "hexdump",
+    "description": "Explore the Linux hexdump command, a powerful tool for viewing and manipulating binary data. Learn how to use hexdump to analyze file contents, customize output, and gain insights into data structures.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "hostid",
+    "description": "Explore the Linux hostid command, learn how to retrieve the unique host identifier, and discover practical applications for this versatile utility.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ipcrm",
+    "description": "Explore the Linux ipcrm command, which allows you to remove shared memory segments, message queues, and semaphores. Learn the command syntax, options, and practical examples to effectively manage IPC objects on your system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ipcs",
+    "description": "Explore the Linux ipcs command, its purpose, and practical examples to analyze IPC resources and identify potential issues on your system.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "pinky",
+    "description": "Explore the pinky command in Linux, learn its options and flags, and discover practical use cases to enhance your system management skills.",
+    "source": "https://linux-commands.labex.io/"
+  },
+  {
+    "command": "ranlib",
+    "description": "Explore the Linux ranlib command, learn how to create and manage static libraries, and discover practical examples to enhance your system administration skills.",
+    "source": "https://linux-commands.labex.io/"
+  }
+]

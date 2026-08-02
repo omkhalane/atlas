@@ -21,6 +21,7 @@ class MemoryStore:
         self.db_path = db_path
         self.conn = sqlite3.connect(db_path, check_same_thread=False)
         self._init_db()
+        self._load_static_knowledge()
 
     def _init_db(self):
         with self.conn:
@@ -34,6 +35,26 @@ class MemoryStore:
                     metadata TEXT
                 )
             """)
+
+    def _load_static_knowledge(self):
+        import os
+        knowledge_file = os.path.join(os.path.dirname(__file__), "linux_commands.json")
+        if os.path.exists(knowledge_file):
+            try:
+                with open(knowledge_file, "r", encoding="utf-8") as f:
+                    commands = json.load(f)
+                for cmd in commands:
+                    fact = Fact(
+                        id=f"linux-cmd-{cmd['command']}",
+                        content=f"{cmd['command']}: {cmd['description']}",
+                        provenance=cmd['source'],
+                        expires_at=None,
+                        metadata={"type": "linux_command", "command": cmd['command']}
+                    )
+                    self.store(fact)
+            except Exception as e:
+                import logging
+                logging.getLogger("atlas.memory").error(f"Failed to load static knowledge: {e}")
 
     def store(self, fact: Fact):
         expires_at_str = fact.expires_at.isoformat() if fact.expires_at else None
