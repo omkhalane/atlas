@@ -77,6 +77,23 @@ async def get_conversation(conversation_id: str):
         "updated_at": conv.updated_at
     }
 
+@app.get("/api/llm/status")
+async def get_llm_status():
+    """Returns the current local LLM detection status."""
+    llm = kernel.local_llm
+    return {
+        "ollama_available": llm.ollama_available,
+        "selected_model": llm.selected_model,
+        "embed_model": llm.embed_model,
+        "model_source": llm.model_source,
+    }
+
+@app.post("/api/llm/reset")
+async def reset_llm_detection():
+    """Clears the cached LLM config — triggers a full re-scan on next boot."""
+    kernel.local_llm.reset_config()
+    return {"status": "success", "message": "LLM config cleared. Re-scan will run on next Atlas start."}
+
 @app.get("/api/stream/global")
 async def stream_global(request: Request):
     q = asyncio.Queue()
