@@ -29,6 +29,9 @@ class ExecutionTask(BaseModel):
     context: Dict[str, Any] = Field(default_factory=dict)
     graph: List[TaskNode] = Field(default_factory=list)
     artifacts: List[str] = Field(default_factory=list)
+    results: List[Any] = Field(default_factory=list)
+    intent: Dict[str, Any] = Field(default_factory=dict)
+    semantic_context: List[Dict[str, Any]] = Field(default_factory=list)
     needs_cloud_reasoning: bool = False
     created_at: float = Field(default_factory=time.time)
     completed_at: Optional[float] = None
