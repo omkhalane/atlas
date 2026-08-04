@@ -1,0 +1,26 @@
+{
+  "name": "atlas-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Atlas Monorepo - Next-Generation AI Coding Platform & Runtime",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "extensions/*",
+    "plugins/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "clean": "find . -type d \\( -name node_modules -o -name dist -o -name build -o -name .next -o -name .turbo -o -name coverage \\) -exec rm -rf {} +"
+  },
+  "keywords": [
+    "atlas",
+    "agentic-coding",
+    "editor",
+    "vscode-fork",
+    "electron"
+  ],
+  "author": "Atlas Team",
+  "license": "MIT"
+}

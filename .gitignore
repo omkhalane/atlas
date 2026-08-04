@@ -26,7 +26,7 @@ env/
 ENV/
 env.bak/
 venv.bak/
-hypermemoryai/
+.venv/
 
 # Databases
 *.db
@@ -35,13 +35,28 @@ demo_*.db
 
 # OS
 .DS_Store
+Thumbs.db
 
-# IDEs
+# IDEs & Cache
 .idea/
 .vscode/
+.pytest_cache/
 
-# Frontend
+# Node & Web Build Artifacts
 node_modules/
 dist/
+build/
+.next/
+.turbo/
+coverage/
+
+# Logs & Temporary Files
+*.log
+backend.log
+frontend.log
+a.txt
+.atlas/artifacts/
+.atlas/events/
 .env
 .env.local
+.env.*.local

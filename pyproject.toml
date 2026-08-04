@@ -22,4 +22,5 @@ test = [
 addopts = "-v --tb=short"
 testpaths = [
     "tests",
+    "packages",
 ]

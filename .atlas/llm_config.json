@@ -2,6 +2,6 @@
   "model": "qwen2.5:7b",
   "embed_model": "nomic-embed-text",
   "source": "ollama",
-  "total_ram_gb": 15.292911529541016,
-  "scanned_at": 1785695970.0181262
+  "total_ram_gb": 15.292922973632812,
+  "scanned_at": 1785766570.85299
 }

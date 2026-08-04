@@ -1,11 +1,13 @@
 from abc import ABC, abstractmethod
-from typing import Dict
+from typing import Dict, TYPE_CHECKING
 from runtime.adapters.ports import AdapterPort
-from runtime.contracts.plugin import PluginManifest
+
+if TYPE_CHECKING:
+    from runtime.contracts.plugin import PluginManifest
 
 class Plugin(ABC):
     @abstractmethod
-    def get_manifest(self) -> PluginManifest:
+    def get_manifest(self) -> 'PluginManifest':
         pass
 
     @abstractmethod
