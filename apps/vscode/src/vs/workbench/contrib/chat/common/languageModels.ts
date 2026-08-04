@@ -1594,7 +1594,12 @@ export class LanguageModelsService implements ILanguageModelsService {
 				return;
 			}
 
-			const languageModelProviderGroup = await this._resolveLanguageModelProviderGroup(name, vendorId, configuration, vendor.configuration);
+			const resolved = await this._resolveLanguageModelProviderGroup(name, vendorId, configuration, vendor.configuration, existing, existingConfiguration);
+			const languageModelProviderGroup: ILanguageModelsProviderGroup = existing ? {
+				...resolved,
+				models: existing.models,
+				settings: existing.settings
+			} : resolved;
 			const saved = existing
 				? await this._languageModelsConfigurationService.updateLanguageModelsProviderGroup(existing, languageModelProviderGroup)
 				: await this._languageModelsConfigurationService.addLanguageModelsProviderGroup(languageModelProviderGroup);
@@ -1652,12 +1657,13 @@ export class LanguageModelsService implements ILanguageModelsService {
 			}
 
 			const configuration = { ...existingConfiguration, apiKey };
-			const updated = {
-				...await this._resolveLanguageModelProviderGroup(existing.name, vendorId, configuration, schema),
+			const resolved = await this._resolveLanguageModelProviderGroup(existing.name, vendorId, configuration, schema, existing, existingConfiguration);
+			const updated: ILanguageModelsProviderGroup = {
+				...resolved,
+				models: existing.models,
 				settings: existing.settings
 			};
 			await this._languageModelsConfigurationService.updateLanguageModelsProviderGroup(existing, updated);
-			await this._deleteSecretsInConfiguration(existing, schema);
 		} catch (error) {
 			if (isCancellationError(error)) {
 				return;
@@ -2169,7 +2175,14 @@ export class LanguageModelsService implements ILanguageModelsService {
 		return result;
 	}
 
-	private async _resolveLanguageModelProviderGroup(name: string, vendor: string, configuration: IStringDictionary<unknown> | undefined, schema: IJSONSchema | undefined): Promise<ILanguageModelsProviderGroup> {
+	private async _resolveLanguageModelProviderGroup(
+		name: string,
+		vendor: string,
+		configuration: IStringDictionary<unknown> | undefined,
+		schema: IJSONSchema | undefined,
+		existingGroup?: ILanguageModelsProviderGroup,
+		existingConfiguration?: IStringDictionary<unknown>
+	): Promise<ILanguageModelsProviderGroup> {
 		if (!schema) {
 			return { name, vendor };
 		}
@@ -2178,9 +2191,20 @@ export class LanguageModelsService implements ILanguageModelsService {
 		for (const key in configuration) {
 			let value = configuration[key];
 			if (schema.properties?.[key]?.secret && isString(value)) {
-				const secretKey = `${LanguageModelsService.SECRET_KEY_PREFIX}${hash(generateUuid()).toString(16)}`;
-				await this._secretStorageService.set(secretKey, key === 'apiKey' ? value.trim() : value);
-				value = this.encodeSecretKey(secretKey);
+				const oldSecretKey = existingGroup?.[key] ? this.decodeSecretKey(existingGroup[key]) : undefined;
+				const oldValue = existingConfiguration?.[key];
+
+				if (oldSecretKey && oldValue !== undefined && value === oldValue) {
+					value = existingGroup![key];
+				} else {
+					const secretKey = `${LanguageModelsService.SECRET_KEY_PREFIX}${hash(generateUuid()).toString(16)}`;
+					await this._secretStorageService.set(secretKey, key === 'apiKey' ? value.trim() : value);
+					value = this.encodeSecretKey(secretKey);
+
+					if (oldSecretKey) {
+						await this._secretStorageService.delete(oldSecretKey);
+					}
+				}
 			}
 			result[key] = value;
 		}
