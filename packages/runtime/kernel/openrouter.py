@@ -229,11 +229,17 @@ Example:
             print("WARNING: OPENROUTER_API_KEY not set. Mocking step.")
             return {"thought": "I will finish immediately", "action": "finish", "parameters": {}}
 
-        skill_path = "/code/ATLAS/atlas/integrations/browser/atlas-browser/skills/browser-harness/SKILL.md"
+        skill_paths = [
+            "/code/ATLAS/packages/browser/atlas-browser/SKILL.md",
+            os.path.join(os.path.dirname(__file__), "../../../packages/browser/atlas-browser/SKILL.md"),
+            "/code/ATLAS/atlas/integrations/browser/atlas-browser/skills/browser-harness/SKILL.md"
+        ]
         browser_skills = ""
-        if os.path.exists(skill_path):
-            with open(skill_path, "r") as f:
-                browser_skills = f.read()
+        for skill_path in skill_paths:
+            if os.path.exists(skill_path):
+                with open(skill_path, "r") as f:
+                    browser_skills = f.read()
+                break
                 
         tasks_text = json.dumps(tasks) if tasks else "[]"
 

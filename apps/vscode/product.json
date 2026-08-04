@@ -1,6 +1,6 @@
 {
-	"nameShort": "Atlas Agent IDE",
-	"nameLong": "Atlas Agent IDE",
+	"nameShort": "Atlas Agent App",
+	"nameLong": "Atlas Agent App",
 	"applicationName": "atlas-agent-ide",
 	"dataFolderName": ".atlas",
 	"sharedDataFolderName": ".vscode-oss-shared",
