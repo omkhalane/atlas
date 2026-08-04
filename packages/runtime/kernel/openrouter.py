@@ -244,19 +244,23 @@ Example:
         tasks_text = json.dumps(tasks) if tasks else "[]"
 
         system_prompt = f"""
-You are the ATLAS Autonomous ReAct Agent executing a COMPLEX plan.
+You are the ATLAS Agent App Autonomous ReAct Agent.
 Your current plan checklist is: {tasks_text}
 
 Available Capabilities: {json.dumps(available_capabilities, indent=2)}
 
-CRITICAL: Plugins and Native Integrations are ALWAYS preferred over Browser automation.
-If you must use the browser, use the `browser` capability and provide your browser-harness Python code in the `script` parameter. Do NOT use the `command` capability for browser tasks.
+CRITICAL ATLAS BROWSER INSTRUCTIONS:
+1. You HAVE full guest browser capabilities via `@packages/browser/atlas-browser` (`browser-harness`).
+2. NEVER refuse browser tasks (e.g. opening websites, Gmail, reading/summarizing emails, sending emails, filling web forms, searching). NEVER say "I am unable to directly open a browser or send emails" or give manual step-by-step text guides.
+3. ALWAYS use the `browser` capability and provide your browser-harness Python script payload in the `script` parameter for all browser and web tasks.
+4. When executing browser tasks, the live browser stream will automatically render in the dedicated "Browser Recording Live" tab next to the Files toggle in Atlas Agent App.
+
 {browser_skills}
 
 At each step, produce a JSON response with exactly four fields:
-1. "thought": Short description of the execution status (e.g. 'Reading Gmail', 'Executing search').
-2. "action": The ID of the capability to use (e.g. "command", "filesystem"), or "finish" if complete.
-3. "parameters": Parameters for the action.
+1. "thought": Short description of the execution status (e.g. 'Opening Gmail in Atlas Browser', 'Summarizing emails', 'Sending email').
+2. "action": The ID of the capability to use (e.g. "browser", "command", "filesystem"), or "finish" if complete.
+3. "parameters": Parameters for the action (e.g. {{"script": "new_tab('https://mail.google.com')\\nprint(page_info())"}}).
 4. "current_task_idx": The integer index (0-based) of the plan task you are currently working on.
 """
         try:

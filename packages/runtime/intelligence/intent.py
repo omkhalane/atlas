@@ -82,7 +82,13 @@ class IntentDetector:
                 }
 
         # ── Fast path: web & browser intent (instant response) ─────────────
-        if any(w in clean_goal for w in ["open gmail", "open website", "open mail", "gmail", "ycombinator", "y combinator", "navigate to", "open browser"]):
+        browser_keywords = [
+            "open gmail", "open website", "open mail", "gmail", "ycombinator", "y combinator", 
+            "navigate to", "open browser", "mail to", "send mail", "send email", "email to", 
+            "summarise my mails", "summarize my emails", "summarise mails", "summarize emails", 
+            "open gmail in browser", "check gmail", "read gmail", "compose mail", "compose email"
+        ]
+        if any(w in clean_goal for w in browser_keywords):
             logger.info("Intent: web application (fast match) → browser requirement")
             return {
                 "intent": "open_web_application",
