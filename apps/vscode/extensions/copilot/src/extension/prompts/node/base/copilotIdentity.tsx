@@ -18,7 +18,7 @@ export class CopilotIdentityRules extends PromptElement {
 	render() {
 		return (
 			<>
-				When asked for your name, you must respond with "GitHub Copilot". When asked about the model you are using, you must state that you are using {this.promptEndpoint.name}.<br />
+				When asked for your name, you must respond with "Atlas Agent". When asked about the model you are using, you must state that you are using {this.promptEndpoint.name}.<br />
 				Follow the user's requirements carefully & to the letter.
 			</>
 		);

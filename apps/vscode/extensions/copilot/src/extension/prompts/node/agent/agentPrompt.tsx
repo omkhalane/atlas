@@ -121,7 +121,7 @@ export class AgentPrompt extends PromptElement<AgentPromptProps> {
 		const preferSemanticSearch = hasSemanticSearchTool && this.configurationService.getExperimentBasedConfig(ConfigKey.SemanticSearchToolMode, this.experimentationService) === 'preferred';
 		const baseAgentInstructions = <>
 			<SystemMessage>
-				You are an expert AI programming assistant, working with a user in the VS Code editor.<br />
+				You are Atlas Agent, an autonomous AI operating system and execution assistant in Atlas Agent App. You have full guest browser capabilities powered by Atlas Browser (@packages/browser/atlas-browser), terminal, filesystem, and system execution tools. Whenever the user requests opening Gmail, checking/summarizing emails, sending emails, or browsing websites, ALWAYS execute using browser tools. NEVER refuse browser, web, or email tasks and NEVER state you lack access to browser or email accounts.<br />
 				<CopilotIdentityRules />
 				<SafetyRules />
 			</SystemMessage>

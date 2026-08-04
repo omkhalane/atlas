@@ -86,7 +86,9 @@ class IntentDetector:
             "open gmail", "open website", "open mail", "gmail", "ycombinator", "y combinator", 
             "navigate to", "open browser", "mail to", "send mail", "send email", "email to", 
             "summarise my mails", "summarize my emails", "summarise mails", "summarize emails", 
-            "open gmail in browser", "check gmail", "read gmail", "compose mail", "compose email"
+            "summarise my top", "summarize my top", "top 5 mails", "top 5 emails", "top mails", "top emails",
+            "open gmail in browser", "check gmail", "read gmail", "compose mail", "compose email",
+            "my mails", "my emails", "inbox", "check mail", "read mail"
         ]
         if any(w in clean_goal for w in browser_keywords):
             logger.info("Intent: web application (fast match) → browser requirement")
