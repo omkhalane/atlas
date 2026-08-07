@@ -12,6 +12,8 @@ import { IContextKeyService } from '../../../../../platform/contextkey/common/co
 import { ChatContextKeys } from '../../../chat/common/actions/chatContextKeys.js';
 import { IBrowserViewModel } from '../../common/browserView.js';
 import { BrowserEditorInput } from '../../common/browserEditorInput.js';
+import { Button } from '../../../../../base/browser/ui/button/button.js';
+import { defaultButtonStyles } from '../../../../../platform/theme/browser/defaultStyles.js';
 import {
 	BrowserEditor,
 	BrowserEditorContribution,
@@ -19,14 +21,11 @@ import {
 	IBrowserEditorWidget,
 } from '../browserEditor.js';
 
-/**
- * Welcome placeholder shown in the content area when no URL is loaded; hides
- * as soon as a URL appears and reappears when it's cleared.
- */
 export class BrowserWelcomeFeature extends BrowserEditorContribution {
 
 	private readonly _container: HTMLElement;
 	private readonly _widget: IBrowserEditorWidget;
+	private _content: HTMLElement;
 
 	constructor(
 		editor: BrowserEditor,
@@ -35,26 +34,87 @@ export class BrowserWelcomeFeature extends BrowserEditorContribution {
 		super(editor);
 
 		this._container = $('.browser-welcome-container');
-		const content = $('.browser-welcome-content');
+		this._content = $('.browser-welcome-content');
+
+		this._renderInitialState();
+
+		this._container.appendChild(this._content);
+		this._widget = { location: BrowserWidgetLocation.ContentArea, element: this._container, order: 50 };
+	}
+
+	private _renderInitialState() {
+		this._content.innerText = ''; // clear
 
 		const iconContainer = $('.browser-welcome-icon');
 		iconContainer.appendChild(renderIcon(Codicon.globe));
-		content.appendChild(iconContainer);
+		this._content.appendChild(iconContainer);
 
 		const title = $('.browser-welcome-title');
 		title.textContent = localize('browser.welcomeTitle', "Browser");
-		content.appendChild(title);
+		this._content.appendChild(title);
 
 		const subtitle = $('.browser-welcome-subtitle');
-		const chatEnabled = contextKeyService.getContextKeyValue<boolean>(ChatContextKeys.enabled.key);
-		subtitle.textContent = chatEnabled
-			? localize('browser.welcomeSubtitleChat', "Use Add Element to Chat to reference UI elements in chat prompts.")
-			: localize('browser.welcomeSubtitle', "Enter a URL above to get started.");
-		content.appendChild(subtitle);
+		subtitle.textContent = localize('browser.welcomeSubtitleChat', "I need browser access for this task. Connect your browser to continue.");
+		this._content.appendChild(subtitle);
 
-		this._container.appendChild(content);
+		const btnContainer = $('.browser-btn-container', { style: 'margin-top: 16px;' });
+		const btn = this._register(new Button(btnContainer, defaultButtonStyles));
+		btn.label = localize('browserConnect.btn', "Connect Browser");
+		this._register(btn.onDidClick(() => this._startConnection()));
+		this._content.appendChild(btnContainer);
+	}
 
-		this._widget = { location: BrowserWidgetLocation.ContentArea, element: this._container, order: 50 };
+	private async _startConnection() {
+		this._content.innerText = ''; // clear
+
+		try {
+			const response = await fetch('http://127.0.0.1:3210/connect/start', { method: 'POST' });
+			const data = await response.json();
+			const connectUrl = data.url;
+
+			const iconContainer = $('.browser-welcome-icon');
+			iconContainer.appendChild(renderIcon(Codicon.globe));
+			this._content.appendChild(iconContainer);
+
+			const title = $('.browser-welcome-title');
+			title.textContent = localize('browser.welcomeTitle', "Connect Browser");
+			this._content.appendChild(title);
+
+			const instruction = $('.browser-welcome-subtitle');
+			instruction.textContent = localize('browserConnect.waiting', "Open your normal Chrome, Edge, or Brave browser and paste this link into the address bar:");
+			this._content.appendChild(instruction);
+
+			const urlBox = $('.browser-url-box', { style: 'user-select: all; font-family: monospace; background: var(--vscode-input-background); padding: 8px; border: 1px solid var(--vscode-input-border); margin: 16px 0; font-size: 14px;' });
+			urlBox.innerText = connectUrl;
+			this._content.appendChild(urlBox);
+
+			const copyBtnContainer = $('.browser-btn-container');
+			const copyBtn = this._register(new Button(copyBtnContainer, defaultButtonStyles));
+			copyBtn.label = localize('browserConnect.copy', "Copy Link");
+			this._register(copyBtn.onDidClick(() => navigator.clipboard.writeText(connectUrl)));
+			this._content.appendChild(copyBtnContainer);
+
+			const waitingMsg = $('.browser-waiting-msg', { style: 'margin-top: 16px; color: var(--vscode-descriptionForeground); font-style: italic;' });
+			waitingMsg.innerText = "Waiting for browser connection...";
+			this._content.appendChild(waitingMsg);
+
+			const ws = new WebSocket(`ws://127.0.0.1:3211/browser/${data.sessionId}`);
+			ws.onmessage = (event) => {
+				const msg = JSON.parse(event.data);
+				if (msg.status === 'connected' || msg.type === 'handshake') {
+					waitingMsg.innerText = "✓ Browser Connected. You can now close the connection tab in your browser.";
+					waitingMsg.style.color = "var(--vscode-testing-iconPassed)";
+					waitingMsg.style.fontStyle = "normal";
+				}
+			};
+
+		} catch (e) {
+			console.error("Failed to start browser connection:", e);
+			this._renderInitialState();
+			const err = $('.browser-err', { style: 'color: var(--vscode-errorForeground); margin-top: 8px;' });
+			err.innerText = "Error: Ensure Atlas local connector service is running.";
+			this._content.appendChild(err);
+		}
 	}
 
 	override get widgets(): readonly IBrowserEditorWidget[] {
