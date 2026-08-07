@@ -20,6 +20,8 @@ import {
 	BrowserWidgetLocation,
 	IBrowserEditorWidget,
 } from '../browserEditor.js';
+import { ITerminalService } from '../../../terminal/browser/terminal.js';
+import { TerminalLocation } from '../../../../../platform/terminal/common/terminal.js';
 
 export class BrowserWelcomeFeature extends BrowserEditorContribution {
 
@@ -30,6 +32,7 @@ export class BrowserWelcomeFeature extends BrowserEditorContribution {
 	constructor(
 		editor: BrowserEditor,
 		@IContextKeyService contextKeyService: IContextKeyService,
+		@ITerminalService private readonly _terminalService: ITerminalService,
 	) {
 		super(editor);
 
@@ -109,11 +112,16 @@ export class BrowserWelcomeFeature extends BrowserEditorContribution {
 			};
 
 		} catch (e) {
-			console.error("Failed to start browser connection:", e);
-			this._renderInitialState();
-			const err = $('.browser-err', { style: 'color: var(--vscode-errorForeground); margin-top: 8px;' });
-			err.innerText = "Error: Ensure Atlas local connector service is running.";
-			this._content.appendChild(err);
+			console.log("Connector not running, attempting to start it...", e);
+			const terminal = this._terminalService.createTerminal({
+				name: 'Atlas Browser Connector',
+				hideFromUser: true,
+			});
+			terminal.sendText('python3 packages/browser/connector_server.py\r');
+			
+			const instruction = $('.browser-welcome-subtitle');
+			instruction.textContent = "Starting connector service... Please click Connect Browser again in 3 seconds.";
+			this._content.appendChild(instruction);
 		}
 	}
 
