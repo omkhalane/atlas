@@ -1,3 +1,9 @@
+> **Prototype : Under dev**
+
+<p align="center">
+  <img src="./assets/logo.png" alt="Atlas Logo" width="200" />
+</p>
+
 # Atlas Engineering Handbook
 
 Atlas is an AI operating layer for personal computers. It sits between the user and the operating system, turns intent into verified capabilities, and maintains local context about files, projects, applications, terminals, browsers, clipboard, notifications, and long-running workflows.

@@ -334,3 +334,53 @@ async def get_file(path: str):
         return JSONResponse(status_code=404, content={"error": "File not found"})
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
+
+import httpx
+@app.get("/api/browser/cdp-version")
+async def get_browser_cdp_version():
+    try:
+        async with httpx.AsyncClient() as client:
+            r = await client.get("http://127.0.0.1:9222/json/version")
+            return r.json()
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+from fastapi import WebSocket, WebSocketDisconnect
+import websockets
+
+@app.websocket("/api/browser/cdp-proxy")
+async def cdp_proxy(websocket: WebSocket):
+    await websocket.accept()
+    # First message from client must be the target ws url
+    target_url = await websocket.receive_text()
+    try:
+        async with websockets.connect(target_url) as remote_ws:
+            async def forward_to_remote():
+                try:
+                    while True:
+                        data = await websocket.receive_text()
+                        await remote_ws.send(data)
+                except Exception:
+                    pass
+
+            async def forward_to_client():
+                try:
+                    while True:
+                        data = await remote_ws.recv()
+                        await websocket.send_text(data)
+                except Exception:
+                    pass
+
+            import asyncio
+            await asyncio.gather(
+                forward_to_remote(),
+                forward_to_client(),
+                return_exceptions=True
+            )
+    except Exception as e:
+        await websocket.send_text(f'{{"error": "{str(e)}"}}')
+    finally:
+        try:
+            await websocket.close()
+        except:
+            pass

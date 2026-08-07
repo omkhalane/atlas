@@ -58,6 +58,22 @@ export class ReadBrowserTool implements IToolImpl {
 			return errorResult(`No page ID provided. Use '${OpenPageToolId}' first.`);
 		}
 
+		try {
+			const res = await fetch('http://127.0.0.1:3210/agent/read', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({})
+			});
+			if (res.ok) {
+				const resData = await res.json();
+				if (resData.status === 'ok' && resData.data) {
+					return { content: [{ kind: 'text', value: resData.data }] };
+				}
+			}
+		} catch (e) {
+			// Fallback to local Playwright
+		}
+
 		const summary = await this.playwrightService.getSummary(sessionId, params.pageId);
 		if (!summary) {
 			return errorResult('No page summary available.');

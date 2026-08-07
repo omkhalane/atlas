@@ -279,11 +279,23 @@ export class OpenBrowserTool implements IToolImpl {
 				return (answer as IChatSingleSelectAnswer).selectedValue;
 			}
 		}
-
 		return undefined;
 	}
 
 	private async _openNewPage(sessionId: string, url: string): Promise<IToolResult> {
+		try {
+			const res = await fetch('http://127.0.0.1:3210/agent/navigate', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ url })
+			});
+			if (res.ok) {
+				return { content: [{ kind: 'text', value: 'Navigated connected browser to ' + url + '. Use the read page tool to get the current state.' }] };
+			}
+		} catch (e) {
+			// Connector not running or no active session, fallback to local Playwright
+		}
+
 		const { pageId, summary } = await this.playwrightService.openPage(sessionId, url);
 		return this._pageResult(pageId, summary, localize('browser.open.result', "Opened {0}", createBrowserPageLink(pageId)));
 	}

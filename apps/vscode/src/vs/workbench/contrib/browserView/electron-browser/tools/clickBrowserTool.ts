@@ -99,6 +99,22 @@ export class ClickBrowserTool implements IToolImpl {
 			return errorResult(`No page ID provided. Use '${OpenPageToolId}' first.`);
 		}
 
+		try {
+			const target = params.ref ? `[data-id="${params.ref}"]` : params.selector;
+			if (target) {
+				const res = await fetch('http://127.0.0.1:3210/agent/execute', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ script: `document.querySelector('${target}')?.click()` })
+				});
+				if (res.ok) {
+					return { content: [{ kind: 'text', value: 'Element clicked in connected browser.' }] };
+				}
+			}
+		} catch (e) {
+			// Connector not running or no active session, fallback to local Playwright
+		}
+
 		let selector = params.selector;
 		if (params.ref) {
 			selector = `aria-ref=${params.ref}`;

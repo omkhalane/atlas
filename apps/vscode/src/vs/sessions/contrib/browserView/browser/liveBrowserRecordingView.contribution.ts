@@ -169,7 +169,7 @@ export class SessionsLiveBrowserRecordingView extends ViewPane {
 	private _updateFrame(): void {
 		if (this._imgElement) {
 			const cacheBust = new Date().getTime();
-			this._imgElement.src = `/api/browser_screenshot?t=${cacheBust}`;
+			this._imgElement.src = `http://127.0.0.1:8000/api/browser_screenshot?t=${cacheBust}`;
 			this._imgElement.onerror = () => {
 				if (this._imgElement) {
 					this._imgElement.style.display = 'none';
