@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Atlas Browser Connector",
+  "version": "1.0.0",
+  "description": "Connects your browser to the Atlas Agent Chat",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://127.0.0.1/*", "*://localhost/*", "http://127.0.0.1:3210/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

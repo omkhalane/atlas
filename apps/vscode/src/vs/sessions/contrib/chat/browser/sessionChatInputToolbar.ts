@@ -22,6 +22,7 @@ import { IActiveSession } from '../../../services/sessions/common/sessionsManage
 import { LastTurnChangesMultiDiffSourceResolver } from './lastTurnChangesMultiDiffSourceResolver.js';
 import { SessionBackgroundActivitiesControl } from './sessionBackgroundActivitiesControl.js';
 import { SessionBrowsersControl } from './sessionBrowsersControl.js';
+import { BrowserConnectUX } from './browserConnectUX.js';
 import type { ISessionChatPillsDebugData } from './sessionChatInputToolbarDebug.js';
 import './media/sessionChatInputToolbar.css';
 
@@ -87,6 +88,7 @@ export class SessionChatInputToolbar extends Disposable {
 	private readonly _chat = observableValue<IChat | undefined>('chat', undefined);
 	private readonly _debugData = observableValue<ISessionChatPillsDebugData | undefined>(this, undefined);
 	private readonly _browsers: SessionBrowsersControl;
+	private readonly _browserConnectUX: BrowserConnectUX;
 	private readonly _backgroundActivities: SessionBackgroundActivitiesControl;
 
 	/** The session that owns the reflected chat, from an explicit override or resolved from the chat. */
@@ -159,11 +161,14 @@ export class SessionChatInputToolbar extends Disposable {
 		this._browsers = this._register(instantiationService.createInstance(SessionBrowsersControl, this._session, this._chat, turnStatusPillsEnabled));
 		this.element.appendChild(this._browsers.element);
 
+		this._browserConnectUX = this._register(instantiationService.createInstance(BrowserConnectUX));
+		this.element.appendChild(this._browserConnectUX.element);
+
 		this._backgroundActivities = this._register(instantiationService.createInstance(SessionBackgroundActivitiesControl, this._session, this._chat, turnStatusPillsEnabled));
 		this.element.appendChild(this._backgroundActivities.element);
 
 		this._register(autorun(reader => {
-			const anyVisible = pills.isVisible.read(reader) || this._browsers.isVisible.read(reader) || this._backgroundActivities.isVisible.read(reader);
+			const anyVisible = pills.isVisible.read(reader) || this._browsers.isVisible.read(reader) || this._backgroundActivities.isVisible.read(reader) || true; // Force visible for Browser UX temporarily
 			this.element.classList.toggle('hidden', !anyVisible);
 		}));
 	}
