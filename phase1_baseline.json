@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-08-08T14:52:02.310723",
+  "git_status": "On branch phase0-audit\nChanges not staged for commit:\n  (use \"git add/rm <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tdeleted:    packages/memory/atlas/bin/Activate.ps1\n\tdeleted:    packages/memory/atlas/bin/activate\n\tdeleted:    packages/memory/atlas/bin/activate.csh\n\tdeleted:    packages/memory/atlas/bin/activate.fish\n\tdeleted:    packages/memory/atlas/bin/aistudio\n\tdeleted:    packages/memory/atlas/bin/atlas-ocr\n\tdeleted:    packages/memory/atlas/bin/browser-harness\n\tdeleted:    packages/memory/atlas/bin/chardetect\n\tdeleted:    packages/memory/atlas/bin/cpuinfo\n\tdeleted:    packages/memory/atlas/bin/crc32c\n\tdeleted:    packages/memory/atlas/bin/ct2-fairseq-converter\n\tdeleted:    packages/memory/atlas/bin/ct2-marian-converter\n\tdeleted:    packages/memory/atlas/bin/ct2-openai-gpt2-converter\n\tdeleted:    packages/memory/atlas/bin/ct2-opennmt-py-converter\n\tdeleted:    packages/memory/atlas/bin/ct2-opennmt-tf-conver...",
+  "git_head": "af4d4c0a27c38fb294d60cde91cb4219cc1e1cbf",
+  "checks": {
+    "npm_install": {
+      "command": "npm install --ignore-scripts --no-audit --no-fund",
+      "exit_code": 0,
+      "stdout": "\nup to date in 2s\n",
+      "stderr": "npm warn EBADENGINE Unsupported engine {\nnpm warn EBADENGINE   package: '@electron-internal/extract-zip@1.0.5',\nnpm warn EBADENGINE   required: { node: '>=22.12.0' },\nnpm warn EBADENGINE   current: { node: 'v20.19.6', npm: '11.10.1' }\nnpm warn EBADENGINE }\nnpm warn EBADENGINE Unsupported engine {\nnpm warn EBADENGINE   package: '@electron/get@5.1.0',\nnpm warn EBADENGINE   required: { node: '>=22.12.0' },\nnpm warn EBADENGINE   current: { node: 'v20.19.6', npm: '11.10.1' }\nnpm warn EBADENGINE }\nnpm warn EBADENGINE Unsupported engine {\nnpm warn EBADENGINE   package: '@sindresorhus/is@8.1.0',\nnpm warn EBADENGINE   required: { node: '>=22' },\nnpm warn EBADENGINE   current: { node: 'v20.19.6', npm: '11.10.1' }\nnpm warn EBADENGINE }\nnpm warn EBADENGINE Unsupported engine {\nnpm warn EBADENGINE   package: '@vscode/fs-copyfile@2.0.0',\nnpm warn EBADENGINE   required: { node: '>=22.6.0' },\nnpm warn EBADENGINE   current: { node: 'v20.19.6', npm: '11.10.1' }\nnpm warn EBADENGINE }\nnpm warn EBADENGINE ...",
+      "timeout": false
+    },
+    "npm_build": {
+      "command": "npm run build",
+      "exit_code": 0,
+      "stdout": "\n> atlas-monorepo@0.1.0 build\n> npm run build --workspaces --if-present\n\n",
+      "stderr": "",
+      "timeout": false
+    },
+    "npm_test": {
+      "command": "npm run test",
+      "exit_code": 1,
+      "stdout": "\n> atlas-monorepo@0.1.0 test\n> npm run test --workspaces --if-present\n\n\n> atlas-agent-app@1.133.0 test\n> node -e \"console.error('Run a test script from the scripts folder, for example: ./scripts/test.sh --run <file>.'); process.exit(1)\"\n\n",
+      "stderr": "Run a test script from the scripts folder, for example: ./scripts/test.sh --run <file>.\nnpm error Lifecycle script `test` failed with error:\nnpm error code 1\nnpm error path /code/ATLAS/apps/vscode\nnpm error workspace atlas-agent-app@1.133.0\nnpm error location /code/ATLAS/apps/vscode\nnpm error command failed\nnpm error command sh -c node -e \"console.error('Run a test script from the scripts folder, for example: ./scripts/test.sh --run <file>.'); process.exit(1)\"\n",
+      "timeout": false
+    },
+    "pytest_root": {
+      "command": "python3 -m pytest || true",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n",
+      "timeout": false
+    }
+  }
+}
