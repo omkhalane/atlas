@@ -1,0 +1,20 @@
+{
+  "id": "atlas.browser",
+  "name": "Atlas Browser",
+  "version": "1.0.0",
+  "publisher": "atlas",
+  "description": "Browser automation & CDP",
+  "icon": "browser",
+  "type": "plugin",
+  "capabilities": [
+    { "id": "browser.navigate", "name": "Navigate", "permissions": ["browser.control"] },
+    { "id": "browser.click", "name": "Click Elements", "permissions": ["browser.control"] },
+    { "id": "browser.type", "name": "Type Text", "permissions": ["browser.control"] },
+    { "id": "browser.download", "name": "Download Files", "permissions": ["browser.control", "filesystem.write"] }
+  ],
+  "permissions": [
+    { "id": "browser.control", "description": "Full control over browser automation" },
+    { "id": "filesystem.write", "description": "Write downloaded files to filesystem", "dangerous": true }
+  ],
+  "authentication": { "type": "none" }
+}

@@ -17,7 +17,7 @@ import { CollisionEnablementModel, EnablementModel, isContributionEnabled } from
 import { McpCollisionBehavior, mcpServerCollisionBehaviorSection } from './mcpConfiguration.js';
 import { IMcpRegistry } from './mcpRegistryTypes.js';
 import { McpPrefixGenerator, McpServer, McpServerMetadataCache } from './mcpServer.js';
-import { IAutostartResult, IMcpServer, IMcpService, McpCollectionDefinition, McpConnectionState, McpDefinitionReference, McpServerCacheState, McpServerDefinition, McpStartServerInteraction, UserInteractionRequiredError } from './mcpTypes.js';
+import { IAutostartResult, IMcpServer, IMcpService, McpCollectionDefinition, McpConnectionState, McpDefinitionReference, McpServerCacheState, McpServerDefinition, McpStartServerInteraction } from './mcpTypes.js';
 import { startServerAndWaitForLiveTools } from './mcpTypesUtils.js';
 
 type IMcpServerRec = { object: IMcpServer };
@@ -144,9 +144,7 @@ export class McpService extends Disposable implements IMcpService {
 			try {
 				await startServerAndWaitForLiveTools(server, { interaction, errorOnUserInteraction: true }, token);
 			} catch (error) {
-				if (error instanceof UserInteractionRequiredError) {
-					requiringInteraction.push({ id: server.definition.id, label: server.definition.label, errorMessage: error.message });
-				}
+				// Suppress UserInteractionRequiredError to prevent the "Start them now?" prompt
 			} finally {
 				todo.delete(server);
 				if (!token.isCancellationRequested) {

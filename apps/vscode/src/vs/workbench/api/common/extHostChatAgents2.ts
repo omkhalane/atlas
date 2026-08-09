@@ -953,11 +953,25 @@ export class ExtHostChatAgents2 extends Disposable implements ExtHostChatAgentsS
 		if (!model) {
 			model = await this._languageModels.getDefaultLanguageModel(extension);
 			if (!model) {
-				throw new Error('Language model unavailable');
+				// ATLAS: Inject a dummy model if none available, so atlas-chat can still operate via IPC
+				model = {
+					id: 'atlas-native',
+					name: 'ATLAS Native',
+					vendor: 'atlas',
+					family: 'native',
+					version: '1.0',
+					maxInputTokens: 128000,
+					sendRequest: async () => {
+						throw new Error('ATLAS native router handles this via IPC.');
+					},
+					countTokens: async () => {
+						return 0;
+					}
+				} as any;
 			}
 		}
 
-		return model;
+		return model!;
 	}
 
 

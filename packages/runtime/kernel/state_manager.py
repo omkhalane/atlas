@@ -19,3 +19,17 @@ class StateManager:
                 
     def get_tasks_by_conversation(self, conversation_id: str) -> List[ExecutionTask]:
         return [t for t in self.tasks.values() if t.conversation_id == conversation_id]
+        
+    def set(self, key: str, value: any):
+        if not hasattr(self, '_kv'):
+            self._kv = {}
+        self._kv[key] = value
+        
+    def get(self, key: str) -> any:
+        if not hasattr(self, '_kv'):
+            self._kv = {}
+        return self._kv.get(key)
+        
+    def delete(self, key: str):
+        if hasattr(self, '_kv') and key in self._kv:
+            del self._kv[key]

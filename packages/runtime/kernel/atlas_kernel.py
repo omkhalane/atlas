@@ -12,14 +12,30 @@ import logging
 from typing import Optional
 
 from runtime.events.bus import EventBus
+from core.python.agents.core_types.scope import ExecutionScope
+from runtime.server.execution_registry import ExecutionRegistry
+
+from runtime.observability.enveloped_event_bus import EnvelopedEventBus
+from runtime.observability.trace_context import set_trace, clear_trace
+from runtime.context.scoped_assembler import ScopedContextAssembler
 from runtime.kernel.state_manager import StateManager
 from runtime.kernel.task_manager import TaskManager
 from runtime.context.builder import ContextBuilder
 from planner.local_planner import LocalPlanner
-from execution.scheduler import ExecutionScheduler
+from core.python.agents.orchestration.supervisor import Supervisor
+from core.python.agents.core_agents.planner import CorePlanner
+from runtime.scheduler.core_dispatcher import CoreExecutionDispatcher
+from runtime.policy.timed_provider import TimedProviderWrapper
+from runtime.policy.authorized_executor import AuthorizedToolExecutor
+from runtime.policy.timed_executor import TimedToolExecutor
+from runtime.capabilities.registry import CapabilityRegistry
+from common.execution.scheduler import ExecutionScheduler
 from runtime.kernel.aggregator import ResultAggregator
 from runtime.capabilities.registry import CapabilityRegistry
 from runtime.policy.policy import PolicyEngine
+from runtime.policy.store import SessionPolicyRegistry
+from runtime.policy.gateway import PermissionGateway
+from core.python.agents.core_types.policy import AuthorizationManager
 from runtime.kernel.openrouter import OpenRouterClient
 
 from runtime.kernel.rollback import RollbackEngine
@@ -40,7 +56,8 @@ logger = logging.getLogger("atlas.kernel")
 class AtlasKernel:
     def __init__(self):
         # ── Event Bus (first — everything subscribes to this) ──────────────
-        self.bus = EventBus()
+        _raw_bus = EventBus()
+        self.bus = EnvelopedEventBus(_raw_bus)  # F-04: auto-stamps trace metadata
 
         # ── State & Session ────────────────────────────────────────────────
         self.state = StateManager()
@@ -51,10 +68,6 @@ class AtlasKernel:
         # ── Intelligence Layer ─────────────────────────────────────────────
         self.memory = MemoryEngine()
         self.local_llm = LocalLLMManager(bus=self.bus)  # Ollama auto-detect
-
-        # ── Unified AI Platform & LLM Runtime ─────────────────────────────
-        from runtime.ai_runtime import AIRuntime
-        self.ai_runtime = AIRuntime(memory_engine=self.memory)
 
         # ── Cloud LLM (compatibility wrapper) ────────────────────────────
         self.openrouter = OpenRouterClient()
@@ -71,18 +84,34 @@ class AtlasKernel:
 
         # ── Context ────────────────────────────────────────────────────────
         self.context = ContextBuilder(self.state, self.memory)
+        self.scoped_context = ScopedContextAssembler(  # F-05: scoped assembly
+            self.memory, self.conversations, self.state
+        )
 
         # ── Execution Engine ───────────────────────────────────────────────
         self.policy = PolicyEngine()
+        self.policy_registry = SessionPolicyRegistry()
+        self.policy_gateway = PermissionGateway(self.policy_registry)
         self.rollback = RollbackEngine()
         self.verifier = VerificationEngine()
         self.artifacts = ArtifactsManager()
         self.history = HistoryManager()
+        self.execution_registry = ExecutionRegistry()  # F-01: maps exec_id → scope
 
         # ── Capability Registry & Plugins ─────────────────────────────────
         self.registry = CapabilityRegistry(self.state, self.memory)
         self.plugins = PluginManager(self.registry)
         self.plugins.auto_load_plugins()
+
+        # ── Authorization Manager ──────────────────────────────────────────
+        self.browser_auth = AuthorizationManager()
+        
+        async def on_auth_request(capability: str, request_id: str):
+            await self.bus.publish("cdp_auth_request", {
+                "capability": capability,
+                "request_id": request_id
+            })
+        self.browser_auth.set_auth_request_callback(on_auth_request)
 
         # ── Planner (LLM-based graph decomposition) ────────────────────────
         self.planner = LocalPlanner(self.openrouter)
@@ -92,9 +121,8 @@ class AtlasKernel:
         self.aggregator = ResultAggregator(self.openrouter, self.bus)
 
     async def start(self):
-        """Boot sequence: start EventBus, then initialize Local LLM and AIRuntime."""
+        """Boot sequence: start EventBus, then initialize Local LLM."""
         await self.bus.start()
-        await self.ai_runtime.start()
 
         # Initialize Local LLM asynchronously — does not block boot
         asyncio.create_task(self._boot_local_llm())
@@ -113,8 +141,23 @@ class AtlasKernel:
 
         # ── Session & Conversation ─────────────────────────────────────────
         conv_id = conversation_id or exec_id
+        # F-01: create root ExecutionScope (deadline=300s, cancel signal)
+        scope = ExecutionScope.create(
+            agent_id="kernel",
+            session_id=conv_id,
+            workspace_id="",
+            execution_id=exec_id,
+            conversation_id=conv_id,
+            deadline_seconds=300.0,
+        )
+        self.execution_registry.register(scope)
+        # F-04: establish trace context for this coroutine
+        set_trace(execution_id=exec_id, conversation_id=conv_id, agent_id="kernel")
         self.conversations.add_user_message(conv_id, goal)
         conv_context = self.conversations.get_context(conv_id, limit=6)
+
+        # Grant all scopes for this execution to allow tool usage
+        self.policy_registry.grant(conv_id, ["SAFE", "READ", "WRITE", "BROWSER", "NETWORK", "DANGEROUS"])
 
         # ── 1. Create Task ─────────────────────────────────────────────────
         task = await self.tasks.create_task(goal, conv_id, task_id=exec_id)
@@ -173,55 +216,52 @@ class AtlasKernel:
             task.semantic_context = semantic_memories
 
             ctx_payload = self.context.build_context(task, caps_manifest)
+            # F-05: enrich with scoped conversation/memory context
+            scoped = self.scoped_context.assemble(
+                execution_id=exec_id, conversation_id=conv_id,
+                agent_id="kernel", query=goal
+            )
+            if scoped.recent_messages:
+                conv_history = scoped.as_prompt_string()
+                if conv_history:
+                    ctx_payload = ctx_payload + "\n\n" + conv_history
             ctx_duration_ms = round((time.time() - t1) * 1000, 2)
             logger.info(f"[{exec_id}] CONTEXT SNAPSHOT BUILT [{ctx_duration_ms}ms] ({len(ctx_payload)} chars)")
 
-            # ── 6. Plan Generation ─────────────────────────────────────────
+            # ── 6. Agent Orchestration (Phase 6) ───────────────────────────
             t2 = time.time()
             await self.bus.publish("THOUGHT", {
-                "task_id": exec_id, "content": "Planning execution graph..."
+                "task_id": exec_id, "content": "Initializing orchestration..."
             })
-            intent_str, graph, needs_cloud = self.planner.generate_plan(ctx_payload)
+            
+            task.status = "running"
+            
+            # Map CapabilityRegistry into the core IToolExecutor interface
+            from runtime.capabilities.registry_adapter import RegistryToolWrapper
 
-            task.graph = graph
-            task.needs_cloud_reasoning = needs_cloud or intent_result.get("needs_cloud", False)
-
-            plan_duration_ms = round((time.time() - t2) * 1000, 2)
-            ui_tasks = [f"{node.action}: {node.id}" for node in graph] if graph else []
-            logger.info(f"[{exec_id}] PLAN GENERATED [{plan_duration_ms}ms]: {len(graph)} nodes — {ui_tasks}")
-
-            await self.bus.publish("plan", {"task_id": exec_id, "tasks": ui_tasks})
-            await self.bus.publish("THOUGHT", {
-                "task_id": exec_id,
-                "content": f"Plan: {len(graph)} step(s) [{plan_duration_ms}ms] — {', '.join(ui_tasks)}"
-            })
-
-            if not graph:
-                logger.warning(f"[{exec_id}] Empty plan graph generated. Falling back to direct LLM call.")
-                response = reasoning_session.call(
-                    [{"role": "user", "content": goal}],
-                    system="You are Atlas. Answer the user's question concisely."
-                )
-                self.conversations.add_assistant_message(conv_id, response)
-                await self.bus.publish("message", {"task_id": exec_id, "content": response})
-                await self.tasks.mark_done(exec_id)
-                await self.bus.publish("finish", {
-                    "task_id": exec_id,
-                    "result": {"status": "completed", "artifacts": [], "conversation_id": conv_id}
-                })
-                return
-
-            # ── 7. Execute Graph Nodes ─────────────────────────────────────
-            t3 = time.time()
-            logger.info(f"[{exec_id}] EXECUTING GRAPH NODES ({len(graph)} steps)...")
-            await self.scheduler.execute_graph(task)
-
-            exec_duration_ms = round((time.time() - t3) * 1000, 2)
-            logger.info(f"[{exec_id}] GRAPH EXECUTION COMPLETED [{exec_duration_ms}ms]")
-
-            task.results = [
-                node.result for node in task.graph if hasattr(node, 'result') and node.result
-            ]
+            base_executor = RegistryToolWrapper(self.registry)
+            auth_executor = AuthorizedToolExecutor(
+                base_executor, self.policy_gateway, conv_id, self.bus, self.state, exec_id
+            )
+            
+            # Using OpenRouter wrapped with timeout
+            timed_provider = TimedProviderWrapper(self.openrouter, scope)
+            
+            core_planner = CorePlanner(self.planner)
+            core_dispatcher = CoreExecutionDispatcher(self.scheduler)
+            
+            supervisor = Supervisor(timed_provider, auth_executor, core_planner, core_dispatcher, self.browser_auth)
+            result = await supervisor.execute_task(task.id, goal, ctx_payload, scope)
+            
+            exec_duration_ms = round((time.time() - t2) * 1000, 2)
+            
+            if result.success:
+                logger.info(f"[{exec_id}] ORCHESTRATION COMPLETED [{exec_duration_ms}ms]")
+                task.results = result.data if isinstance(result.data, list) else [result.data]
+            else:
+                logger.warning(f"[{exec_id}] ORCHESTRATION FAILED [{exec_duration_ms}ms]: {result.error}")
+                task.error = result.error
+                task.results = []
 
             # ── 8. Verify Steps (Deterministic — no LLM) ──────────────────
             await self.bus.publish("THOUGHT", {
@@ -283,3 +323,6 @@ class AtlasKernel:
             logger.error(f"Execution failed [{exec_id}]: {e}", exc_info=True)
             await self.tasks.mark_failed(exec_id, str(e))
             await self.bus.publish("error", {"task_id": exec_id, "error": str(e)})
+        finally:
+            clear_trace()  # F-04: prevent ContextVar leakage to next execution
+            self.execution_registry.unregister(exec_id)  # F-01: release scope

@@ -88,3 +88,18 @@ temp/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# ATLAS specific
+runtime-generated/
+browser_profiles/
+cdp_dumps/
+*.cache
+credentials/
+tokens/
+keys/
+certificates/
+debug-output/
+test-output/
+*.bak
+*.old
+*.copy

@@ -3,8 +3,8 @@ import logging
 from runtime.adapters.ports import AdapterPort
 from runtime.contracts import CapabilityRequest, CapabilityResult
 from browser.port import BrowserPort
-from filesystem.port import FilesystemPort
-from terminal.port import CommandPort
+from common.filesystem.port import FilesystemPort
+from common.terminal.port import CommandPort
 from models.media.port import MediaPort
 from plugins.mcp_client import MCPAdapter, MCPClient
 

@@ -162,7 +162,8 @@ class SessionsSetUpWidget extends Disposable {
 			return;
 		}
 		if (!initialAccount) {
-			this._showWelcome(false);
+			this.onCompleted();
+			this.watcherRef.value = this._watchActiveState(false);
 			return;
 		}
 		await this._ensureAIFeaturesEnabled();
@@ -314,7 +315,7 @@ class SessionsSetUpWidget extends Disposable {
 			forceSignInDialog: true,
 			dialogIcon: Codicon.agent,
 			dialogTitle: localize('sessions.signIn', "Sign in to use Agents"),
-			disableCloseButton: true,
+			disableCloseButton: false,
 			onSignInStarted: () => {
 				const disposables = new DisposableStore();
 				signingInDialogRef.value = disposables;
@@ -329,7 +330,7 @@ class SessionsSetUpWidget extends Disposable {
 						icon: Codicon.agent,
 						alignment: DialogContentsAlignment.Vertical,
 						cancelId: 0,
-						disableCloseButton: true,
+						disableCloseButton: false,
 						disableDefaultAction: true,
 					}, this.keybindingService, this.layoutService, this.hostService)
 				));
@@ -345,6 +346,9 @@ class SessionsSetUpWidget extends Disposable {
 			this.serviceMarkDone();
 		} else {
 			this.logService.info('[sessions welcome] Sign-in was canceled or failed');
+			this._ensureAIFeaturesEnabled();
+			this.storageService.store(WELCOME_COMPLETE_KEY, true, StorageScope.APPLICATION, StorageTarget.MACHINE);
+			this.serviceMarkDone();
 		}
 	}
 
@@ -365,7 +369,7 @@ class SessionsSetUpWidget extends Disposable {
 				icon: Codicon.agent,
 				alignment: DialogContentsAlignment.Vertical,
 				cancelId: 1,
-				disableCloseButton: true,
+				disableCloseButton: false,
 				renderFooter: footer => footer.appendChild(this._createWelcomeFooter(disposables)),
 			}, this.keybindingService, this.layoutService, this.hostService)
 		));

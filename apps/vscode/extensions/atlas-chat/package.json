@@ -1,0 +1,43 @@
+{
+  "name": "atlas-chat",
+  "displayName": "ATLAS Chat",
+  "description": "ATLAS IDE Native Chat Extension",
+  "version": "1.0.0",
+  "publisher": "atlas",
+  "engines": {
+    "vscode": "^1.133.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "enabledApiProposals": [
+    "chatParticipantAdditions",
+    "defaultChatParticipant"
+  ],
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "atlas.chat",
+        "name": "atlas",
+        "fullName": "ATLAS",
+        "description": "Native ATLAS Chat UI",
+        "isDefault": true,
+        "locations": [
+          "panel"
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0"
+  }
+}

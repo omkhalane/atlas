@@ -7,25 +7,23 @@ import { localize } from '../../../../../nls.js';
 import { $ } from '../../../../../base/browser/dom.js';
 import { renderIcon } from '../../../../../base/browser/ui/iconLabel/iconLabels.js';
 import { Codicon } from '../../../../../base/common/codicons.js';
-import { DisposableStore } from '../../../../../base/common/lifecycle.js';
 import { IContextKeyService } from '../../../../../platform/contextkey/common/contextkey.js';
-import { ChatContextKeys } from '../../../chat/common/actions/chatContextKeys.js';
 import { IBrowserViewModel } from '../../common/browserView.js';
 import { BrowserEditorInput } from '../../common/browserEditorInput.js';
-import { Button } from '../../../../../base/browser/ui/button/button.js';
-import { defaultButtonStyles } from '../../../../../platform/theme/browser/defaultStyles.js';
+import { DisposableStore } from '../../../../../base/common/lifecycle.js';
+import { IBrowserEditorWidget } from '../browserEditor.js';
 import {
 	BrowserEditor,
 	BrowserEditorContribution,
 	BrowserWidgetLocation,
-	IBrowserEditorWidget,
 } from '../browserEditor.js';
-import { ITerminalService } from '../../../terminal/browser/terminal.js';
-import { TerminalLocation } from '../../../../../platform/terminal/common/terminal.js';
+
 
 import { IClipboardService } from '../../../../../platform/clipboard/common/clipboardService.js';
 import { IRequestService, asJson } from '../../../../../platform/request/common/request.js';
 import { CancellationToken } from '../../../../../base/common/cancellation.js';
+import { Button } from '../../../../../base/browser/ui/button/button.js';
+import { defaultButtonStyles } from '../../../../../platform/theme/browser/defaultStyles.js';
 
 export class BrowserWelcomeFeature extends BrowserEditorContribution {
 
@@ -36,7 +34,7 @@ export class BrowserWelcomeFeature extends BrowserEditorContribution {
 	constructor(
 		editor: BrowserEditor,
 		@IContextKeyService contextKeyService: IContextKeyService,
-		@ITerminalService private readonly _terminalService: ITerminalService,
+
 		@IClipboardService private readonly _clipboardService: IClipboardService,
 		@IRequestService private readonly _requestService: IRequestService,
 	) {
@@ -146,7 +144,7 @@ export class BrowserWelcomeFeature extends BrowserEditorContribution {
 					const lines = fs.readFileSync(portPath, 'utf8').split('\n');
 					if (lines.length > 0) {
 						wsInput.value = lines[0];
-						fetchBtn.click();
+						(fetchBtn as any).click();
 					}
 				}
 			} catch (e) { console.error(e); }
@@ -175,7 +173,7 @@ export class BrowserWelcomeFeature extends BrowserEditorContribution {
 				}
 
 				waitingMsg.innerText = `Connecting to Chrome CDP on port ${targetPort}...`;
-				const response = await this._requestService.request({ url: `http://127.0.0.1:3210/api/browser/cdp-version?targetPort=${targetPort}` }, CancellationToken.None);
+				const response = await this._requestService.request({ url: `http://127.0.0.1:3210/api/browser/cdp-version?targetPort=${targetPort}`, callSite: 'browserWelcomeFeature' }, CancellationToken.None);
 				const versionInfo = (await asJson<any>(response)) || {};
 				
 				if (!versionInfo.webSocketDebuggerUrl) {

@@ -1457,7 +1457,7 @@ export class CopilotAgent extends Disposable implements IAgent {
 
 	private _createModelConfigSchema(m: ModelInfo, billing: ICAPIModelBilling | undefined): ConfigSchema | undefined {
 		const properties: ConfigSchema['properties'] = {};
-		const thinkingLevel = this._createThinkingLevelConfigSchemaProperty(m.supportedReasoningEfforts, m.defaultReasoningEffort);
+		const thinkingLevel = this._createThinkingLevelConfigSchemaProperty(m.supportedReasoningEfforts, (m as any).defaultReasoningEffort);
 		if (thinkingLevel) {
 			properties[ThinkingLevelConfigKey] = thinkingLevel;
 		}
@@ -2301,6 +2301,8 @@ export class CopilotAgent extends Disposable implements IAgent {
 
 			try {
 				const sdkMode = this._resolveSdkMode(context.session);
+				
+
 				await entry.send(prompt, attachments, turnId, sdkMode, senderClientId, clientType);
 			} catch (err) {
 				const errCode = (err as { code?: number })?.code;
@@ -2509,6 +2511,8 @@ export class CopilotAgent extends Disposable implements IAgent {
 
 	private async _abortSession(chat: URI): Promise<void> {
 		const context = this._getChatContext(chat);
+
+
 		if (context.isPeerChat) {
 			await context.target?.abort();
 			return;

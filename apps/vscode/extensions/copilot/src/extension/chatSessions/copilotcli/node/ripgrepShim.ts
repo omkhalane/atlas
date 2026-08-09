@@ -52,7 +52,13 @@ export async function copyRipgrepShim(extensionPath: string, vscodeRipgrepPath: 
 	logService.info(`Creating ripgrep shim: source=${vscodeRipgrepPath}, dest=${ripgrepDir}`);
 	try {
 		await fs.mkdir(ripgrepDir, { recursive: true });
-		const entries = await fs.readdir(vscodeRipgrepPath);
+		let entries: string[] = [];
+		try {
+			entries = await fs.readdir(vscodeRipgrepPath);
+		} catch (e) {
+			logService.warn(`Ignoring missing ripgrep-universal at ${vscodeRipgrepPath}`);
+			return;
+		}
 		const uniqueEntries = [...new Set(entries)];
 		logService.info(`Found ${uniqueEntries.length} entries to copy${uniqueEntries.length !== entries.length ? ` (${entries.length - uniqueEntries.length} duplicates ignored)` : ''}: ${uniqueEntries.join(', ')}`);
 

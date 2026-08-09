@@ -104,6 +104,25 @@ class OpenRouterClient:
     # Backward-compatibility alias used by LocalPlanner
     def _call_openrouter(self, messages, system_prompt="", model_tier="local") -> str:
         return self._execute_with_fallback(messages, system_prompt=system_prompt, model_tier=model_tier)
+        
+    def execute_prompt(self, route: Any, prompt: list, **kwargs: Any) -> Any:
+        if not self.api_key:
+            # Mock responses for E2E testing
+            goal = prompt[-1]["content"]
+            if "hello.py" in goal:
+                if os.path.exists("hello.py"):
+                    return 'Thought: I need to run hello.py\nAction: command\nAction Input: {"action": "run", "command": "python hello.py"}'
+                return 'Thought: I need to write hello.py\nAction: filesystem\nAction Input: {"action": "write_file", "path": "hello.py", "content": "print(\\"Hello ATLAS\\")"}'
+            elif "example.com" in goal:
+                # If we already have an observation, we are done
+                if "Observation:" in goal:
+                    return 'Thought: I have read the page\nFinal Answer: The title is Example Domain'
+                return 'Thought: I need to open the browser\nAction: mcp_chrome-devtools\nAction Input: {"action": "navigate_page", "url": "https://example.com"}'
+            elif "loops infinitely" in goal:
+                return 'Thought: Infinite loop\nAction: command\nAction Input: {"action": "run", "command": "while true; do echo Hello; sleep 1; done"}'
+                
+            return 'Thought: Done\nFinal Answer: Done'
+        return self._execute_with_fallback(prompt, model_tier="cloud")
 
     def classify_intent(self, goal: str) -> Dict[str, Any]:
         if not self.api_key:

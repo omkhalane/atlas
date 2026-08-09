@@ -25,11 +25,15 @@ class FilesystemPort(AdapterPort):
 
         rollback_dir = "/code/ATLAS/.rollback"
         os.makedirs(rollback_dir, exist_ok=True)
-        import uuid
-        import shutil
             
         try:
-            if action == "write_file":
+            if action == "read_file":
+                if not os.path.exists(abs_path):
+                    return CapabilityResult(success=False, error=f"File not found: {abs_path}")
+                with open(abs_path, "r") as f:
+                    data = f.read()
+                return CapabilityResult(success=True, data={"content": data})
+            elif action == "write_file":
                 tx_id = str(uuid.uuid4())
                 if os.path.exists(abs_path):
                     shutil.copy2(abs_path, os.path.join(rollback_dir, f"{tx_id}_backup"))
@@ -64,9 +68,6 @@ class FilesystemPort(AdapterPort):
                 backups = glob.glob(os.path.join(rollback_dir, f"{tx_id}*"))
                 if not backups:
                     return CapabilityResult(success=False, error="No backups found for transaction")
-                # Very basic restore mechanism. Real world would track exact target paths.
-                # For this MVP, we simply move it back to the original absolute path if it was 1 file.
-                # Since we don't have a manifest, we assume the original path is `abs_path`.
                 for backup in backups:
                     shutil.copy2(backup, abs_path)
                 return CapabilityResult(success=True, data={"restored_path": abs_path})

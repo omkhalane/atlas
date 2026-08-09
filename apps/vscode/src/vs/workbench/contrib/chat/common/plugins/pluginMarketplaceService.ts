@@ -29,7 +29,7 @@ import { FileBackedInstalledPluginsStore, IStoredInstalledPlugin } from './fileB
 import { IWorkspacePluginSettingsService } from './workspacePluginSettingsService.js';
 import { IWorkspaceTrustManagementService } from '../../../../../platform/workspace/common/workspaceTrust.js';
 import { readAgentPluginManifest } from '../../../../../platform/agentPlugins/common/agentPluginParser.js';
-import { type IMarketplaceReference, deduplicateMarketplaceReferences, MarketplaceReferenceKind, parseMarketplaceObjectEntry, parseMarketplaceReference, parseMarketplaceReferences, readConfiguredMarketplaces } from './marketplaceReference.js';
+import { type IMarketplaceReference, MarketplaceReferenceKind, parseMarketplaceReference, parseMarketplaceReferences, readConfiguredMarketplaces } from './marketplaceReference.js';
 import { getStrictKnownMarketplaces, isMarketplaceReferenceAllowed } from './strictKnownMarketplaces.js';
 
 // Re-export marketplace reference types for downstream consumers.
@@ -436,51 +436,43 @@ export class PluginMarketplaceService extends Disposable implements IPluginMarke
 			return [];
 		}
 
-		// Effective set: user-facing `chat.plugins.marketplaces` (default + user)
-		// unioned with the enterprise policy-only `chat.plugins.extraMarketplaces`.
-		// `parseMarketplaceReferences` dedupes by canonical id.
-		const { effectiveValues } = readConfiguredMarketplaces(this._configurationService);
-		const configRefs = parseMarketplaceReferences(effectiveValues);
-
-		// Merge marketplace references from Claude workspace settings.
-		// Workspace-defined refs take precedence (are primary) so that their
-		// displayLabel overrides any matching global marketplace entry.
-		// Only include workspace-sourced refs when the workspace is trusted.
-		let allRefs: IMarketplaceReference[];
-		if (this._workspaceTrustService.isWorkspaceTrusted()) {
-			const workspaceEntries = this._workspacePluginSettingsService.extraMarketplaces.get();
-			allRefs = deduplicateMarketplaceReferences(workspaceEntries.map(e => e.reference), configRefs);
-		} else {
-			allRefs = configRefs;
-		}
-
-		for (const value of effectiveValues) {
-			const parsed = typeof value === 'string'
-				? parseMarketplaceReference(value)
-				: (value && typeof value === 'object' ? parseMarketplaceObjectEntry(value as Parameters<typeof parseMarketplaceObjectEntry>[0]) : undefined);
-			if (!parsed) {
-				this._logService.debug(`[PluginMarketplaceService] Ignoring invalid marketplace entry: ${String(value)}`);
+		try {
+			const res = await fetch('http://127.0.0.1:50051/integrations/plugins');
+			if (!res.ok) {
+				throw new Error('Failed to fetch from IPC integrations/plugins');
 			}
-		}
+			const data = await res.json();
+			const available: any[] = data.available || [];
 
-		const refsToFetch = allRefs.filter(ref =>
-			(!marketplaceIds || marketplaceIds.has(ref.canonicalId))
-			&& this._isMarketplaceAllowedByStrictPolicy(ref)
-		);
-		const results = await Promise.all(
-			refsToFetch.map(ref => {
-				if (ref.kind === MarketplaceReferenceKind.GitHubShorthand && ref.githubRepo) {
-					return this._fetchFromGitHubRepo(ref, ref.githubRepo, token);
-				}
-				return this._fetchFromClonedRepo(ref, token);
-			})
-		);
-		const plugins = results.flat();
-		const storedPlugins = marketplaceIds
-			? [...this.lastFetchedPlugins.get().filter(plugin => !marketplaceIds.has(plugin.marketplaceReference.canonicalId)), ...plugins]
-			: plugins;
-		this._lastFetchedPluginsStore.set({ plugins: storedPlugins, fetchedAt: Date.now() }, undefined);
-		return plugins;
+			const plugins: IMarketplacePlugin[] = available.map(manifest => {
+				return {
+					name: manifest.name,
+					description: manifest.description,
+					version: manifest.version,
+					source: 'atlas-native',
+					sourceDescriptor: { kind: PluginSourceKind.RelativePath, path: 'atlas-native' },
+					marketplace: manifest.publisher || 'ATLAS',
+					marketplaceType: MarketplaceType.OpenPlugin,
+					marketplaceReference: {
+						kind: MarketplaceReferenceKind.GitHubShorthand,
+						canonicalId: manifest.id,
+						githubRepo: 'atlas/native',
+						source: 'atlas',
+						rawValue: manifest.id,
+						displayLabel: manifest.name,
+						cloneUrl: 'atlas/native',
+						cacheSegments: ['atlas', 'native']
+					}
+				};
+			});
+
+			// Update the observable state with our fetched plugins
+			this._lastFetchedPluginsStore.set({ plugins, fetchedAt: Date.now() }, undefined);
+			return plugins;
+		} catch (e) {
+			this._logService.error('Error querying ATLAS IPC Plugin Gallery', e);
+			return [];
+		}
 	}
 
 	private async _fetchFromGitHubRepo(reference: IMarketplaceReference, repo: string, token: CancellationToken): Promise<IMarketplacePlugin[]> {

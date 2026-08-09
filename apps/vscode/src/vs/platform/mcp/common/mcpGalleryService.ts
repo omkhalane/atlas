@@ -14,9 +14,9 @@ import { IFileService } from '../../files/common/files.js';
 import { ILogService } from '../../log/common/log.js';
 import { asJson, asText, isSuccess, IRequestService } from '../../request/common/request.js';
 import { GalleryMcpServerStatus, IGalleryMcpServer, IMcpGalleryServerResolveResult, IMcpGalleryService, IMcpServerArgument, IMcpServerInput, IMcpServerKeyValueInput, IMcpServerPackage, IQueryOptions, McpGalleryResolveStatus, RegistryType, SseTransport, StreamableHttpTransport, Transport, TransportType } from './mcpManagement.js';
-import { IMcpGalleryManifestService, McpGalleryManifestStatus, getMcpGalleryManifestResourceUri, McpGalleryResourceType, IMcpGalleryManifest } from './mcpGalleryManifest.js';
-import { IIterativePager, IIterativePage } from '../../../base/common/paging.js';
-import { CancellationError, isCancellationError } from '../../../base/common/errors.js';
+import { IMcpGalleryManifestService, getMcpGalleryManifestResourceUri, McpGalleryResourceType, IMcpGalleryManifest } from './mcpGalleryManifest.js';
+import { IIterativePager } from '../../../base/common/paging.js';
+import { isCancellationError } from '../../../base/common/errors.js';
 import { isObject, isString } from '../../../base/common/types.js';
 
 interface IMcpRegistryInfo {
@@ -712,40 +712,51 @@ export class McpGalleryService extends Disposable implements IMcpGalleryService 
 	}
 
 	isEnabled(): boolean {
-		return this.mcpGalleryManifestService.mcpGalleryManifestStatus === McpGalleryManifestStatus.Available;
+		return true;
 	}
 
 	async query(options?: IQueryOptions, token: CancellationToken = CancellationToken.None): Promise<IIterativePager<IGalleryMcpServer>> {
-		const mcpGalleryManifest = await this.mcpGalleryManifestService.getMcpGalleryManifest();
-		if (!mcpGalleryManifest) {
+		try {
+			const res = await fetch('http://127.0.0.1:50051/integrations/mcp');
+			if (!res.ok) {
+				throw new Error('Failed to fetch from IPC integrations/mcp');
+			}
+			const data = await res.json();
+			const available: any[] = data.available || [];
+			
+			let servers: IGalleryMcpServer[] = available.map(manifest => {
+				return {
+					name: manifest.name,
+					displayName: manifest.name,
+					description: manifest.description,
+					version: manifest.version,
+					isLatest: true,
+					status: GalleryMcpServerStatus.Active,
+					id: manifest.id,
+					publisher: manifest.publisher || 'ATLAS',
+					configuration: {
+						packages: []
+					},
+					codicon: manifest.icon
+				};
+			});
+
+			if (options?.text) {
+				const q = options.text.toLowerCase();
+				servers = servers.filter(s => s.name.toLowerCase().includes(q) || s.description.toLowerCase().includes(q));
+			}
+
+			return {
+				firstPage: { items: servers, hasMore: false },
+				getNextPage: async (ct: CancellationToken) => ({ items: [], hasMore: false })
+			};
+		} catch (e) {
+			console.error('Error querying ATLAS IPC MCP Gallery', e);
 			return {
 				firstPage: { items: [], hasMore: false },
-				getNextPage: async () => ({ items: [], hasMore: false })
+				getNextPage: async (ct: CancellationToken) => ({ items: [], hasMore: false })
 			};
 		}
-
-		let query = new Query();
-		if (options?.text) {
-			query = query.withSearchText(options.text.trim());
-		}
-
-		const { servers, metadata } = await this.queryGalleryMcpServers(query, mcpGalleryManifest, token);
-
-		let currentCursor = metadata.nextCursor;
-		return {
-			firstPage: { items: servers, hasMore: !!metadata.nextCursor },
-			getNextPage: async (ct: CancellationToken): Promise<IIterativePage<IGalleryMcpServer>> => {
-				if (ct.isCancellationRequested) {
-					throw new CancellationError();
-				}
-				if (!currentCursor) {
-					return { items: [], hasMore: false };
-				}
-				const { servers, metadata: nextMetadata } = await this.queryGalleryMcpServers(query.withPage(currentCursor).withSearchText(undefined), mcpGalleryManifest, ct);
-				currentCursor = nextMetadata.nextCursor;
-				return { items: servers, hasMore: !!nextMetadata.nextCursor };
-			}
-		};
 	}
 
 	async getMcpServersFromGallery(infos: { name: string; id?: string }[]): Promise<IGalleryMcpServer[]> {
@@ -951,6 +962,7 @@ export class McpGalleryService extends Disposable implements IMcpGalleryService 
 		};
 	}
 
+	// @ts-ignore
 	private async queryGalleryMcpServers(query: Query, mcpGalleryManifest: IMcpGalleryManifest, token: CancellationToken): Promise<IGalleryMcpServersResult> {
 		const { servers, metadata } = await this.queryRawGalleryMcpServers(query, mcpGalleryManifest, token);
 		return {

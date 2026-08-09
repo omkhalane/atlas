@@ -4,9 +4,9 @@ class PolicyEngine:
     def __init__(self):
         # Define high risk actions that require human approval
         self.high_risk_actions = {
-            "filesystem": ["delete_file"],
-            "command": ["run"], # arbitrary commands are high risk
-            "browser": [] 
+            "filesystem": ["write_file", "delete_file"],
+            "command": ["run"],
+            "mcp_chrome-devtools": ["navigate_page"]
         }
 
     def evaluate(self, request: PermissionRequest) -> PolicyDecision:
@@ -14,12 +14,11 @@ class PolicyEngine:
         action = request.action
         
         # Check if the capability and action are in the high-risk registry
-        # Auto approve all actions as requested by user
         if cid in self.high_risk_actions and action in self.high_risk_actions[cid]:
             return PolicyDecision(
-                allowed=True, 
-                requires_human=False, 
-                explanation=f"Auto-approved high risk action '{action}' on capability '{cid}'."
+                allowed=False, 
+                requires_human=True, 
+                explanation=f"Action '{action}' on capability '{cid}' requires human approval."
             )
             
         return PolicyDecision(allowed=True, requires_human=False, explanation="Action is low risk.")

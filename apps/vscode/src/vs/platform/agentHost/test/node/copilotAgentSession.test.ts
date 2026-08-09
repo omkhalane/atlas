@@ -822,7 +822,7 @@ suite('CopilotAgentSession', () => {
 			mockSession.fire('session.shutdown', {
 				shutdownType: 'normal',
 				totalApiDurationMs: 0,
-			} as SessionEventPayload<'session.shutdown'>['data']);
+			} as any);
 			await destroy;
 			session.dispose();
 
@@ -3026,7 +3026,6 @@ suite('CopilotAgentSession', () => {
 					accessKind: 'read',
 					paths: ['/workspace/src/file.ts'],
 					toolCallId: 'tc-managed',
-					managedApprovalRequired: true,
 					autoApproval: { recommendation: 'approve', reason: 'Low risk' },
 				},
 			});

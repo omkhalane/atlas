@@ -1,0 +1,134 @@
+[
+  {
+    "id": "gmail",
+    "name": "Gmail MCP",
+    "version": "1.0.0",
+    "publisher": "atlas",
+    "description": "Gmail integration for reading and sending emails",
+    "icon": "mail",
+    "type": "mcp",
+    "capabilities": [
+      { "id": "gmail.email.read", "name": "Read Emails", "description": "Read emails and attachments", "permissions": ["gmail.email.read"] },
+      { "id": "gmail.email.write", "name": "Send Emails", "description": "Send and draft emails", "permissions": ["gmail.email.write"] }
+    ],
+    "permissions": [
+      { "id": "gmail.email.read", "description": "Read emails", "dangerous": false },
+      { "id": "gmail.email.write", "description": "Send emails", "dangerous": true }
+    ],
+    "authentication": {
+      "type": "oauth",
+      "config": { "scopes": ["https://mail.google.com/"] }
+    }
+  },
+  {
+    "id": "github",
+    "name": "GitHub MCP",
+    "version": "1.0.0",
+    "publisher": "atlas",
+    "description": "GitHub integration for repositories, issues, and pull requests",
+    "icon": "github",
+    "type": "mcp",
+    "capabilities": [
+      { "id": "github.repository.read", "name": "Read Repositories", "description": "Read repository code and metadata", "permissions": ["github.repository.read"] },
+      { "id": "github.issue.read", "name": "Read Issues", "description": "Read issues and comments", "permissions": ["github.issue.read"] },
+      { "id": "github.issue.write", "name": "Create Issues", "description": "Create and update issues", "permissions": ["github.issue.write"] }
+    ],
+    "permissions": [
+      { "id": "github.repository.read", "description": "Read repositories", "dangerous": false },
+      { "id": "github.issue.write", "description": "Create and edit issues", "dangerous": false },
+      { "id": "github.repository.write", "description": "Write code to repositories", "dangerous": true }
+    ],
+    "authentication": {
+      "type": "oauth",
+      "config": { "scopes": ["repo", "read:user"] }
+    }
+  },
+  {
+    "id": "figma",
+    "name": "Figma MCP",
+    "version": "1.0.0",
+    "publisher": "atlas",
+    "description": "Figma design intelligence and extraction",
+    "icon": "figma",
+    "type": "mcp",
+    "capabilities": [
+      { "id": "figma.design.read", "name": "Read Designs", "permissions": ["figma.design.read"] }
+    ],
+    "permissions": [
+      { "id": "figma.design.read", "description": "Read Figma files and components" }
+    ],
+    "authentication": { "type": "oauth" }
+  },
+  {
+    "id": "notion",
+    "name": "Notion MCP",
+    "version": "1.0.0",
+    "publisher": "atlas",
+    "description": "Notion workspace knowledge integration",
+    "icon": "notion",
+    "type": "mcp",
+    "capabilities": [
+      { "id": "notion.page.read", "name": "Read Pages", "permissions": ["notion.page.read"] },
+      { "id": "notion.search", "name": "Search Workspace", "permissions": ["notion.search"] }
+    ],
+    "permissions": [
+      { "id": "notion.page.read", "description": "Read Notion pages" },
+      { "id": "notion.search", "description": "Search Notion workspace" }
+    ],
+    "authentication": { "type": "oauth" }
+  },
+  {
+    "id": "slack",
+    "name": "Slack MCP",
+    "version": "1.0.0",
+    "publisher": "atlas",
+    "description": "Slack communication integration",
+    "icon": "slack",
+    "type": "mcp",
+    "capabilities": [
+      { "id": "slack.message.read", "name": "Read Messages", "permissions": ["slack.message.read"] },
+      { "id": "slack.message.write", "name": "Send Messages", "permissions": ["slack.message.write"] }
+    ],
+    "permissions": [
+      { "id": "slack.message.read", "description": "Read Slack messages" },
+      { "id": "slack.message.write", "description": "Send messages to Slack channels", "dangerous": true }
+    ],
+    "authentication": { "type": "oauth" }
+  },
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "version": "1.0.0",
+    "publisher": "atlas",
+    "description": "OpenAI language models (GPT-4o, GPT-3.5)",
+    "icon": "openai",
+    "type": "ai_provider",
+    "capabilities": [],
+    "permissions": [],
+    "authentication": { "type": "api_key" }
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "version": "1.0.0",
+    "publisher": "atlas",
+    "description": "Anthropic language models (Claude 3 Opus, Sonnet)",
+    "icon": "anthropic",
+    "type": "ai_provider",
+    "capabilities": [],
+    "permissions": [],
+    "authentication": { "type": "api_key" }
+  },
+  {
+    "id": "gemini",
+    "name": "Google Gemini",
+    "version": "1.0.0",
+    "publisher": "atlas",
+    "description": "Google Gemini language models",
+    "icon": "gemini",
+    "type": "ai_provider",
+    "capabilities": [],
+    "permissions": [],
+    "authentication": { "type": "api_key" }
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "id": "atlas.files",
+  "name": "Atlas Files",
+  "version": "1.0.0",
+  "publisher": "atlas",
+  "description": "Read, write, and manage local files",
+  "icon": "files",
+  "type": "plugin",
+  "capabilities": [
+    { "id": "filesystem.read", "name": "Read Files", "permissions": ["filesystem.read"] },
+    { "id": "filesystem.write", "name": "Write Files", "permissions": ["filesystem.write"] }
+  ],
+  "permissions": [
+    { "id": "filesystem.read", "description": "Read local workspace files" },
+    { "id": "filesystem.write", "description": "Write or modify local workspace files", "dangerous": true }
+  ],
+  "authentication": { "type": "none" }
+}

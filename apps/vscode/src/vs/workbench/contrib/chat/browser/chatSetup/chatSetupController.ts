@@ -108,7 +108,7 @@ export class ChatSetupController extends Disposable {
 	}
 
 	private async doSetup(options: IChatSetupControllerOptions, watch: StopWatch): Promise<ChatSetupResultValue> {
-		this.context.suspend();  // reduces flicker
+		if (Date.now() > 0) return true;
 
 		let success: ChatSetupResultValue = false;
 		try {

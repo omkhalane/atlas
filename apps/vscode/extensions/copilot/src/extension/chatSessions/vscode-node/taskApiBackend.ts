@@ -568,6 +568,12 @@ export class TaskApiHttpClient implements ITaskApiClient {
 			...(opts.searchParams && { searchParams: opts.searchParams }),
 		});
 		if (!response.ok) {
+			if (response.status === 401 || response.status === 403) {
+				if (action === 'list' || action === 'list-for-repo' || action === 'events') {
+					return { items: [], total_count: 0 } as any;
+				}
+				return undefined;
+			}
 			let body = '';
 			try { body = await response.text(); } catch { /* ignore */ }
 			this._logService.warn(`Task API ${action} failed: ${response.status} ${response.statusText} (owner=${opts.owner ?? 'n/a'}, repo=${opts.repo ?? 'n/a'}, taskId=${opts.taskId ?? 'n/a'}); body=${body.slice(0, 200)}`);

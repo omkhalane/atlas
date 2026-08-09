@@ -398,6 +398,11 @@ export class CommandAutoApprover extends Disposable {
 			const moduleRoot = URI.joinPath(FileAccess.asFileUri(getAppNodeModulesPath()), '@vscode', 'tree-sitter-wasm', 'wasm');
 			const wasmPath = URI.joinPath(moduleRoot, 'tree-sitter.wasm').fsPath;
 
+			if (!fs.existsSync(wasmPath)) {
+				this._logService.warn(`[CommandAutoApprover] tree-sitter.wasm not found at ${wasmPath}. Disabling auto-approval.`);
+				return;
+			}
+
 			await TreeSitter.Parser.init({
 				locateFile() {
 					return wasmPath;

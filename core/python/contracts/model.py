@@ -1,0 +1,3 @@
+from typing import Protocol, Any
+class IModelRegistry(Protocol):
+    def resolve_model(self, capability: Any) -> Any: ...

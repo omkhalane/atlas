@@ -25,8 +25,12 @@ if [ -f "./scripts/code.sh" ]; then
     python3 "$SCRIPT_DIR/packages/browser/connector_server.py" &
     CONNECTOR_PID=$!
     
-    # Ensure connector dies when this script exits
-    trap "kill $CONNECTOR_PID 2>/dev/null || true" EXIT INT TERM
+    echo "Starting ATLAS IPC Server..."
+    PYTHONPATH="$SCRIPT_DIR:$SCRIPT_DIR/packages" python3 "$SCRIPT_DIR/packages/runtime/server/ipc_server.py" &
+    IPC_PID=$!
+    
+    # Ensure background processes die when this script exits
+    trap "kill $CONNECTOR_PID $IPC_PID 2>/dev/null || true" EXIT INT TERM
     
     echo "Launching Atlas IDE application..."
     ./scripts/code.sh "$@" --no-sandbox

@@ -1,114 +1,98 @@
-> **Prototype : Under dev**
-
 <p align="center">
-  <img src="./assets/logo.png" alt="Atlas Logo" width="200" />
+  <img src="assets/logo.png" alt="ATLAS Logo" width="200"/>
 </p>
 
-# Atlas Engineering Handbook
+<h1 align="center">ATLAS</h1>
 
-Atlas is an AI operating layer for personal computers. It sits between the user and the operating system, turns intent into verified capabilities, and maintains local context about files, projects, applications, terminals, browsers, clipboard, notifications, and long-running workflows.
+<p align="center">
+  <strong>AI-Native Browser Runtime / IDE</strong><br>
+  <em>A capability-driven execution kernel integrated directly into your development workflow and local browser.</em>
+</p>
 
-Atlas is not a chatbot, browser agent, or macro recorder. It is a local-first runtime for coordinating computer capabilities through explicit permissions, deterministic execution, auditable plans, and extensible plugins.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Prototype-orange.svg" alt="Status" />
+  <img src="https://img.shields.io/badge/Frontend-VS_Code_Fork-blue.svg" alt="Frontend" />
+  <img src="https://img.shields.io/badge/Backend-Python_FastAPI-green.svg" alt="Backend" />
+  <img src="https://img.shields.io/badge/License-Proprietary-red.svg" alt="License" />
+</p>
 
-## Purpose
+---
 
-This repository is the engineering handbook for building Atlas from an empty repository into a production-quality open-source system. It defines the product philosophy, architecture, subsystem contracts, implementation phases, testing strategy, security model, and contributor expectations.
+## What is ATLAS?
 
-## Overview
+ATLAS is an experimental hybrid architecture that blends an Intelligent Execution Kernel with the VS Code IDE. It allows an AI agent to seamlessly reason about your codebase, operate your terminal, and—most importantly—drive your active local web browsers via the Chrome DevTools Protocol (CDP).
 
-Atlas is organized around three hard boundaries:
+Unlike traditional headless automation tools, ATLAS acts on your behalf within your authenticated, active browser sessions, while exposing its execution traces natively in the IDE.
 
-1. The planner decides what should happen.
-2. The runtime decides how work is executed safely.
-3. Capabilities own concrete implementation details.
+## Core Capabilities
 
-The planner never receives raw primitives such as mouse clicks, shell commands, or direct filesystem mutations. It receives capability contracts such as `OrganizeDownloads`, `ReviewPullRequest`, `LaunchWorkspace`, or `PrepareMeeting`. Capability implementations may use low-level adapters, but those adapters are hidden behind stable interfaces owned by the runtime.
+- 🧠 **Intent-Driven Orchestration:** Uses a fast, local LLM to detect intent and graph out dependencies, falling back to OpenRouter for complex multi-step reasoning.
+- 🌐 **Native CDP Proxy:** Discovers local Chrome/Brave/Edge browser ports and proxies connections dynamically.
+- 🔌 **Extensible Capabilities:** Native Python plugin architecture combined with full support for Model Context Protocol (MCP) servers.
+- 💻 **IDE Integration:** A customized VS Code fork streams real-time execution graphs directly into your editor sidebar.
 
-## Repository Map
+## Architecture at a Glance
 
-| Path | Responsibility |
-| --- | --- |
-| [ROADMAP.md](/code/ATLAS/ROADMAP.md) | Release strategy and phase sequencing |
-| [ARCHITECTURE.md](/code/ATLAS/ARCHITECTURE.md) | System architecture and core design decisions |
-| [CONTRIBUTING.md](/code/ATLAS/CONTRIBUTING.md) | Contributor workflow and engineering standards |
-| [SECURITY.md](/code/ATLAS/SECURITY.md) | Vulnerability reporting and secure development rules |
-| [docs/architecture](/code/ATLAS/docs/architecture) | Subsystem architecture documents |
-| [docs/specifications](/code/ATLAS/docs/specifications) | Product, runtime, interface, and platform specifications |
-| [docs/research](/code/ATLAS/docs/research) | Dependency and open-source project evaluations |
-| [docs/phases](/code/ATLAS/docs/phases) | Implementation phase plans |
-| [docs/api](/code/ATLAS/docs/api) | Public interfaces and internal API contracts |
-| [docs/testing](/code/ATLAS/docs/testing) | Test philosophy, acceptance gates, and test matrices |
-| [docs/plugins](/code/ATLAS/docs/plugins) | Plugin SDK and capability extension model |
-| [docs/diagrams](/code/ATLAS/docs/diagrams) | Mermaid diagrams used by the handbook |
-| [docs/examples](/code/ATLAS/docs/examples) | Worked examples for capabilities and workflows |
-| [docs/benchmarks](/code/ATLAS/docs/benchmarks) | Performance budgets and benchmark plans |
-| [docs/implementation](/code/ATLAS/docs/implementation) | Build map from architecture to modules, services, workers, IPC, and storage |
-| [docs/features](/code/ATLAS/docs/features) | User-facing scenarios and feature acceptance criteria |
-| [docs/audits](/code/ATLAS/docs/audits) | Documentation audit records and gap closure notes |
-
-## Mission
-
-Atlas should become the user's permanent local AI operating layer. A user should eventually think, "I use Atlas because Atlas understands my computer." That trust only exists if Atlas is private by default, reliable under failure, explainable under uncertainty, and careful with destructive authority.
-
-## Design Principles
-
-Atlas follows ten product principles:
-
-1. Local first
-2. Offline first
-3. Privacy first
-4. Capability based
-5. Event driven
-6. Deterministic runtime
-7. Explainable planning
-8. Human approval for destructive actions
-9. Extensible plugin architecture
-10. Cross-platform core
-
-## Architecture
-
-Atlas consists of a platform-independent core and platform-specific adapters.
+ATLAS separates *Intent* from *Execution*.
 
 ```mermaid
-flowchart TB
-    User[User Intent] --> Context[Context Engine]
-    Context --> Planner[Planner]
-    Planner --> Runtime[Runtime]
-    Runtime --> Security[Security Engine]
-    Runtime --> Capabilities[Capability Engine]
-    Capabilities --> Adapters[OS and App Adapters]
-    Adapters --> Linux[Linux Adapter]
-    Adapters --> Future[Windows and macOS Adapters]
-    Runtime --> Memory[Memory]
-    Runtime --> Events[Event Bus]
-    Runtime --> Logs[Logging and Telemetry]
+flowchart LR
+    User[Developer] --> IDE[ATLAS IDE]
+    IDE -- "SSE / HTTP" --> Kernel[Execution Kernel]
+    
+    subgraph AI Backend
+    Kernel --> Planner[DAG Planner]
+    Planner --> Policy[Policy Engine]
+    Policy --> Executor[Capability Executor]
+    end
+    
+    Executor --> Filesystem
+    Executor --> Terminal
+    Executor --> MCP[MCP Servers]
+    Executor -- "CDP (:3210)" --> Browser[User's System Browser]
 ```
 
-Read [ARCHITECTURE.md](/code/ATLAS/ARCHITECTURE.md) before implementing any code. Subsystem details live in [docs/architecture](/code/ATLAS/docs/architecture). Use [docs/implementation/implementation-map.md](/code/ATLAS/docs/implementation/implementation-map.md) to translate the architecture into modules, managers, workers, IPC, storage, and execution flow.
+## Quick Start
 
-## Implementation Strategy
+ATLAS is designed for local deployment. Ensure you have Python 3.10+, Node.js (v18/v20), and a chromium-based browser installed.
 
-Atlas should be built in vertical slices. Each phase must produce running code, testable capability contracts, and updated documentation. The first implementation target is Linux on Ubuntu, Debian, and Kali Linux, but platform assumptions must live only in OS adapters.
+```bash
+# 1. Setup the Python Execution Kernel
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
 
-## Testing
+# 2. Build the VS Code Frontend
+cd apps/vscode
+npm install
+npm run build-fast
 
-Atlas is not complete until acceptance tests pass for the relevant phase. Every phase defines unit, integration, system, performance, failure, recovery, security, regression, and acceptance tests. See [docs/testing/strategy.md](/code/ATLAS/docs/testing/strategy.md).
+# 3. Launch ATLAS
+cd ../..
+./scripts/run.sh
+```
 
-## Security
+## Documentation
 
-Atlas treats local machine authority as high risk. Destructive or privacy-sensitive actions require capability grants and, where appropriate, human approval. See [SECURITY.md](/code/ATLAS/SECURITY.md) and [docs/architecture/security.md](/code/ATLAS/docs/architecture/security.md).
+Comprehensive engineering documentation is available in the [`docs/`](docs/README.md) directory:
 
-## Future Improvements
+- 🏗 **[Architecture Overview](docs/architecture/system-architecture.md)**
+- 🤖 **[Agent Execution & Planning](docs/architecture/agent.md)**
+- 🌐 **[Browser CDP Architecture](docs/architecture/browser.md)**
+- 🔌 **[MCP and Plugins](docs/architecture/mcp-and-plugins.md)**
+- 💻 **[IDE Integration](docs/architecture/vscode.md)**
+- ⚙️ **[Development Setup](docs/development/setup.md)**
+- 🛡 **[Security Model](docs/security/security.md)**
 
-The handbook anticipates future Windows and macOS adapters, distributed execution, richer local models, voice input, OCR, document understanding, and plugin marketplaces. These are documented as explicit research and phase items rather than assumed runtime dependencies.
+## Project Status
 
-## References
+> [!CAUTION]
+> ATLAS is an active engineering **prototype**.
+> - The Policy Engine currently defaults to auto-approval for development velocity.
+> - **Do not use ATLAS with untrusted repositories or adversarial websites.**
+> 
+> See [Prototype Status & Limitations](docs/status/prototype-status.md) for a detailed technical breakdown.
 
-- [Architecture Overview](/code/ATLAS/ARCHITECTURE.md)
-- [Documentation Standard](/code/ATLAS/docs/specifications/documentation-standard.md)
-- [Roadmap](/code/ATLAS/ROADMAP.md)
-- [Phase 0 Plan](/code/ATLAS/docs/phases/phase-00-foundation.md)
-- [Phase 1 Plan](/code/ATLAS/docs/phases/phase-01-local-runtime.md)
-- [Plugin SDK](/code/ATLAS/docs/plugins/sdk.md)
-- [Implementation Map](/code/ATLAS/docs/implementation/implementation-map.md)
-- [Core Feature Scenarios](/code/ATLAS/docs/features/core-feature-scenarios.md)
+---
+**Confidentiality:** This is a closed-source, proprietary repository. Code and architecture patterns herein must not be distributed.

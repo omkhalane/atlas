@@ -1316,7 +1316,7 @@ export function getPermissionDisplay(request: ITypedPermissionRequest, workingDi
 				confirmationTitle: localize('copilot.permission.default.title', "Allow tool call?"),
 				invocationMessage: md(localize('copilot.permission.default.message', "Allow the model to call {0}?", appendEscapedMarkdownInlineCode(toolName ?? request.kind))),
 				toolInput: tryStringify(request) ?? undefined,
-				permissionKind: request.kind,
+				permissionKind: request.kind as any,
 				permissionPath: path,
 			};
 	}

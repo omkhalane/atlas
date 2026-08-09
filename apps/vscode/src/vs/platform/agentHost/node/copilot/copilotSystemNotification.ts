@@ -63,7 +63,7 @@ export function buildCopilotSystemNotification(event: SessionEventPayload<'syste
 				startsTurn: true,
 			};
 		default:
-			softAssertNever(kind);
+			softAssertNever(kind as never);
 			return undefined;
 	}
 }

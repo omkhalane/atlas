@@ -308,7 +308,7 @@ interface ITestCopilotModelInfo {
 	readonly modelPickerCategory?: CopilotModelInfo['modelPickerCategory'];
 	readonly modelPickerPriceCategory?: CopilotModelInfo['modelPickerPriceCategory'];
 	readonly supportedReasoningEfforts?: CopilotModelInfo['supportedReasoningEfforts'];
-	readonly defaultReasoningEffort?: CopilotModelInfo['defaultReasoningEffort'];
+	readonly defaultReasoningEffort?: any;
 }
 
 interface ITestCopilotClient extends Pick<CopilotClient, 'start' | 'stop' | 'listSessions' | 'createSession' | 'resumeSession' | 'getSessionMetadata' | 'deleteSession'> {

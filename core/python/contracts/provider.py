@@ -1,0 +1,3 @@
+from typing import Protocol, Any
+class IProviderManager(Protocol):
+    def execute_prompt(self, route: Any, prompt: list) -> Any: ...

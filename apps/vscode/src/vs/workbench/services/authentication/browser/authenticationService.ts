@@ -437,6 +437,19 @@ export class AuthenticationService extends Disposable implements IAuthentication
 	}
 
 	private async tryActivateProvider(providerId: string, activateImmediate: boolean): Promise<IAuthenticationProvider> {
+		if (providerId === 'github' && !this._authenticationProviders.has('github')) {
+			const dummyProvider: IAuthenticationProvider = {
+				id: 'github',
+				label: 'GitHub',
+				supportsMultipleAccounts: false,
+				onDidChangeSessions: Event.None,
+				getSessions: async () => [{ id: 'dummy-session-id', accessToken: 'dummy-token', account: { label: 'Local User', id: 'local' }, scopes: [] }],
+				createSession: async () => ({ id: 'dummy-session-id', accessToken: 'dummy-token', account: { label: 'Local User', id: 'local' }, scopes: [] }),
+				removeSession: async () => {}
+			};
+			this.registerAuthenticationProvider('github', dummyProvider);
+		}
+
 		const store = new DisposableStore();
 		try {
 			// Don't await activateByEvent exclusively — one or more extension

@@ -1,0 +1,3 @@
+from typing import Protocol, Any
+class IProcessExecutor(Protocol):
+    async def run_command(self, cmd: str, cwd: str) -> Any: ...
