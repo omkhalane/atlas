@@ -1,22 +1,34 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 
-const resolvePath = (basePath: string, relativePath: string) => {
-  if (!relativePath || relativePath.startsWith('http://') || relativePath.startsWith('https://') || relativePath.startsWith('data:')) {
-    return relativePath;
-  }
-  
+const getRepoPath = (basePath: string, relativePath: string) => {
   const parts = basePath.split('/');
   parts.pop(); // remove filename
   const dir = parts.join('/');
   
-  // handle relative paths (e.g. ./assets/logo.png or ../assets/logo.png)
   let joined = dir ? `${dir}/${relativePath}` : relativePath;
-  joined = joined.replace(/\.\//g, '').replace(/\/{2,}/g, '/');
   
-  return `${import.meta.env.BASE_URL}repository/${encodeURI(joined)}`;
+  const pathParts = joined.split('/');
+  const stack: string[] = [];
+  for (const part of pathParts) {
+    if (part === '.' || part === '') continue;
+    if (part === '..') {
+      stack.pop();
+    } else {
+      stack.push(part);
+    }
+  }
+  return stack.join('/');
+};
+
+const resolveImagePath = (basePath: string, relativePath: string) => {
+  if (!relativePath || relativePath.startsWith('http://') || relativePath.startsWith('https://') || relativePath.startsWith('data:')) {
+    return relativePath;
+  }
+  return `${import.meta.env.BASE_URL}repository/${encodeURI(getRepoPath(basePath, relativePath))}`;
 };
 
 export default function MarkdownViewer({ path }: { path: string }) {
@@ -61,8 +73,15 @@ export default function MarkdownViewer({ path }: { path: string }) {
                 rehypePlugins={[rehypeRaw]}
                 components={{
                   img: ({node, src, ...props}) => (
-                    <img src={resolvePath(path, src || '')} {...props} style={{maxWidth: '100%'}} />
-                  )
+                    <img src={resolveImagePath(path, src || '')} {...props} style={{maxWidth: '100%'}} />
+                  ),
+                  a: ({node, href, ...props}) => {
+                    if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')) {
+                      return <a href={href} target={href?.startsWith('http') ? '_blank' : undefined} {...props} />;
+                    }
+                    const repoPath = getRepoPath(path, href);
+                    return <Link to={`/file/${repoPath}`} className="text-atlas-accent hover:text-atlas-accent-hover underline" {...props} />;
+                  }
                 }}
               >
                 {content}
