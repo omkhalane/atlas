@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { Search, Lock, Menu, X } from 'lucide-react';
+import { HashRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { Lock, Menu, X } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import FileViewer from './components/FileViewer';
 import MarkdownViewer from './components/MarkdownViewer';
-import SearchModal from './components/SearchModal';
 
 export type TreeNode = {
   name: string;
@@ -16,7 +15,6 @@ export type TreeNode = {
 
 function Layout() {
   const [tree, setTree] = useState<TreeNode[]>([]);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -37,17 +35,6 @@ function Layout() {
       });
   }, []);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        setIsSearchOpen(true);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   return (
     <div className="flex flex-col h-screen bg-atlas-bg text-atlas-text overflow-hidden font-sans">
       {/* Header */}
@@ -66,14 +53,6 @@ function Layout() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button 
-            onClick={() => setIsSearchOpen(true)}
-            className="flex items-center gap-2 px-3 py-1.5 text-sm bg-atlas-bg border border-atlas-border rounded-md hover:border-atlas-muted transition-colors text-atlas-muted"
-          >
-            <Search size={14} />
-            <span className="hidden sm:inline-block">Search code...</span>
-            <kbd className="hidden sm:inline-block ml-2 px-1.5 py-0.5 text-xs border border-atlas-border rounded bg-atlas-bg-subtle">⌘K</kbd>
-          </button>
           <div className="flex items-center gap-1.5 text-sm font-medium text-atlas-muted bg-atlas-bg border border-atlas-border px-2.5 py-1 rounded-md">
             <Lock size={14} />
             READ ONLY
@@ -108,29 +87,11 @@ function Layout() {
         {/* Content Area */}
         <main className="flex-1 overflow-hidden bg-atlas-bg flex flex-col min-w-0">
           <Routes>
-            <Route path="/" element={<HomeViewer tree={tree} />} />
+            <Route path="/" element={<Navigate to="/file/README.md" replace />} />
             <Route path="/file/*" element={<ContentRouter />} />
           </Routes>
         </main>
       </div>
-
-      <SearchModal 
-        isOpen={isSearchOpen} 
-        onClose={() => setIsSearchOpen(false)} 
-      />
-    </div>
-  );
-}
-
-function HomeViewer({ tree }: { tree: TreeNode[] }) {
-  // If root has README.md, render it
-  const hasReadme = tree.some(n => n.name.toLowerCase() === 'readme.md');
-  return hasReadme ? (
-    <MarkdownViewer path="README.md" />
-  ) : (
-    <div className="flex-1 flex items-center justify-center text-atlas-muted flex-col gap-2">
-      <div className="text-2xl text-atlas-text">ATLAS Repository Snapshot</div>
-      <div>Select a file from the explorer to view its contents.</div>
     </div>
   );
 }
@@ -138,7 +99,7 @@ function HomeViewer({ tree }: { tree: TreeNode[] }) {
 function ContentRouter() {
   const location = useLocation();
   // location.pathname is like /file/apps/runtime/main.py
-  const filePath = location.pathname.replace(/^\/file\//, '');
+  const filePath = decodeURIComponent(location.pathname.replace(/^\/file\//, ''));
   
   if (!filePath) return <div className="p-4">Select a file</div>;
 

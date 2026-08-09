@@ -24,7 +24,7 @@ const EXCLUDED_DIRS = new Set([
 ]);
 
 const EXCLUDED_EXTENSIONS = new Set([
-  '.pem', '.key', '.jpg', '.jpeg', '.png', '.gif', '.svg', '.ico', 
+  '.pem', '.key',
   '.pdf', '.zip', '.tar', '.gz', '.mp3', '.mp4', '.woff', '.woff2', '.ttf'
 ]);
 
@@ -40,7 +40,10 @@ function isExcludedFile(filename) {
 
 // Tree and Index Data
 const tree = [];
-const searchIndex = [];
+
+// For streaming the search index to avoid OOM
+let searchIndexFd;
+let isFirstSearchEntry = true;
 
 function walkAndCopy(srcDir, relativePath = '') {
   const items = fs.readdirSync(srcDir);
@@ -81,19 +84,23 @@ function walkAndCopy(srcDir, relativePath = '') {
         size: stat.size
       });
 
-      // Add to search index if reasonable size (< 500KB)
-      if (stat.size < 500 * 1024) {
+      // Add to search index if reasonable size (< 50KB) and is a common text file
+      const ext = path.extname(item).toLowerCase();
+      const searchableExts = new Set(['.ts', '.tsx', '.js', '.jsx', '.py', '.md', '.json', '.html', '.css']);
+      
+      if (stat.size < 50 * 1024 && searchableExts.has(ext)) {
         try {
           const content = fs.readFileSync(itemPath, 'utf8');
-          // Only add if it's actually valid utf8 text (no null bytes)
           if (!content.includes('\0')) {
-             searchIndex.push({
+             const entry = JSON.stringify({
                path: itemRelativePath.replace(/\\/g, '/'),
                content
              });
+             fs.writeSync(searchIndexFd, (isFirstSearchEntry ? '' : ',\\n') + entry);
+             isFirstSearchEntry = false;
           }
         } catch (e) {
-          // Ignore binary read errors
+          // Ignore read errors
         }
       }
     }
@@ -117,22 +124,23 @@ function run() {
   }
   fs.mkdirSync(PUBLIC_REPO_DIR, { recursive: true });
 
+  const searchIndexPath = path.join(PUBLIC_REPO_DIR, 'search-index.json');
+  searchIndexFd = fs.openSync(searchIndexPath, 'w');
+  fs.writeSync(searchIndexFd, '['); // Start JSON array
+
   // Walk, copy, and build tree
   const rootNodes = walkAndCopy(REPO_ROOT);
   
+  fs.writeSync(searchIndexFd, ']'); // Close JSON array
+  fs.closeSync(searchIndexFd);
+
   // Write tree.json
   fs.writeFileSync(
     path.join(PUBLIC_REPO_DIR, 'tree.json'), 
     JSON.stringify(rootNodes, null, 2)
   );
-  
-  // Write search-index.json
-  fs.writeFileSync(
-    path.join(PUBLIC_REPO_DIR, 'search-index.json'), 
-    JSON.stringify(searchIndex) // no pretty print to save space
-  );
 
-  console.log(`Snapshot complete. Created tree with ${searchIndex.length} searchable files.`);
+  console.log(`Snapshot complete.`);
 }
 
 run();
