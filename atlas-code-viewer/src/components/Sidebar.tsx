@@ -27,7 +27,7 @@ function getIconForFile(filename: string) {
 }
 
 function TreeItem({ node, depth = 0 }: { node: TreeNode; depth?: number }) {
-  const [isOpen, setIsOpen] = useState(depth < 1); // Expand root folders by default
+  const [isOpen, setIsOpen] = useState(false); // Closed by default
   const location = useLocation();
   const isActive = location.pathname === `/file/${node.path}`;
 

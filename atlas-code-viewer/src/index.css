@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-atlas-bg: #0d1117;
-  --color-atlas-bg-subtle: #161b22;
-  --color-atlas-border: #30363d;
-  --color-atlas-text: #c9d1d9;
-  --color-atlas-muted: #8b949e;
+  --color-atlas-bg: #000000;
+  --color-atlas-bg-subtle: #0a0a0a;
+  --color-atlas-border: #222222;
+  --color-atlas-text: #ffffff;
+  --color-atlas-muted: #888888;
   --color-atlas-accent: #f97316; /* Warm accent color */
   --color-atlas-accent-hover: #ea580c;
   --color-atlas-selection: rgba(249, 115, 22, 0.2);

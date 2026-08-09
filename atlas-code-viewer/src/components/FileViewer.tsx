@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { getHighlighter, Highlighter } from 'shiki';
+import { createHighlighter, type Highlighter } from 'shiki';
 
 let highlighterInstance: Highlighter | null = null;
 
 async function getShiki() {
   if (!highlighterInstance) {
-    highlighterInstance = await getHighlighter({
-      themes: ['github-dark'],
+    highlighterInstance = await createHighlighter({
+      themes: ['dark-plus'],
       langs: ['javascript', 'typescript', 'tsx', 'jsx', 'python', 'java', 'c', 'cpp', 'rust', 'go', 'json', 'yaml', 'markdown', 'css', 'html', 'bash', 'sql']
     });
   }
@@ -52,7 +52,7 @@ export default function FileViewer({ path }: { path: string }) {
     setError(null);
     setHtml('');
     
-    fetch(`${import.meta.env.BASE_URL}repository/${path}`)
+    fetch(`${import.meta.env.BASE_URL}repository/${encodeURI(path)}`)
       .then(res => {
         if (!res.ok) throw new Error('File not found');
         return res.text();
@@ -61,10 +61,10 @@ export default function FileViewer({ path }: { path: string }) {
         setContent(text);
         try {
           const shiki = await getShiki();
-          const highlighted = shiki.codeToHtml(text, {
+          const highlighted = shiki ? shiki.codeToHtml(text, {
             lang: lang === 'text' ? 'text' : lang,
-            theme: 'github-dark'
-          });
+            theme: 'dark-plus'
+          }) : '';
           setHtml(highlighted);
         } catch (e) {
           // Fallback if language not loaded
